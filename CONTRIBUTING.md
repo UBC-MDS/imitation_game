@@ -9,7 +9,7 @@ You can contribute in many ways, for example:
 
 * [Report Bugs](#report-bugs)
 * [Fix Bugs](#fix-bugs)
-* [Implement Features](#implement-features)
+* [Proposing and Implementing Features](#proposing-and-implementing-features)
 * [Write Documentation](#write-documentation)
 * [Submit Feedback](#submit-feedback)
 
@@ -17,7 +17,7 @@ You can contribute in many ways, for example:
 
 Report bugs at https://github.com/UBC-MDS/imitation_game/issues.
 
-**If you are reporting a bug, please follow the template guidelines. The more
+**If you are reporting a bug, please follow the bug report template guidelines. The more
 detailed your report, the easier and thus faster we can help you.**
 
 ### Fix Bugs
@@ -28,11 +28,12 @@ an issue, please assign yourself to it and add a comment that you'll be working 
 too. For all other issues where you can help, just post a comment; the
 maintainers are usually happy for any support that they can get.
 
-### Implement Features
+### Proposing and Implementing Features
 
-Look through the GitHub issues for features. Anything labelled with
-`enhancement` and `help wanted` is open to whoever wants to implement it. As
-for [fixing bugs](#fix-bugs), please assign yourself to the issue and add a comment that
+To propose new features, please use the feature request template guidelines and submit an issue in
+https://github.com/UBC-MDS/imitation_game/issues. We really appreciate all suggestions for improvement to this package, and all feature requests will be reviewed by the maintainers within 72 hours. From there we will communicate with you on any suggested updates for the feature request, or approve it for implementation as is.
+
+Anything labelled with `enhancement` and `help wanted` are approved feature requests and are open to whoever wants to implement it. Like with [fixing bugs](#fix-bugs), please assign yourself to the issue and add a comment that
 you'll be working on that, too. If another enhancement catches your fancy, but it
 doesn't have the `help wanted` label, just post a comment, the maintainers are usually
 happy for any support that they can get.
