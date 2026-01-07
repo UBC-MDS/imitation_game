@@ -23,10 +23,10 @@ $ pip install imitation-game
 ```
 
 ## Contributing 
-For information about how to contribute to this package, please review our [Contributing document](https://github.com/alxwen711/imitation_game/blob/main/CONTRIBUTING.md). All contributors must abide by our [Code of Conduct](https://github.com/alxwen711/imitation_game/blob/main/CODE_OF_CONDUCT.md)
+For information about how to contribute to this package, please review our [Contributing document](https://github.com/UBC-MDS/imitation_game/blob/main/CONTRIBUTING.md). All contributors must abide by our [Code of Conduct](https://github.com/UBC-MDS/imitation_game/blob/main/CODE_OF_CONDUCT.md)
 
 ## License
-This packages uses the MIT License, more information can be found [here](https://github.com/alxwen711/imitation_game/blob/main/LICENSE)
+This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE)
 
 ## Credits
 This package `imitation-game` is created with [`passwordler`] (https://github.com/UBC-MDS/passwordler) and the [`pyOpenSci copier template`] (https://github.com/pyOpenSci/pyos-package-template)
