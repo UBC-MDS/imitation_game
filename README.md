@@ -1,20 +1,27 @@
 # Welcome to imitation-game
 
-This package provides message encoding and decoding tools in Python. The package consists of five functions:
-- encode_data: The primary encoder. It rotates each letter of the alphabet forward based on a numerical shift value while preserving original casing and non-alphabetic characters.
-- decode_data: The inverse of the encoder. It processes an encoded string using the corresponding shift value to restore the original human-readable message.
-- generate_shift: A utility function that generates a random integer (1–25). This ensures that every session can utilize a unique, non-static encryption key.
-- encrypt_shift: A security wrapper for the shift key. Instead of exposing the raw integer used for rotation, this function encrypts the key to prevent casual observers from identifying the cipher pattern.
-- decrypt_shift: The retrieval function for the shift key. It restores the encrypted key to its original integer form, enabling the decode_data function to operate accurately.
+`imitation-game` is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.
+
+Symmetric Encryption
+Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.
+- generate_symmetric_key: Creates a cryptographically secure random key.
+- encrypt_symmetric: Encrypts a plaintext message using a symmetric key.
+- decrypt_symmetric: Restores an encrypted message back to plaintext using the same key.
+
+Asymmetric Encryption (RSA)
+Secure communication between two parties without needing to share a secret key beforehand.
+- generate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption) and a Private Key (for decryption).
+- encrypt_asymmetric: Encrypts a message using a public key.
+- decrypt_asymmetric: Decrypts a message using the corresponding private key.
 
 ## Comparison with the Python Ecosystem
 There are many message encoding and decoding related packages on the PyPI server. We have selected a few key examples that with similar functionality as our package.
 
-- [Caesar Cipher CLI Tool](https://pypi.org/project/caesar-cipher-cli): encrypt and decrypt text using the Caesar cipher algorithm.
-- [Vigener_Coder_n_Decoder](https://pypi.org/project/viegenere-message-encoder-GameDevNoOne): encodes and decodes Viegener codes.
-- [Cryptography Library](https://pypi.org/project/CryptoC): provides a collection of ciphers that you can use to encrypt and decrypt data.
+- [Cipher-symmetric](https://pypi.org/project/cipher-symmetric): Focuses exclusively on symmetric string encryption, acting as a high-level wrapper for the cryptography module.
+- [Encryption](https://pypi.org/project/encryptions): A broad educational tool demonstrating AES, RSA, and hashing via `pycryptodome`. It is comprehensive but often requires more boilerplate code to implement.
+- [encrypt_data](https://pypi.org/project/encrypt-data): Specializes in Hybrid Encryption, which uses asymmetric keys to securely exchange symmetric keys.
 
-However, there is no package that encrypt and decrypt the key. The primary benefit of imitation-game is its integrated key management. By providing dedicated functions to generate and encrypt the shift key, we provide a more comprehensive "end-to-end" simulation of the encryption process, ensuring the key is just as protected as the message.
+While the packages above are powerful, they often cater to either a single encryption style or require deep cryptographic knowledge to configure properly. The primary benefit of `imitation-game` is its focus on a unified, high-level API that abstracts away the complexity of both symmetric and asymmetric workflows.
 
 ## Installation
 
