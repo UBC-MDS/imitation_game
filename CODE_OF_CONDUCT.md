@@ -58,11 +58,11 @@ representative at an online or offline event.
 
 ## Enforcement
 
-[//]: # (TODO: You need to choose whom and how to contact them.)
-
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-\[INSERT CONTACT METHOD\].
+reported to the community leaders responsible for enforcement by 
+[opening a confidential issue](https://github.com/UBC-MDS/imitation_game/issues) 
+with the label "Code of Conduct" or by contacting the project maintainers directly 
+via email at the addresses listed in the Contributors section of the README.
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
