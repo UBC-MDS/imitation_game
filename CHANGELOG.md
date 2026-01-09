@@ -11,5 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - (2026-01-10)
 
-- Update CONTRIBUTING.md, add feature request template #9
-- Update README.md, create function documentation
+- CONTRIBUTING.md, add feature request template #9
+- README.md and function docstrings #10 #14
+- CODE_OF_CONDUCT.md #15
+- Fix GitHub workflow #17
+
+
+
+[0.1.0]: https://github.com/UBC-MDS/imitation_game/releases/tag/0.1.0
