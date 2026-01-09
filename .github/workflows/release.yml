@@ -13,11 +13,10 @@ jobs:
     name: Build the package
     runs-on: ubuntu-latest
     permissions:
-      contents: read # this job only needs read access
+      contents: write # need write access to commit version changes
     steps:
-      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-        with:
-          persist-credentials: false
+      - name: Check out the repo
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
       - name: Setup Python
         uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
         with:
