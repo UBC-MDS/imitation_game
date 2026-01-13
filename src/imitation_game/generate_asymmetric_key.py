@@ -1,10 +1,10 @@
-from typing import Optional
+from typing import Optional,Hashable
 from Crypto.PublicKey import RSA
 from random import randbytes, seed
 
 def generate_asymmetric_key(public_filepath: Optional[str] = None, 
                             private_filepath: Optional[str] = None,
-                            random_seed: Optional[int] = None) -> tuple[str,str]:
+                            passphrase: Optional[Hashable] = None) -> tuple[str,str]:
     """
     Generates a pair of RSA keys for asymmetric encryption.
 
@@ -18,8 +18,8 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
         Filepath to save the public key in. If no filepath is specified the public key will not be saved in a file.
     private_filepath : str, optional (default = None)
         Filepath to save the private key in. If no filepath is specified the private key will not be saved in a file.
-    random_seed: int, optional (default = None)
-        Integer argument if consistent RSA key generation is required. If specified, `random.randbytes` will be used to
+    passphrase: Hashable, optional (default = None)
+        Hashable argument to generate a consistent RSA key if required. If specified, `random.randbytes` will be used to
         generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
         
     Returns
