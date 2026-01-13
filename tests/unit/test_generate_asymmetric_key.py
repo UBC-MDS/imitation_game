@@ -1,5 +1,5 @@
 """Tests for generate_asymmetric_key function."""
-from imitation_game.imitation_game import generate_asymmetric_key
+from imitation_game.generate_asymmetric_key import generate_asymmetric_key
 import pytest
 from random import randbytes, seed
 from Crypto.PublicKey import RSA
@@ -49,8 +49,8 @@ def test_write_only_private():
     public_path = os.path.join(test_directory,public_file)
     private_path = os.path.join(test_directory,private_file)
     generate_asymmetric_key(None, private_path, None)
-    assert os.path.isfile(public_path), "test_write_only_private generated the public key file (should not occur)"
-    assert os.path.isfile(private_path) == False, "test_write_only_private does not generate the private key file"
+    assert os.path.isfile(public_path) == False, "test_write_only_private generated the public key file (should not occur)"
+    assert os.path.isfile(private_path), "test_write_only_private does not generate the private key file"
 
 
 def test_passphrase():

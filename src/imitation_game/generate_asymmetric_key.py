@@ -30,13 +30,16 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     private_key : bytes
         The key used for decryption outputted as a binary string; must be kept secret.
     """
-    # Typecheck first
+    # Typechecks first
     if type(public_filepath) != str and public_filepath != None:
         raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
-    if isinstance(private_filepath,str) and private_filepath != None:
+    if type(private_filepath) != str and private_filepath != None:
         raise TypeError(f"private_filepath must be of type str, received {type(private_filepath)}")
-    if isinstance(passphrase,Hashable) and passphrase != None:
-        raise TypeError(f"passphrase must be a hashable object, recived object of type {type(passphrase)}")
+    if passphrase != None:
+        try:
+            hash(passphrase)
+        except:
+            raise TypeError(f"passphrase must be a hashable object, recived object of type {type(passphrase)}")
     
         
     # Obtain public and private keys
@@ -58,16 +61,18 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     # Write keys to files if applicable
     if public_filepath != None:
         directory,filename = os.path.split(public_filepath)
+        print(directory)
         if not os.path.exists(directory):
             os.makedirs(directory)
-        with open(filename, "wb") as f:
+        with open(public_filepath, "wb") as f:
             f.write(public_key)
             
     if private_filepath != None:
         directory,filename = os.path.split(private_filepath)
+        print(directory)
         if not os.path.exists(directory):
             os.makedirs(directory)
-        with open(filename, "wb") as f:
+        with open(private_filepath, "wb") as f:
             f.write(private_key)
             
     return public_key,private_key
