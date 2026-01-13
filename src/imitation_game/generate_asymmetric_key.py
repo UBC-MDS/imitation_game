@@ -4,7 +4,7 @@ from random import randbytes, seed
 
 def generate_asymmetric_key(public_filepath: Optional[str] = None, 
                             private_filepath: Optional[str] = None,
-                            passphrase: Optional[Hashable] = None) -> tuple[str,str]:
+                            passphrase: Optional[Hashable] = None) -> tuple[bytes,bytes]:
     """
     Generates a pair of RSA keys for asymmetric encryption.
 
@@ -24,10 +24,10 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
         
     Returns
     -------
-    public_key : str
-        The key used for encryption; can be shared openly.
-    private_key : str
-        The key used for decryption; must be kept secret.
+    public_key : bytes
+        The key used for encryption outputted as a binary string; can be shared openly.
+    private_key : bytes
+        The key used for decryption outputted as a binary string; must be kept secret.
     """
     # Typecheck first
 
@@ -48,8 +48,8 @@ if __name__ == "__main__":
     public_key = key.publickey().export_key()
     #with open("receiver.pem", "wb") as f:
     #    f.write(public_key)
-    print(public_key)
-    print()
-    print(private_key)
+    #print(public_key)
+    #print()
+    #print(private_key)
 
-    print(hash(448))
+    print(type(public_key))
