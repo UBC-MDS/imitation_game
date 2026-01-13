@@ -29,17 +29,27 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     private_key : str
         The key used for decryption; must be kept secret.
     """
+    # Typecheck first
+
+    # Actual key generation here
+
     return "",""
 
 if __name__ == "__main__":
     # example testing from https://www.pycryptodome.org/src/examples
     # debug code to remove before making PR
+    generate_asymmetric_key(0,8,[8,7,6]) # typechecking will be needed
     seed(448)
     key = RSA.generate(2048,randfunc = randbytes)
     private_key = key.export_key()
-    with open("private.pem", "wb") as f:
-        f.write(private_key)
+    #with open("private.pem", "wb") as f:
+    #    f.write(private_key)
 
     public_key = key.publickey().export_key()
-    with open("receiver.pem", "wb") as f:
-        f.write(public_key)
+    #with open("receiver.pem", "wb") as f:
+    #    f.write(public_key)
+    print(public_key)
+    print()
+    print(private_key)
+
+    print(hash(448))
