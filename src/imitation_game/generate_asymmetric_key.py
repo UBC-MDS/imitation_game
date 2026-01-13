@@ -1,6 +1,10 @@
 from typing import Optional
+from Crypto.PublicKey import RSA
+from random import randbytes, seed
 
-def generate_asymmetric_key(public_filepath: Optional[str] = None, private_filepath: Optional[str] = None) -> tuple[str,str]:
+def generate_asymmetric_key(public_filepath: Optional[str] = None, 
+                            private_filepath: Optional[str] = None,
+                            random_seed: Optional[int] = None) -> tuple[str,str]:
     """
     Generates a pair of RSA keys for asymmetric encryption.
 
@@ -14,7 +18,10 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None, private_filep
         Filepath to save the public key in. If no filepath is specified the public key will not be saved in a file.
     private_filepath : str, optional (default = None)
         Filepath to save the private key in. If no filepath is specified the private key will not be saved in a file.
-    
+    random_seed: int, optional (default = None)
+        Integer argument if consistent RSA key generation is required. If specified, `random.randbytes` will be used to
+        generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
+        
     Returns
     -------
     public_key : str
@@ -24,3 +31,15 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None, private_filep
     """
     return "",""
 
+if __name__ == "__main__":
+    # example testing from https://www.pycryptodome.org/src/examples
+    # debug code to remove before making PR
+    seed(448)
+    key = RSA.generate(2048,randfunc = randbytes)
+    private_key = key.export_key()
+    with open("private.pem", "wb") as f:
+        f.write(private_key)
+
+    public_key = key.publickey().export_key()
+    with open("receiver.pem", "wb") as f:
+        f.write(public_key)
