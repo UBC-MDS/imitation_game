@@ -1,13 +1,20 @@
 """Tests for generate_asymmetric_key function."""
 from imitation_game.imitation_game import generate_asymmetric_key
 import pytest
+from random import randbytes, seed
+from Crypto.PublicKey import RSA
+import os
 
 # Standard Use Cases
 
+test_directory = "tests/asymmetric_key_tests"
 
 # pre computed exact keys
-seed_448_publickey = b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkO6q2FFPNvzxRtYg69lY\nshvL+0eilmUtLJbEb2RZevAxuRRl0Vn12jP1XpilPBgHJk+LsxgzurjG5oyKNLEK\ncTSxBMUNGwVHxTO9Vn2hY+d4g6ZpB3XWNG5PRNEiPFmLf61QVsbkN/d8KswoMHlq\nglFV5HzFhGvBR4g4yCvBaC+hPQ1y8atO7j0bCH+j4aeKoFgz4Ofx4lUjyTnLpWpP\nchEDqi1p0557FALAtX8GicUQAJT2JeHcHWGhO5jLHrlXJ3xx5JYelyoBwEquV4/P\nLjjRNgBY308ZyBJPLj64jvv6XPCccjOZTtU+qYAiOf/0E81240H/j/77vM0nw05a\nSwIDAQAB\n-----END PUBLIC KEY-----'
-seed_448_privatekey = b'-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEAkO6q2FFPNvzxRtYg69lYshvL+0eilmUtLJbEb2RZevAxuRRl\n0Vn12jP1XpilPBgHJk+LsxgzurjG5oyKNLEKcTSxBMUNGwVHxTO9Vn2hY+d4g6Zp\nB3XWNG5PRNEiPFmLf61QVsbkN/d8KswoMHlqglFV5HzFhGvBR4g4yCvBaC+hPQ1y\n8atO7j0bCH+j4aeKoFgz4Ofx4lUjyTnLpWpPchEDqi1p0557FALAtX8GicUQAJT2\nJeHcHWGhO5jLHrlXJ3xx5JYelyoBwEquV4/PLjjRNgBY308ZyBJPLj64jvv6XPCc\ncjOZTtU+qYAiOf/0E81240H/j/77vM0nw05aSwIDAQABAoIBAALRiWQEjMhSefS5\nNFGx29422SwtU/WdyRedZPuPlYflBOqHAYXlPHk+Wm65BDmbdAQkNuDIPzVJ46BX\nKlbk/IGAF1My69LTMvacT3nPnqRdO4Q/57n76isB3CvH72UCDsrwWWgenRCTkQga\nCUwMCGy5XTTA0myFVfBor0YBR9UZVIaWjdHh2P6oss1HOPtpAgtgHoB3snVvI9ld\nVLSgmBzxVL0VL/O64PjE9+mORxNq6pqJg5uFRESNKg5vBhufPZOizW2K4reqa1wB\ngJSy3rXGl8ULNGZwG/cy9BiWefGmAcSjW1PWUpc7ChuUutleSkOOKRHz8nqDYiat\nzCN0lVECgYEAt0IBBolFq8NDkbE2I2aUCYTQagvu6JopAiaedLSxWj/EhZM6+3cE\nFY2O+m3jUNsMJQLjKIfZhCpas8wPGZ2IgWaxlVStk4CVI0ABcGUVGIQrq3zInimd\nhl1Am0U+q4tRYIDBqkB/8JuwkliGucmRqzKdPG+o42jfAIpy8H3JJFECgYEAynYp\nXcHyxLXu5gtBakI74w08fUkh04ZR1jXNpEfv8i0WbIgMPCmeLCYmgZRmdFzfR0wB\n6yMhMVHZG+pzMDhO0vdAJx0NWXb3470TMUCf/fD+4H+s8bezTXR6ETPoV7XXgrtR\nMzwd1GB2QYiLpnx0YmuZJ3J9Z5W6T79eXspyedsCgYAubc6MtWKtbb9Evj0VIvwG\nnVugQn24+LXDEb27m7wDPXywyuh6pWCnhUHgOM8KwTSGfADJWAHH9mMcgmqg9sSK\n5FXBm76OTFl8oM68hx+dIn9d5zN8vtZmIGIp9JU4KQfpBzYJyGWhtBA8Q6l+kI8T\nbLNhiHilhQBaxrjwLS40wQKBgDREcwNwaZMdANLEvxuGg91m8mHJuoDYIVJyy2cI\n50oXF73nFXmGqP3uz2wOerC5tS670Zb5l70ayzjoutoM/1R5Xkd6uZKKIw7ZJhZF\n/8fYKoSckXJJoXFyi3zbcLUMDdoDL8BRWcYVLRJYBO1zHby22HAVn4hZYCLsXZmN\nHCaXAoGASy8nitbPCxo7h2LoiKiUFNydowh/41RXP71jAnDwkTl9dr6x4V868c3h\nOSSHIZ4Hq+eRrjj516XL7oucWiTlp3L9Oi4bTiriqT7YxIHwtPKadnc6C55z0nrS\nKFXScSQhiyFdUQKiowAGECyGtLxPm6mP+YRZ6if512f2iOa5wGo=\n-----END RSA PRIVATE KEY-----'
+seed(448)
+key = RSA.generate(2048,randfunc = randbytes)
+seed_448_privatekey = key.export_key()
+seed_448_publickey = key.publickey().export_key()
+    
 
 def test_basic():
     """Test basic use case (no arguments) to ensure no syntax errors"""
@@ -17,12 +24,34 @@ def test_basic():
 
 def test_write_to_file():
     """Test writing public and private key to files"""
+    public_file = "public.pem"
+    private_file = "private.pem"
+    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(test_directory,private_file)
+    generate_asymmetric_key(public_path, private_path, None)
+    assert os.path.isfile(public_path), "test_write_to_file does not generate the public key file"
+    assert os.path.isfile(private_path), "test_write_to_file does not generate the private key file"
 
 def test_write_only_public():
     """Test writing ONLY public key to file"""
+    public_file = "public2.pem"
+    private_file = "private2.pem"
+    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(test_directory,private_file)
+    generate_asymmetric_key(public_path, None, None)
+    assert os.path.isfile(public_path), "test_write_only_public does not generate the public key file"
+    assert os.path.isfile(private_path) == False, "test_write_only_public generated the private key file (should not occur)"
 
 def test_write_only_private():
     """Test writing ONLY private key to file"""
+    public_file = "public3.pem"
+    private_file = "private3.pem"
+    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(test_directory,private_file)
+    generate_asymmetric_key(None, private_path, None)
+    assert os.path.isfile(public_path), "test_write_only_private generated the public key file (should not occur)"
+    assert os.path.isfile(private_path) == False, "test_write_only_private does not generate the private key file"
+
 
 def test_passphrase():
     """Test that passphrase ALWAYS generates a consistent pair of keys"""
@@ -33,6 +62,23 @@ def test_passphrase():
 
 def test_full():
     """Test with every possible optional argument"""
+    public_file = "public_full.pem"
+    private_file = "private_full.pem"
+    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(test_directory,private_file)
+    generate_asymmetric_key(public_path, private_path, 448)
+    assert os.path.isfile(public_path), "test_full does not generate the public key file"
+    assert os.path.isfile(private_path), "test_full does not generate the private key file"
+
+    # confirm files produce the RSA keys as expected
+    public_read,private_read = None,None
+    with open(public_path, "rb") as f:
+        public_read = f.read()
+    with open(private_path, "rb") as f:
+        private_read = f.read()
+    assert public_read == seed_448_publickey, "Public key read from file does not match pregenerated 448 public key."
+    assert private_read == seed_448_privatekey, "Private key read from file does not match pregenerated 448 private key."
+    
 
 # Argument type errors
 

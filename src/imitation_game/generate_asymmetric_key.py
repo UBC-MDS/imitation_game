@@ -42,14 +42,19 @@ if __name__ == "__main__":
     seed(448)
     key = RSA.generate(2048,randfunc = randbytes)
     private_key = key.export_key()
-    #with open("private.pem", "wb") as f:
-    #    f.write(private_key)
-
+    with open("private.pem", "wb") as f:
+        f.write(private_key)
+    
     public_key = key.publickey().export_key()
-    #with open("receiver.pem", "wb") as f:
-    #    f.write(public_key)
-    #print(public_key)
-    #print()
-    #print(private_key)
+    with open("receiver.pem", "wb") as f:
+        f.write(public_key)
+    print(public_key)
+    print()
+    print(private_key)
 
     print(type(public_key))
+
+    with open("private.pem", "rb") as f:
+        x = f.read()
+    print(x)
+    assert x == private_key
