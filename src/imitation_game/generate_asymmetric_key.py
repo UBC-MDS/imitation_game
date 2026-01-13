@@ -1,3 +1,4 @@
+import os
 from typing import Optional,Hashable
 from Crypto.PublicKey import RSA
 from random import randbytes, seed
@@ -30,31 +31,44 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
         The key used for decryption outputted as a binary string; must be kept secret.
     """
     # Typecheck first
-
-    # Actual key generation here
-
-    return "",""
-
-if __name__ == "__main__":
-    # example testing from https://www.pycryptodome.org/src/examples
-    # debug code to remove before making PR
-    generate_asymmetric_key(0,8,[8,7,6]) # typechecking will be needed
-    seed(448)
-    key = RSA.generate(2048,randfunc = randbytes)
-    private_key = key.export_key()
-    with open("private.pem", "wb") as f:
-        f.write(private_key)
+    if type(public_filepath) != str and public_filepath != None:
+        raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
+    if isinstance(private_filepath,str) and private_filepath != None:
+        raise TypeError(f"private_filepath must be of type str, received {type(private_filepath)}")
+    if isinstance(passphrase,Hashable) and passphrase != None:
+        raise TypeError(f"passphrase must be a hashable object, recived object of type {type(passphrase)}")
     
+        
+    # Obtain public and private keys
+    key = None
+    if passphrase != None: # use hash method
+        seed(hash(passphrase))
+        key = RSA.generate(2048,randfunc = randbytes)
+    else: # use Crypto.Random.get_random_bytes
+        key = RSA.generate(2048)
+    private_key = key.export_key()
     public_key = key.publickey().export_key()
-    with open("receiver.pem", "wb") as f:
-        f.write(public_key)
+
+    # Print out keys
+    print("PUBLIC KEY:\n")
     print(public_key)
-    print()
+    print("PRIVATE KEY:\n")
     print(private_key)
+    
+    # Write keys to files if applicable
+    if public_filepath != None:
+        directory,filename = os.path.split(public_filepath)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        with open(filename, "wb") as f:
+            f.write(public_key)
+            
+    if private_filepath != None:
+        directory,filename = os.path.split(private_filepath)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        with open(filename, "wb") as f:
+            f.write(private_key)
+            
+    return public_key,private_key
 
-    print(type(public_key))
-
-    with open("private.pem", "rb") as f:
-        x = f.read()
-    print(x)
-    assert x == private_key
