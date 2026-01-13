@@ -1,4 +1,6 @@
 """Tests for generate_asymmetric_key function."""
+from imitation_game.imitation_game import generate_asymmetric_key
+import pytest
 
 # Standard Use Cases
 
@@ -9,7 +11,9 @@ seed_448_privatekey = b'-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAKCAQEAkO6q2FF
 
 def test_basic():
     """Test basic use case (no arguments) to ensure no syntax errors"""
-    pass
+    publickey,privatekey = generate_asymmetric_key(None, None, None)
+    assert type(publickey) == bytes, "Public key returned is not a bytes type object"
+    assert type(privatekey) == bytes, "Private key returned is not a bytes type object"
 
 def test_write_to_file():
     """Test writing public and private key to files"""
@@ -22,6 +26,10 @@ def test_write_only_private():
 
 def test_passphrase():
     """Test that passphrase ALWAYS generates a consistent pair of keys"""
+    publickey,privatekey = generate_asymmetric_key(None, None, 448)
+    assert publickey == seed_448_publickey, "Public key generated from passphrase 448 does not match expected key."
+    assert privatekey == seed_448_privatekey, "Private key generated from passphrase 448 does not match expected key."
+    
 
 def test_full():
     """Test with every possible optional argument"""
@@ -30,10 +38,16 @@ def test_full():
 
 def test_wrong_type_public():
     """Test that function stops on wrong type in public_filepath"""
+    with pytest.raises(TypeError):
+        generate_asymmetric_key(False, None, None)
 
 def test_wrong_type_private():
     """Test that function stops on wrong type in private_filepath"""
+    with pytest.raises(TypeError):
+        generate_asymmetric_key(None, 727, None)
 
 def test_wrong_type_passphrase():
     """Test that function stops on wrong type in passphrase (List is NOT hashable)"""
+    with pytest.raises(TypeError):
+        generate_asymmetric_key(False, None, ["W","Y","S","I"])
 
