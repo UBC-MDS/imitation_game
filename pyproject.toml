@@ -37,8 +37,9 @@ classifiers = [
 ]
 # TODO: add keywords
 keywords = []
-# TODO: add dependencies
-dependencies = []
+dependencies = [
+    "pycryptodome",
+]
 
 [project.urls]
 Homepage = "https://github.com//imitation-game"
