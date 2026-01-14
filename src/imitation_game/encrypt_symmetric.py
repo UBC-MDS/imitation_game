@@ -1,4 +1,6 @@
-def encrypt_symmetric(message, key):
+from Crypto.Cipher import AES
+
+def encrypt_symmetric(message, key, file_path=None):
     """
     Encrypts a plaintext message using a symmetric key.
 
@@ -14,4 +16,6 @@ def encrypt_symmetric(message, key):
     str
         The encrypted ciphertext.
     """
-    pass
+    cipher = AES.new(key, AES.MODE_EAX)
+    ciphertext = cipher.encrypt(message)
+    return ciphertext
