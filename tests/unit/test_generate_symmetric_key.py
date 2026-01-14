@@ -41,3 +41,13 @@ def test_key_uniqueness():
     assert key1 != key2, "Keys should be unique"
     assert key2 != key3, "Keys should be unique"
     assert key1 != key3, "Keys should be unique"
+
+def test_multiple_generation_consistency():
+    """Test that function consistently returns valid keys across multiple calls"""
+    for i in range(10):
+        key = generate_symmetric_key()
+        assert isinstance(key, str), f"Iteration {i}: key should be a string"
+        assert len(key) == 44, f"Iteration {i}: key should have length 44"
+        # Verify each key is valid base64
+        decoded = base64.b64decode(key)
+        assert len(decoded) == 32, f"Iteration {i}: decoded key should be 32 bytes"
