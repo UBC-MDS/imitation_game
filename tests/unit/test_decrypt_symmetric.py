@@ -11,9 +11,9 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 # - test_decrypt_symmetric_invalid_key: Decryption with invalid key
 # - test_decrypt_symmetric_unicode_message: Decryption of unicode message
 
-class TestEncryptSymmetric:
-    
-    def test_decrypt_symmetric_basic_decryption():
+class TestDecryptSymmetric:
+
+    def test_decrypt_symmetric_basic_decryption(self):
         """Test basic decryption functionality with pre-defined keys."""
         key = b'524\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
         message = "Hello, World!"

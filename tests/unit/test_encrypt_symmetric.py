@@ -13,7 +13,7 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 
 class TestEncryptSymmetric:
     
-    def test_encrypt_symmetric_basic_encryption():
+    def test_encrypt_symmetric_basic_encryption(self):
         """Test basic encryption functionality with pre-defined keys."""
         key = b'524\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
         message = "Hello, World!"
