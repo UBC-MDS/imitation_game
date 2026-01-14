@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Implemented `generate_symmetric_key()` function for generating cryptographically secure symmetric encryption keys
+- Added comprehensive test suite for `generate_symmetric_key()` with 6 test cases covering type validation, length verification, base64 encoding, uniqueness, and consistency
+
 - Upcoming features and fixes
+
 
 ## [0.1.0] - (2026-01-10)
 
