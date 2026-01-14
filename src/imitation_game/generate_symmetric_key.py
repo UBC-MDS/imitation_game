@@ -27,4 +27,14 @@ def generate_symmetric_key():
     True
 
     """
-    pass
+    from Crypto.Random import get_random_bytes
+    import base64
+    
+    # Generate 32 bytes (256 bits) of random data for AES-256 encryption
+    random_bytes = get_random_bytes(32)
+    
+    # Encode to base64 for easy storage and transmission
+    key = base64.b64encode(random_bytes).decode('utf-8')
+    
+    return key
+
