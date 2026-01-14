@@ -4,8 +4,10 @@ from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA256
 import base64
 import json
+import os
+from typing import Union
 
-def encrypt_asymmetric(message: str, receiver_public_key: bytes, sender_private_key: bytes) -> str:
+def encrypt_asymmetric(message: str, receiver_public_key: Union[bytes, str], sender_private_key: Union[bytes, str]) -> str:
     """
     Encrypts a message using the receiver's public key and signs it with the sender's private key.
     This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).
@@ -14,10 +16,10 @@ def encrypt_asymmetric(message: str, receiver_public_key: bytes, sender_private_
     ----------
     message : str
         The plaintext message to encrypt.
-    receiver_public_key : bytes
-        The receiver's RSA public key in PEM format.
-    sender_private_key : bytes
-        The sender's RSA private key in PEM format for signing.
+    receiver_public_key : bytes or str
+        The receiver's RSA public key in PEM format (bytes) or path to key file (str).
+    sender_private_key : bytes or str
+        The sender's RSA private key in PEM format (bytes) or path to key file (str) for signing.
         
     Returns
     -------
@@ -30,9 +32,19 @@ def encrypt_asymmetric(message: str, receiver_public_key: bytes, sender_private_
         If the message is too long for RSA encryption or keys are invalid.
     """
     try:
-        # Import keys
-        receiver_key = RSA.import_key(receiver_public_key)
-        sender_key = RSA.import_key(sender_private_key)
+        # Load receiver public key
+        if isinstance(receiver_public_key, str) and os.path.isfile(receiver_public_key):
+            with open(receiver_public_key, 'rb') as f:
+                receiver_key = RSA.import_key(f.read())
+        else:
+            receiver_key = RSA.import_key(receiver_public_key)
+        
+        # Load sender private key
+        if isinstance(sender_private_key, str) and os.path.isfile(sender_private_key):
+            with open(sender_private_key, 'rb') as f:
+                sender_key = RSA.import_key(f.read())
+        else:
+            sender_key = RSA.import_key(sender_private_key)
         
         # Encrypt with receiver's public key
         cipher = PKCS1_OAEP.new(receiver_key)

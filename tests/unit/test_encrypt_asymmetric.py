@@ -1,4 +1,6 @@
 import pytest
+import tempfile
+import os
 from imitation_game.encrypt_asymmetric import encrypt_asymmetric
 from imitation_game.generate_asymmetric_key import generate_asymmetric_key
 
@@ -74,3 +76,24 @@ class TestEncryptAsymmetric:
         assert isinstance(encrypted, str)
         assert len(encrypted) > 0
         assert encrypted != message
+    
+    def test_encrypt_asymmetric_with_file_paths(self):
+        """Test encryption using file paths for keys."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = "Hello, World!"
+        
+        with tempfile.TemporaryDirectory() as tmpdir:
+            receiver_pub_path = os.path.join(tmpdir, "receiver_public.pem")
+            sender_priv_path = os.path.join(tmpdir, "sender_private.pem")
+            
+            with open(receiver_pub_path, 'wb') as f:
+                f.write(receiver_public)
+            with open(sender_priv_path, 'wb') as f:
+                f.write(sender_private)
+            
+            encrypted = encrypt_asymmetric(message, receiver_pub_path, sender_priv_path)
+            
+            assert isinstance(encrypted, str)
+            assert len(encrypted) > 0
+            assert encrypted != message
