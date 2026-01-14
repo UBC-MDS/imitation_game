@@ -2,7 +2,7 @@ from Crypto.Random import get_random_bytes
 import base64
 
 
-def generate_symmetric_key():
+def generate_symmetric_key() -> str:
     """
     Generate a cryptographically secure random key for symmetric encryption.
     
