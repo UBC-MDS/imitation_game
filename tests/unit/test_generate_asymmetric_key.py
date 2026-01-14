@@ -97,3 +97,25 @@ def test_wrong_type_passphrase():
     with pytest.raises(TypeError):
         generate_asymmetric_key(False, None, ["W","Y","S","I"])
 
+# Invalid filepath format errors
+"""
+Google AI was used to initially research methods for determining if a
+specific function for checking if a file path is valid without creating it
+through the interaction link https://share.google/aimode/z9UkOkSuMRvZHfhEr,
+
+This resuted in finding the python package pathvalidate
+(https://pypi.org/project/pathvalidate/) which is utilized for this testcase and
+the specific path validation check.
+"""
+from pathvalidate import ValidationError
+
+def test_faulty_filepath_public():
+    """Test that function stops on faulty file path naming in public_filepath"""
+    with pytest.raises(ValidationError):
+        generate_asymmetric_key("/\\/\\???", None, None)
+
+def test_faulty_filepath_private():
+    """Test that function stops on faulty file path naming in private_filepath"""
+    with pytest.raises(ValidationError):
+        generate_asymmetric_key(None, "/\\/\\???", None)
+

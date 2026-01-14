@@ -2,6 +2,7 @@ import os
 from typing import Optional,Hashable
 from Crypto.PublicKey import RSA
 from random import randbytes, seed
+from pathvalidate import ValidationError, validate_filepath
 
 def generate_asymmetric_key(public_filepath: Optional[str] = None, 
                             private_filepath: Optional[str] = None,
@@ -30,17 +31,34 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     private_key : bytes
         The key used for decryption outputted as a binary string; must be kept secret.
     """
-    # Typechecks first
-    if type(public_filepath) != str and public_filepath != None:
-        raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
-    if type(private_filepath) != str and private_filepath != None:
-        raise TypeError(f"private_filepath must be of type str, received {type(private_filepath)}")
+    
+    """
+    Google AI was used to initially research methods for determining if a
+    specific function for checking if a file path is valid without creating it
+    through the interaction link https://share.google/aimode/z9UkOkSuMRvZHfhEr,
+
+    This resuted in finding the python package pathvalidate
+    (https://pypi.org/project/pathvalidate/) which is utilized for this testcase and
+    the specific path validation check.
+    """
+    # Typechecks and path validation where applicable
+    if public_filepath != None:
+        if type(public_filepath) != str: raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
+        try:
+            validate_filepath(public_filepath)
+        except ValidationError as ve:
+            raise ve
+    if private_filepath != None:
+        if type(private_filepath) != str: raise TypeError(f"private_filepath must be of type str, received {type(private_filepath)}")
+        try:
+            validate_filepath(private_filepath)
+        except ValidationError as ve:
+            raise ve
     if passphrase != None:
         try:
             hash(passphrase)
         except:
             raise TypeError(f"passphrase must be a hashable object, recived object of type {type(passphrase)}")
-    
         
     # Obtain public and private keys
     key = None
