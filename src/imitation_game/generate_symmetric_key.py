@@ -35,6 +35,12 @@ def generate_symmetric_key() -> str:
     >>> key2 = generate_symmetric_key()
     >>> key1 != key2
     True
+    
+    >>> # Practical usage: Generate and store a key
+    >>> encryption_key = generate_symmetric_key()
+    >>> # Store this key securely - it will be needed for both encryption and decryption
+    >>> print(f"Generated key: {encryption_key[:10]}...")  # doctest: +SKIP
+    Generated key: aB3dEf7gH9...
 
     """
     # Generate 32 bytes (256 bits) of random data for AES-256 encryption
