@@ -15,6 +15,12 @@ def generate_symmetric_key():
     str
         A base64-encoded string representing the encryption key. This key 
         should be kept secret and used for both encryption and decryption.
+    
+    Notes
+    -----
+    The function generates a 256-bit (32-byte) key suitable for AES-256 encryption.
+    The key is cryptographically secure and uses the Crypto.Random module which
+    provides access to a cryptographically strong random number generator.
 
     Examples
     --------
