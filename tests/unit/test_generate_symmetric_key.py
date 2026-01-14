@@ -30,3 +30,14 @@ def test_valid_base64_encoding():
         assert len(decoded) == 32, f"Decoded key should be 32 bytes, got {len(decoded)}"
     except Exception as e:
         pytest.fail(f"Generated key is not valid base64: {e}")
+
+def test_key_uniqueness():
+    """Test that multiple calls generate different keys (randomness check)"""
+    key1 = generate_symmetric_key()
+    key2 = generate_symmetric_key()
+    key3 = generate_symmetric_key()
+    
+    # All three keys should be different
+    assert key1 != key2, "Keys should be unique"
+    assert key2 != key3, "Keys should be unique"
+    assert key1 != key3, "Keys should be unique"
