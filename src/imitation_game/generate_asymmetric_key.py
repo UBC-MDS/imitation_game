@@ -4,8 +4,8 @@ from Crypto.PublicKey import RSA
 from random import randbytes, seed
 from pathvalidate import ValidationError, validate_filepath
 
-def generate_asymmetric_key(public_filepath: Optional[str] = None, 
-                            private_filepath: Optional[str] = None,
+def generate_asymmetric_key(private_filepath: Optional[str] = None,
+                            public_filepath: Optional[str] = None,         
                             passphrase: Optional[Hashable] = None) -> tuple[bytes,bytes]:
     """
     Generates a pair of RSA keys for asymmetric encryption.
@@ -16,20 +16,20 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     
     Parameters
     ----------
-    public_filepath : str, optional (default = None)
-        Filepath to save the public key in. If no filepath is specified the public key will not be saved in a file.
     private_filepath : str, optional (default = None)
         Filepath to save the private key in. If no filepath is specified the private key will not be saved in a file.
+    public_filepath : str, optional (default = None)
+        Filepath to save the public key in. If no filepath is specified the public key will not be saved in a file.
     passphrase: Hashable, optional (default = None)
         Hashable argument to generate a consistent RSA key if required. If specified, `random.randbytes` will be used to
         generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
         
     Returns
     -------
-    public_key : bytes
-        The key used for encryption outputted as a binary string; can be shared openly.
     private_key : bytes
         The key used for decryption outputted as a binary string; must be kept secret.
+    public_key : bytes
+        The key used for encryption outputted as a binary string; can be shared openly.
     """
     
     """
@@ -42,16 +42,16 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     the specific path validation check.
     """
     # Typechecks and path validation where applicable
-    if public_filepath != None:
-        if type(public_filepath) != str: raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
-        try:
-            validate_filepath(public_filepath)
-        except ValidationError as ve:
-            raise ve
     if private_filepath != None:
         if type(private_filepath) != str: raise TypeError(f"private_filepath must be of type str, received {type(private_filepath)}")
         try:
             validate_filepath(private_filepath)
+        except ValidationError as ve:
+            raise ve
+    if public_filepath != None:
+        if type(public_filepath) != str: raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
+        try:
+            validate_filepath(public_filepath)
         except ValidationError as ve:
             raise ve
     if passphrase != None:
@@ -71,27 +71,26 @@ def generate_asymmetric_key(public_filepath: Optional[str] = None,
     public_key = key.publickey().export_key()
 
     # Print out keys
-    print("PUBLIC KEY:\n")
-    print(public_key)
     print("PRIVATE KEY:\n")
     print(private_key)
+    print("PUBLIC KEY:\n")
+    print(public_key)
     
-    # Write keys to files if applicable
+    # Write keys to files if applicable        
+    if private_filepath != None:
+        directory,_ = os.path.split(private_filepath)
+        print(directory)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        with open(private_filepath, "wb") as f:
+            f.write(private_key)
     if public_filepath != None:
-        directory,filename = os.path.split(public_filepath)
+        directory,_ = os.path.split(public_filepath)
         print(directory)
         if not os.path.exists(directory):
             os.makedirs(directory)
         with open(public_filepath, "wb") as f:
             f.write(public_key)
             
-    if private_filepath != None:
-        directory,filename = os.path.split(private_filepath)
-        print(directory)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-        with open(private_filepath, "wb") as f:
-            f.write(private_key)
-            
-    return public_key,private_key
+    return private_key,public_key
 
