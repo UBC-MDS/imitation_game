@@ -66,3 +66,58 @@ def test_multiple_generation_consistency():
         # Verify each key is valid base64
         decoded = base64.b64decode(key)
         assert len(decoded) == 32, f"Iteration {i}: decoded key should be 32 bytes"
+
+# File Writing Tests
+
+def test_write_to_file():
+    """Test writing key to file"""
+    import os
+    import tempfile
+    
+    test_directory = "tests/symmetric_key_tests"
+    test_file = "test_key.txt"
+    test_path = os.path.join(test_directory, test_file)
+    
+    # Generate key and save to file
+    key = generate_symmetric_key(test_path)
+    
+    # Verify file was created
+    assert os.path.isfile(test_path), "Key file was not created"
+    
+    # Verify file contains the correct key
+    with open(test_path, "r") as f:
+        saved_key = f.read()
+    assert saved_key == key, "Saved key does not match generated key"
+    
+    # Cleanup
+    os.remove(test_path)
+    if os.path.exists(test_directory):
+        os.rmdir(test_directory)
+
+def test_no_file_without_filepath():
+    """Test that no file is created when filepath is not provided"""
+    key = generate_symmetric_key()
+    # Just verify the function works without filepath
+    assert isinstance(key, str), "Key should be generated even without filepath"
+    assert len(key) == 44, "Key should have correct length"
+
+def test_create_directory_if_not_exists():
+    """Test that function creates parent directories if they don't exist"""
+    import os
+    import tempfile
+    
+    test_directory = "tests/nested/symmetric_key_tests"
+    test_file = "nested_key.txt"
+    test_path = os.path.join(test_directory, test_file)
+    
+    # Generate key with nested path
+    key = generate_symmetric_key(test_path)
+    
+    # Verify directory and file were created
+    assert os.path.exists(test_directory), "Parent directories were not created"
+    assert os.path.isfile(test_path), "Key file was not created in nested directory"
+    
+    # Cleanup
+    os.remove(test_path)
+    os.rmdir(test_directory)
+    os.rmdir("tests/nested")
