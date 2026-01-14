@@ -1,5 +1,76 @@
-"""Tests for encrypt_asymmetric function."""
+import pytest
+from imitation_game.encrypt_asymmetric import encrypt_asymmetric
+from imitation_game.generate_asymmetric_key import generate_asymmetric_key
 
-def test_encrypt_asymmetric_basic():
-    """Test file present"""
-    pass
+# NOTE: All tests in this file were suggested by Amazon Q Developer
+# Tests included:
+# - test_encrypt_asymmetric_basic: Basic encryption functionality with sender/receiver keys
+# - test_encrypt_asymmetric_empty_message: Encryption of empty message
+# - test_encrypt_asymmetric_long_message: Encryption fails for message too long for RSA 2048 can encrypt max ~245 bytes, create longer message
+# - test_encrypt_asymmetric_invalid_receiver_key: Encryption with invalid receiver public key
+# - test_encrypt_asymmetric_invalid_sender_key: Encryption with invalid sender private key
+# - test_encrypt_asymmetric_unicode_message: Encryption of unicode message
+
+class TestEncryptAsymmetric:
+    
+    def test_encrypt_asymmetric_basic(self):
+        """Test basic encryption functionality with sender/receiver keys."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = "Hello, World!"
+        
+        encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
+        
+        assert isinstance(encrypted, str)
+        assert len(encrypted) > 0
+        assert encrypted != message
+    
+    def test_encrypt_asymmetric_empty_message(self):
+        """Test encryption of empty message."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = ""
+        
+        encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
+        
+        assert isinstance(encrypted, str)
+        assert len(encrypted) > 0
+    
+    def test_encrypt_asymmetric_long_message(self):
+        """Test encryption fails for message too long for RSA."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = "A" * 300
+        
+        with pytest.raises(ValueError, match="Encryption failed"):
+            encrypt_asymmetric(message, receiver_public, sender_private)
+    
+    def test_encrypt_asymmetric_invalid_receiver_key(self):
+        """Test encryption with invalid receiver public key."""
+        sender_private, sender_public = generate_asymmetric_key()
+        message = "Hello, World!"
+        invalid_key = "invalid_key"
+        
+        with pytest.raises(ValueError, match="Encryption failed"):
+            encrypt_asymmetric(message, invalid_key, sender_private)
+    
+    def test_encrypt_asymmetric_invalid_sender_key(self):
+        """Test encryption with invalid sender private key."""
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = "Hello, World!"
+        invalid_key = "invalid_key"
+        
+        with pytest.raises(ValueError, match="Encryption failed"):
+            encrypt_asymmetric(message, receiver_public, invalid_key)
+    
+    def test_encrypt_asymmetric_unicode_message(self):
+        """Test encryption of unicode message."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = "Hello 🌍"
+        
+        encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
+        
+        assert isinstance(encrypted, str)
+        assert len(encrypted) > 0
+        assert encrypted != message
