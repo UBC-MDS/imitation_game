@@ -21,3 +21,12 @@ def test_key_length():
     key = generate_symmetric_key()
     # 32 bytes encoded in base64 should be 44 characters
     assert len(key) == 44, f"Expected key length of 44, got {len(key)}"
+
+def test_valid_base64_encoding():
+    """Test that generated key is valid base64 and decodes to 32 bytes"""
+    key = generate_symmetric_key()
+    try:
+        decoded = base64.b64decode(key)
+        assert len(decoded) == 32, f"Decoded key should be 32 bytes, got {len(decoded)}"
+    except Exception as e:
+        pytest.fail(f"Generated key is not valid base64: {e}")
