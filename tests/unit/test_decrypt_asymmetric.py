@@ -123,3 +123,6 @@ class TestDecryptAsymmetric:
     def test_encrypt_decrypt_roundtrip(self):
         """Test complete encrypt-decrypt roundtrip with sender/receiver key pairs."""
         pass
+
+    def test_encrypt_decrypt_roundtrip_with_file_paths(self):
+        """Test encryption using file paths for keys."""
