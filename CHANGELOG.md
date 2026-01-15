@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Implementation of functions and tests for asymmetric encryption and decryption #26 #27 #29 #31 #32
 
+
 ## [0.1.0] - (2026-01-10)
 
 - CONTRIBUTING.md, add feature request template #9
