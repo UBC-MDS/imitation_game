@@ -13,6 +13,7 @@ from imitation_game.generate_asymmetric_key import generate_asymmetric_key
 # - test_decrypt_asymmetric_invalid_data: Decryption with invalid encrypted data
 # - test_decrypt_asymmetric_invalid_receiver_key: Decryption with invalid receiver private key
 # - test_decrypt_asymmetric_invalid_sender_key: Decryption with invalid sender public key
+# - test_tampered_message_detection: Tampered messages are detected through signature verification
 
 class TestDecryptAsymmetric:
     
