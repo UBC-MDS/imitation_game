@@ -8,8 +8,10 @@ def remove_testdata_directory():
     # This code will run at the end of the pytest session
     yield
 
-    try:
-        shutil.rmtree("tests/asymmetric_key_tests")
-    except FileNotFoundError:
-        print("directory not removed")
-        pass  # Directory doesn't exist, continue
+    folders = ["tests/asymmetric_key_tests","tests/asymmetric_integration"]
+    for f in folders:
+        try:
+            shutil.rmtree(f)
+        except FileNotFoundError:
+            print(f"{f} does not exist")
+            pass  # Directory doesn't exist, continue
