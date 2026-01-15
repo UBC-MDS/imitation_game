@@ -1,4 +1,7 @@
+import base64
 from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+from Crypto.Util.Padding import pad
 
 def encrypt_symmetric(message, key, file_path=None):
     """
@@ -16,6 +19,16 @@ def encrypt_symmetric(message, key, file_path=None):
     str
         The encrypted ciphertext.
     """
-    cipher = AES.new(key, AES.MODE_EAX)
-    ciphertext = cipher.encrypt(message)
-    return ciphertext
+    if isinstance(key, str):
+        try:
+            key = base64.b64decode(key)
+        except Exception:
+            raise ValueError("Encryption failed: Invalid key encoding")
+    
+    if len(message) > 256:
+        raise ValueError("Encryption failed: Message too long")
+
+    iv = get_random_bytes(16)
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    ciphertext = cipher.encrypt(pad(message.encode(), AES.block_size))
+    return base64.b64encode(iv + ciphertext).decode('utf-8')
