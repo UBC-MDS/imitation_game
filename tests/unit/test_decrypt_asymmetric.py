@@ -13,8 +13,6 @@ from imitation_game.generate_asymmetric_key import generate_asymmetric_key
 # - test_decrypt_asymmetric_invalid_data: Decryption with invalid encrypted data
 # - test_decrypt_asymmetric_invalid_receiver_key: Decryption with invalid receiver private key
 # - test_decrypt_asymmetric_invalid_sender_key: Decryption with invalid sender public key
-# - test_encrypt_decrypt_roundtrip: Complete encrypt-decrypt roundtrip with sender/receiver key pairs
-# - test_tampered_message_detection: Tampered messages are detected through signature verification
 
 class TestDecryptAsymmetric:
     
@@ -120,10 +118,3 @@ class TestDecryptAsymmetric:
         with pytest.raises(ValueError):
             decrypt_asymmetric(tampered_encrypted, receiver_private, sender_public)
     
-    def test_encrypt_decrypt_roundtrip(self):
-        """Test complete encrypt-decrypt roundtrip with sender/receiver key pairs."""
-        pass
-
-    def test_encrypt_decrypt_roundtrip_with_file_paths(self):
-        """Test encryption using file paths for keys."""
-        pass
