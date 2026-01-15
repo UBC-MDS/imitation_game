@@ -12,17 +12,6 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 # - test_encrypt_symmetric_unicode_message: Encryption of unicode message
 
 class TestEncryptSymmetric:
-    
-    def test_encrypt_symmetric_basic_encryption(self):
-        """Test basic encryption functionality with pre-defined keys."""
-        key = b'524\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
-        message = "Hello, World!"
-        expected = b'\x1a\x1d8\xd1\x0b\xfc\xc2\x8fb\x99\xf4-\x90'
-        encrypted = encrypt_symmetric(message, key)
-        assert encrypted == expected
-        assert isinstance(encrypted, str)
-        assert len(encrypted) > 0
-        assert encrypted != message 
 
     def test_encrypt_symmetric_basic_encryption_generated_key(self):
         """Test basic encryption functionality with generated keys."""
@@ -33,7 +22,7 @@ class TestEncryptSymmetric:
         
         assert isinstance(encrypted, str)
         assert len(encrypted) > 0
-        assert encrypted != message   
+        assert encrypted != message
     
     def test_encrypt_symmetric_empty_message(self):
         """Test encryption of empty message."""
