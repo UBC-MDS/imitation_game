@@ -11,6 +11,7 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 # - test_decrypt_symmetric_wrong_key: Test decryption with wrong key
 # - test_decrypt_symmetric_invalid_data: Test decryption with invalid encrypted data
 # - test_decrypt_symmetric_invalid_key: Test decryption with invalid key
+# - test_encrypt_decrypt_integration(self): Test a message can be encrypted and then decrypted back to original
 
 class TestDecryptSymmetric:
     
@@ -72,3 +73,17 @@ class TestDecryptSymmetric:
         
         with pytest.raises(ValueError, match="Decryption failed"):
             decrypt_symmetric(encrypted, invalid_key)
+
+    def test_encrypt_decrypt_integration(self):
+        """Test a message can be encrypted and then decrypted back to original."""
+        key = generate_symmetric_key()
+        message = "Hello, World!"
+        
+        ciphertext = encrypt_symmetric(message, key)
+        assert isinstance(ciphertext, str)
+        assert ciphertext != message
+        
+        decrypted = decrypt_symmetric(ciphertext, key)
+        
+        # Final Verification
+        assert decrypted == message
