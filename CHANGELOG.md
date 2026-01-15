@@ -8,10 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Implemented `generate_symmetric_key()` function for generating cryptographically secure symmetric encryption keys
-- Added comprehensive test suite for `generate_symmetric_key()` with 6 test cases covering type validation, length verification, base64 encoding, uniqueness, and consistency
 
-- Upcoming features and fixes
+- Type hints for encrypt_asymmetric and decrypt_asymmetric functions
+- Documentation comments in test files listing all LLM-suggested tests
+- Added PGP style encryption function and tests
+
+### Changed
+
+- Updated parameter types in encrypt_asymmetric
+- Updated parameter types in decrypt_asymmetric
+- Updated docstrings to reflect correct parameter types (bytes instead of str)
+
+## [1.0.0] - (2026-01-17)
+
+- Implementation of functions and tests for asymmetric encryption and decryption #26 #27 #29 #31 #32
 
 
 ## [0.1.0] - (2026-01-10)
@@ -21,6 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CODE_OF_CONDUCT.md #15
 - Fix GitHub workflow #17
 
-
-
+[1.0.0]: https://github.com/UBC-MDS/imitation_game/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/UBC-MDS/imitation_game/releases/tag/0.1.0

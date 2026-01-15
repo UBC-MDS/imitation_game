@@ -10,11 +10,11 @@ Fast and efficient encryption using a single shared key. Best for internal data 
 - decrypt_symmetric: Restores an encrypted message back to plaintext using the same key.
 
 Asymmetric Encryption (RSA)
-Secure communication between two parties without needing to share a secret key beforehand.
+Secure communication between two parties without needing to share a secret key beforehand. Uses sender/receiver key combinations where the sender encrypts with the receiver's public key AND signs with their own private key. This provides both confidentiality (only receiver can decrypt) and authenticity (receiver can verify the sender's identity), similar to PGP encryption.
 
-- generate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption) and a Private Key (for decryption).
-- encrypt_asymmetric: Encrypts a message using a public key.
-- decrypt_asymmetric: Decrypts a message using the corresponding private key.
+- generate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).
+- encrypt_asymmetric: Encrypts a message using the receiver's public key and signs it with the sender's private key. Takes parameters: (message, receiver_public_key, sender_private_key).
+- decrypt_asymmetric: Decrypts a message using the receiver's private key and verifies the sender's signature using the sender's public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).
 
 ## Comparison with the Python Ecosystem
 
@@ -33,6 +33,26 @@ pip install imitation-game
 ```
 
 **Test PyPI**: <https://test.pypi.org/project/imitation_game>
+
+## Usage Examples
+
+### Asymmetric Encryption (Sender/Receiver)
+
+```python
+from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric
+
+# Generate key pairs for sender and receiver
+sender_private, sender_public = generate_asymmetric_key()
+receiver_private, receiver_public = generate_asymmetric_key()
+
+# Sender encrypts message with receiver's public key and signs with their private key
+message = "Secret message"
+encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
+
+# Receiver decrypts with their private key and verifies sender's signature
+decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
+print(decrypted_message)  # "Secret message"
+```
 
 ## Contributing
 
