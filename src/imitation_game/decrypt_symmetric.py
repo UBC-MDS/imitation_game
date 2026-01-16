@@ -24,6 +24,26 @@ def decrypt_symmetric(ciphertext, key):
     ValueError
         If the key or ciphertext is not valid Base64, if the key length is 
         incorrect, or if the data cannot be decoded as UTF-8 after decryption.
+
+    See Also
+    --------
+    encrypt_symmetric : The counterpart function used to create the ciphertext.
+
+    Notes
+    -----
+    The function extracts the first 8 bytes of the decoded ciphertext to use 
+    as the nonce. This must match the nonce generated during encryption for 
+    the process to succeed.
+
+    Examples
+    --------
+    >>> from imitation_game.generate_symmetric_key import generate_symmetric_key
+    >>> from imitation_game.encrypt_symmetric import encrypt_symmetric
+    >>> from imitation_game.decrypt_symmetric import decrypt_symmetric
+    >>> key = generate_symmetric_key()
+    >>> ciphertext = encrypt_symmetric("Top Secret", key)
+    >>> decrypt_symmetric(ciphertext, key)
+    'Top Secret'
     """
     try:
         if isinstance(key, str):
