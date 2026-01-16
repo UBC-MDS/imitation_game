@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - (2026-01-17)
 
+- Implementation of functions and tests for symmetric encryption and decryption #21 #22 #23
 - Implementation of functions and tests for asymmetric encryption and decryption #26 #27 #29 #31 #32
 
 
