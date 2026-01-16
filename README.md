@@ -32,6 +32,10 @@ While the packages above are powerful, they often cater to either a single encry
 pip install imitation-game
 ```
 
+**Dependencies:**
+- `pycryptodome` - Cryptographic operations
+- `pathvalidate` - File path validation
+
 **Test PyPI**: <https://test.pypi.org/project/imitation_game>
 
 ## Usage Examples
