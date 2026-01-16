@@ -1,3 +1,6 @@
+import base64
+from Crypto.Cipher import AES
+
 def encrypt_symmetric(message, key):
     """
     Encrypts a plaintext message using a symmetric key.
@@ -14,4 +17,15 @@ def encrypt_symmetric(message, key):
     str
         The encrypted ciphertext.
     """
-    pass
+    if isinstance(key, str):
+        try:
+            key = base64.b64decode(key)
+        except Exception:
+            raise ValueError("Encryption failed: Invalid key encoding")
+    
+    if len(message) > 256:
+        raise ValueError("Encryption failed: Message too long")
+    
+    cipher = AES.new(key, AES.MODE_CTR)
+    ciphertext = cipher.encrypt(message.encode())
+    return base64.b64encode(cipher.nonce + ciphertext).decode('utf-8')
