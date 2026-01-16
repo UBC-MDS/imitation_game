@@ -3,19 +3,26 @@ from Crypto.Cipher import AES
 
 def encrypt_symmetric(message, key):
     """
-    Encrypts a plaintext message using a symmetric key.
+    Encrypts a plaintext message using AES in Counter (CTR) mode.
 
     Parameters
     ----------
     message : str
-        The human-readable string to be encrypted.
+        The human-readable string to be encrypted. Must be 256 characters or fewer.
     key : str
-        The shared secret key used for encryption.
+        The shared secret key. If a string is provided, it must be Base64 encoded.
 
     Returns
     -------
     str
-        The encrypted ciphertext.
+        A Base64-encoded string containing the 8-byte nonce followed by 
+        the ciphertext.
+
+    Raises
+    ------
+    ValueError
+        If the key is not properly Base64 encoded, the message exceeds 256 
+        characters, or the key length is invalid for AES.
     """
     if isinstance(key, str):
         try:
