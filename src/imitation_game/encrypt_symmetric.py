@@ -3,19 +3,55 @@ from Crypto.Cipher import AES
 
 def encrypt_symmetric(message, key):
     """
-    Encrypts a plaintext message using a symmetric key.
+    Encrypts a plaintext message using AES in Counter (CTR) mode.
 
     Parameters
     ----------
     message : str
-        The human-readable string to be encrypted.
+        The human-readable string to be encrypted. Must be 256 characters or fewer.
     key : str
-        The shared secret key used for encryption.
+        The shared secret key. If a string is provided, it must be Base64 encoded.
 
     Returns
     -------
     str
-        The encrypted ciphertext.
+        A Base64-encoded string containing the 8-byte nonce followed by 
+        the ciphertext.
+
+    Raises
+    ------
+    ValueError
+        If the key is not properly Base64 encoded, the message exceeds 256 
+        characters, or the key length is invalid for AES.
+
+    See Also
+    --------
+    generate_symmetric_key : Function used to create a valid key.
+
+    Notes
+    -----
+    This function uses AES-CTR mode. CTR mode turns a block cipher into 
+    a stream cipher. It generates a unique nonce for every encryption 
+    call, meaning the same plaintext will produce different ciphertext 
+    every time it is encrypted with the same key.
+
+    Examples
+    --------
+    >>> # Basic encryption with key
+    >>> from imitation_game.generate_symmetric_key import generate_symmetric_key
+    >>> from imitation_game.encrypt_symmetric import encrypt_symmetric
+    >>> key = generate_symmetric_key()
+    >>> msg = "Top Secret Message"
+    >>> encrypted = encrypt_symmetric(msg, key)
+    >>> encrypted
+    'mgj+qxUTNBb2tRN58uXhziyJ81735PPVKAw='
+
+    >>> # CTR mode produces different results for the same input
+    >>> key = generate_symmetric_key()
+    >>> enc1 = encrypt_symmetric("Hello", key)
+    >>> enc2 = encrypt_symmetric("Hello", key)
+    >>> enc1 == enc2
+    False
     """
     if isinstance(key, str):
         try:
