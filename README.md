@@ -53,6 +53,21 @@ print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
 key = generate_symmetric_key("keys/my_encryption_key.txt")
 ```
 
+### Symmetric Encryption
+
+```python
+from imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric
+
+# Generate key 
+key = generate_symmetric_key()
+
+# Encrypts and decrypts message with key
+message = "Secret message"
+encrypted_data = encrypt_symmetric(message, key)
+decrypted_message = decrypt_symmetric(encrypted_data, key)
+print(decrypted_message)  # "Secret message"
+```
+
 ### Asymmetric Encryption (Sender/Receiver)
 
 ```python
