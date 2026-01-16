@@ -3,19 +3,27 @@ from Crypto.Cipher import AES
 
 def decrypt_symmetric(ciphertext, key):
     """
-    Restores an encrypted message back to plaintext using the same symmetric key.
+    Decrypts an AES-CTR encrypted message and restores it to plaintext.
 
     Parameters
     ----------
     ciphertext : str
-        The encrypted data to be decrypted.
+        The Base64-encoded string to be decrypted. This must contain the 
+        8-byte nonce followed by the actual encrypted data.
     key : str
-        The shared secret key that was used to encrypt the data.
+        The shared secret key. If a string is provided, it must be Base64 
+        encoded.
 
     Returns
     -------
     str
-        The original plaintext message.
+        The original plaintext message, UTF-8 decoded.
+
+    Raises
+    ------
+    ValueError
+        If the key or ciphertext is not valid Base64, if the key length is 
+        incorrect, or if the data cannot be decoded as UTF-8 after decryption.
     """
     try:
         if isinstance(key, str):
