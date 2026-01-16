@@ -23,6 +23,32 @@ def encrypt_symmetric(message, key):
     ValueError
         If the key is not properly Base64 encoded, the message exceeds 256 
         characters, or the key length is invalid for AES.
+
+    See Also
+    --------
+    generate_symmetric_key : Function used to create a valid key.
+
+    Notes
+    -----
+    This function uses AES-CTR mode. CTR mode turns a block cipher into 
+    a stream cipher. It generates a unique nonce for every encryption 
+    call, meaning the same plaintext will produce different ciphertext 
+    every time it is encrypted with the same key.
+
+    Examples
+    --------
+    >>> # Basic encryption with a 256-bit (32-byte) key
+    >>> key = generate_symmetric_key()
+    >>> msg = "Top Secret Message"
+    >>> encrypted = encrypt_symmetric(msg, key)
+    >>> type(encrypted)
+    <class 'str'>
+
+    >>> # CTR mode produces different results for the same input
+    >>> enc1 = encrypt_symmetric("Hello", key)
+    >>> enc2 = encrypt_symmetric("Hello", key)
+    >>> enc1 == enc2
+    False
     """
     if isinstance(key, str):
         try:
