@@ -32,9 +32,26 @@ While the packages above are powerful, they often cater to either a single encry
 pip install imitation-game
 ```
 
+**Dependencies:**
+- `pycryptodome` - Cryptographic operations
+- `pathvalidate` - File path validation
+
 **Test PyPI**: <https://test.pypi.org/project/imitation_game>
 
 ## Usage Examples
+
+### Symmetric Key Generation
+
+```python
+from imitation_game import generate_symmetric_key
+
+# Generate a secure random key for symmetric encryption
+key = generate_symmetric_key()
+print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
+
+# Save the key to a file for later use
+key = generate_symmetric_key("keys/my_encryption_key.txt")
+```
 
 ### Asymmetric Encryption (Sender/Receiver)
 
@@ -53,6 +70,7 @@ encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
 decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
 print(decrypted_message)  # "Secret message"
 ```
+
 
 ## Contributing
 

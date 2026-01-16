@@ -39,6 +39,7 @@ classifiers = [
 keywords = []
 dependencies = [
     "pycryptodome",
+    "pathvalidate",
 ]
 
 [project.urls]
