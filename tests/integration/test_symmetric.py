@@ -10,6 +10,7 @@ from imitation_game.decrypt_symmetric import decrypt_symmetric
 # Tests included:
 # - test_encrypt_decrypt_integration: Test a message can be encrypted and then decrypted back to original
 # - test_invalid_decryption_attempts: Test encrypt a message and confirm the wrong key cannot decrypt it
+# - test_key_file_persistence_integration: Test the full lifecycle using a physical file
 
 class TestAsymmetricIntegration:
     def test_encrypt_decrypt_integration(self):
@@ -49,3 +50,31 @@ class TestAsymmetricIntegration:
         # invalid key
         with pytest.raises(ValueError, match="Decryption failed"):
             decrypt_symmetric(encrypted, "Invalid key")
+
+    def test_key_file_persistence_integration(self, tmp_path):
+        """
+        Test the full lifecycle using a physical file:
+        1. Generate key to a file.
+        2. Encrypt a message using the file path.
+        3. Decrypt the message using the file path.
+        """
+        # Create a key file
+        key_file = tmp_path / "secret.key"
+        key_file_path = str(key_file)
+
+        # 1. Generate and save
+        original_key_string = generate_symmetric_key(key_file_path)
+        
+        # Verify the file actually exists and contains the key
+        assert key_file.exists()
+        assert key_file.read_text().strip() == original_key_string
+
+        # 2. Encrypt using key file
+        message = "Integration test for file-based keys."
+        ciphertext = encrypt_symmetric(message, key_file_path)
+        
+        # 3. Decrypt using key file
+        decrypted = decrypt_symmetric(ciphertext, key_file_path)
+
+        assert decrypted == message
+        assert decrypted != ciphertext
