@@ -1,4 +1,5 @@
 import base64
+import os
 from Crypto.Cipher import AES
 
 def decrypt_symmetric(ciphertext, key):
@@ -12,7 +13,7 @@ def decrypt_symmetric(ciphertext, key):
         8-byte nonce followed by the actual encrypted data.
     key : str
         The shared secret key. If a string is provided, it must be Base64 
-        encoded.
+        encoded. OR a path to a file containing the key.
 
     Returns
     -------
@@ -46,6 +47,10 @@ def decrypt_symmetric(ciphertext, key):
     'Top Secret'
     """
     try:
+        if isinstance(key, str) and os.path.isfile(key):
+            with open(key, 'r') as f:
+                key = f.read().strip()
+
         if isinstance(key, str):
             key = base64.b64decode(key)
         

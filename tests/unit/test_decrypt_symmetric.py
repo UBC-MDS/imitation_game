@@ -11,7 +11,7 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 # - test_decrypt_symmetric_wrong_key: Test decryption with wrong key
 # - test_decrypt_symmetric_invalid_data: Test decryption with invalid encrypted data
 # - test_decrypt_symmetric_invalid_key: Test decryption with invalid key
-# - test_encrypt_decrypt_integration(self): Test a message can be encrypted and then decrypted back to original
+# - test_decrypt_symmetric_key_from_file: Test decryption using a key stored in a file
 
 class TestDecryptSymmetric:
     
@@ -73,3 +73,18 @@ class TestDecryptSymmetric:
         
         with pytest.raises(ValueError, match="Decryption failed"):
             decrypt_symmetric(encrypted, invalid_key)
+
+    def test_decrypt_symmetric_key_from_file(self, tmp_path):
+        """Test decryption using a key stored in a file."""
+        # Create a key file
+        key_file = tmp_path / "secret.key"
+        key_file_path = str(key_file)
+        
+        generate_symmetric_key(key_file_path)
+        message = "Testing the file-based round trip!"
+
+        encrypted = encrypt_symmetric(message, key_file_path)
+        decrypted = decrypt_symmetric(encrypted, key_file_path)
+        
+        assert decrypted == message
+        assert isinstance(decrypted, str)

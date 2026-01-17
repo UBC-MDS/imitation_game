@@ -1,4 +1,5 @@
 import base64
+import os
 from Crypto.Cipher import AES
 
 def encrypt_symmetric(message, key):
@@ -11,6 +12,7 @@ def encrypt_symmetric(message, key):
         The human-readable string to be encrypted. Must be 256 characters or fewer.
     key : str
         The shared secret key. If a string is provided, it must be Base64 encoded.
+        OR a path to a file containing the key.
 
     Returns
     -------
@@ -53,6 +55,10 @@ def encrypt_symmetric(message, key):
     >>> enc1 == enc2
     False
     """
+    if isinstance(key, str) and os.path.isfile(key):
+        with open(key, 'r') as f:
+            key = f.read().strip()
+
     if isinstance(key, str):
         try:
             key = base64.b64decode(key)
