@@ -19,11 +19,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated parameter types in decrypt_asymmetric
 - Updated docstrings to reflect correct parameter types (bytes instead of str)
 
-## [1.0.0] - (2026-01-17)
+## [0.0.2] - (2026-01-17)
 
-- Implementation of functions and tests for symmetric encryption and decryption #21 #22 #23
-- Implementation of functions and tests for asymmetric encryption and decryption #26 #27 #29 #31 #32
-
+### Added
+- Implementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)
+- Implementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)
+- Added pathvalidate dependency for file path validation (#36)
+- Added key file support for symmetric encryption and decryption (#39)
+- Complete README with usage examples for all functions (#36)
+- Comprehensive test suite with 55 tests covering all functions
 
 ## [0.1.0] - (2026-01-10)
 
@@ -32,5 +36,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CODE_OF_CONDUCT.md #15
 - Fix GitHub workflow #17
 
-[1.0.0]: https://github.com/UBC-MDS/imitation_game/compare/0.1.0...1.0.0
+[0.0.2]: https://github.com/UBC-MDS/imitation_game/compare/0.1.0...0.0.2
 [0.1.0]: https://github.com/UBC-MDS/imitation_game/releases/tag/0.1.0
