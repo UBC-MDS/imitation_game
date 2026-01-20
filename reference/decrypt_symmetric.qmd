@@ -1,0 +1,60 @@
+# decrypt_symmetric { #imitation_game.decrypt_symmetric }
+
+`decrypt_symmetric`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [decrypt_symmetric](#imitation_game.decrypt_symmetric.decrypt_symmetric) | Decrypts an AES-CTR encrypted message and restores it to plaintext. |
+
+### decrypt_symmetric { #imitation_game.decrypt_symmetric.decrypt_symmetric }
+
+```python
+decrypt_symmetric.decrypt_symmetric(ciphertext, key)
+```
+
+Decrypts an AES-CTR encrypted message and restores it to plaintext.
+
+#### Parameters {.doc-section .doc-section-parameters}
+
+| Name       | Type   | Description                                                                                                           | Default    |
+|------------|--------|-----------------------------------------------------------------------------------------------------------------------|------------|
+| ciphertext | str    | The Base64-encoded string to be decrypted. This must contain the  8-byte nonce followed by the actual encrypted data. | _required_ |
+| key        | str    | The shared secret key. If a string is provided, it must be Base64  encoded. OR a path to a file containing the key.   | _required_ |
+
+#### Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                    |
+|--------|--------|------------------------------------------------|
+|        | str    | The original plaintext message, UTF-8 decoded. |
+
+#### Raises {.doc-section .doc-section-raises}
+
+| Name   | Type       | Description                                                                                                                                |
+|--------|------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+|        | ValueError | If the key or ciphertext is not valid Base64, if the key length is  incorrect, or if the data cannot be decoded as UTF-8 after decryption. |
+
+#### See Also {.doc-section .doc-section-see-also}
+
+encrypt_symmetric : The counterpart function used to create the ciphertext.
+
+#### Notes {.doc-section .doc-section-notes}
+
+The function extracts the first 8 bytes of the decoded ciphertext to use 
+as the nonce. This must match the nonce generated during encryption for 
+the process to succeed.
+
+#### Examples {.doc-section .doc-section-examples}
+
+```python
+>>> from imitation_game.generate_symmetric_key import generate_symmetric_key
+>>> from imitation_game.encrypt_symmetric import encrypt_symmetric
+>>> from imitation_game.decrypt_symmetric import decrypt_symmetric
+>>> key = generate_symmetric_key()
+>>> ciphertext = encrypt_symmetric("Top Secret", key)
+>>> decrypt_symmetric(ciphertext, key)
+'Top Secret'
+```

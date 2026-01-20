@@ -1,0 +1,44 @@
+# decrypt_asymmetric { #imitation_game.decrypt_asymmetric }
+
+`decrypt_asymmetric`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [decrypt_asymmetric](#imitation_game.decrypt_asymmetric.decrypt_asymmetric) | Decrypts a message using the receiver's private key and verifies the signature using the sender's public key. |
+
+### decrypt_asymmetric { #imitation_game.decrypt_asymmetric.decrypt_asymmetric }
+
+```python
+decrypt_asymmetric.decrypt_asymmetric(
+    encrypted_data,
+    receiver_private_key,
+    sender_public_key,
+)
+```
+
+Decrypts a message using the receiver's private key and verifies the signature using the sender's public key.
+This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).
+
+#### Parameters {.doc-section .doc-section-parameters}
+
+| Name                 | Type         | Description                                                                                             | Default    |
+|----------------------|--------------|---------------------------------------------------------------------------------------------------------|------------|
+| encrypted_data       | str          | Base64-encoded JSON containing encrypted message and signature.                                         | _required_ |
+| receiver_private_key | bytes or str | The receiver's RSA private key in PEM format (bytes) or path to key file (str).                         | _required_ |
+| sender_public_key    | bytes or str | The sender's RSA public key in PEM format (bytes) or path to key file (str) for signature verification. | _required_ |
+
+#### Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                   |
+|--------|--------|-----------------------------------------------|
+|        | str    | The decrypted and verified plaintext message. |
+
+#### Raises {.doc-section .doc-section-raises}
+
+| Name   | Type       | Description                                                             |
+|--------|------------|-------------------------------------------------------------------------|
+|        | ValueError | If decryption fails, signature verification fails, or keys are invalid. |

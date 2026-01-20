@@ -13,17 +13,22 @@ format:
 
 quartodoc:
   # the name used to import the package you want to create reference docs for
-  package: quartodoc
+  package: imitation_game
 
   # write sidebar and style data
   sidebar: reference/_sidebar.yml
   css: reference/_styles-quartodoc.css
 
   sections:
-    - title: Some functions
-      desc: Functions to inspect docstrings.
+    - title: Key functions
+      desc: Functions for encryption and decryption.
       contents:
         # the functions being documented in the package.
         # you can refer to anything: class methods, modules, etc..
-        - get_object
-        - preview
+        - generate_symmetric_key
+        - encrypt_symmetric
+        - decrypt_symmetric
+        - generate_asymmetric_key
+        - encrypt_asymmetric
+        - decrypt_asymmetric
+        

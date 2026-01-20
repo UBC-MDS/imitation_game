@@ -1,10 +1,14 @@
 # Function reference {.doc .doc-index}
 
-## Some functions
+## Key functions
 
-Functions to inspect docstrings.
+Functions for encryption and decryption.
 
 | | |
 | --- | --- |
-| [get_object](get_object.qmd#quartodoc.get_object) | Fetch a griffe object. |
-| [preview](preview.qmd#quartodoc.preview) | Print a friendly representation of a griffe object (e.g. function, docstring) |
+| [generate_symmetric_key](generate_symmetric_key.qmd#imitation_game.generate_symmetric_key) |  |
+| [encrypt_symmetric](encrypt_symmetric.qmd#imitation_game.encrypt_symmetric) |  |
+| [decrypt_symmetric](decrypt_symmetric.qmd#imitation_game.decrypt_symmetric) |  |
+| [generate_asymmetric_key](generate_asymmetric_key.qmd#imitation_game.generate_asymmetric_key) |  |
+| [encrypt_asymmetric](encrypt_asymmetric.qmd#imitation_game.encrypt_asymmetric) |  |
+| [decrypt_asymmetric](decrypt_asymmetric.qmd#imitation_game.decrypt_asymmetric) |  |

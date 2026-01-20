@@ -1,0 +1,44 @@
+# encrypt_asymmetric { #imitation_game.encrypt_asymmetric }
+
+`encrypt_asymmetric`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [encrypt_asymmetric](#imitation_game.encrypt_asymmetric.encrypt_asymmetric) | Encrypts a message using the receiver's public key and signs it with the sender's private key. |
+
+### encrypt_asymmetric { #imitation_game.encrypt_asymmetric.encrypt_asymmetric }
+
+```python
+encrypt_asymmetric.encrypt_asymmetric(
+    message,
+    receiver_public_key,
+    sender_private_key,
+)
+```
+
+Encrypts a message using the receiver's public key and signs it with the sender's private key.
+This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).
+
+#### Parameters {.doc-section .doc-section-parameters}
+
+| Name                | Type         | Description                                                                               | Default    |
+|---------------------|--------------|-------------------------------------------------------------------------------------------|------------|
+| message             | str          | The plaintext message to encrypt.                                                         | _required_ |
+| receiver_public_key | bytes or str | The receiver's RSA public key in PEM format (bytes) or path to key file (str).            | _required_ |
+| sender_private_key  | bytes or str | The sender's RSA private key in PEM format (bytes) or path to key file (str) for signing. | _required_ |
+
+#### Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                                     |
+|--------|--------|-----------------------------------------------------------------|
+|        | str    | Base64-encoded JSON containing encrypted message and signature. |
+
+#### Raises {.doc-section .doc-section-raises}
+
+| Name   | Type       | Description                                                        |
+|--------|------------|--------------------------------------------------------------------|
+|        | ValueError | If the message is too long for RSA encryption or keys are invalid. |

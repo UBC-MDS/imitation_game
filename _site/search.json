@@ -1,44 +1,117 @@
 [
   {
-    "objectID": "reference/index.html",
-    "href": "reference/index.html",
-    "title": "Function reference",
+    "objectID": "reference/generate_asymmetric_key.html",
+    "href": "reference/generate_asymmetric_key.html",
+    "title": "generate_asymmetric_key",
     "section": "",
-    "text": "Functions to inspect docstrings.\n\n\n\nget_object\nFetch a griffe object.\n\n\npreview\nPrint a friendly representation of a griffe object (e.g. function, docstring)",
+    "text": "generate_asymmetric_key\n\n\n\n\n\nName\nDescription\n\n\n\n\ngenerate_asymmetric_key\nGenerates a pair of RSA keys for asymmetric encryption.\n\n\n\n\n\ngenerate_asymmetric_key.generate_asymmetric_key(\n    private_filepath=None,\n    public_filepath=None,\n    passphrase=None,\n)\nGenerates a pair of RSA keys for asymmetric encryption.\nThe public and private key will be printed out for the user to copy. If output filepath parameters are passed then the public and private keys will be saved to their respective filepaths.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprivate_filepath\n(str, optional(default=None))\nFilepath to save the private key in. If no filepath is specified the private key will not be saved in a file.\nNone\n\n\npublic_filepath\n(str, optional(default=None))\nFilepath to save the public key in. If no filepath is specified the public key will not be saved in a file.\nNone\n\n\npassphrase\nOptional[Hashable]\nHashable argument to generate a consistent RSA key if required. If specified, random.randbytes will be used to generate the RSA key, otherwise Crypto.Random.get_random_bytes will be used.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nprivate_key\nbytes\nThe key used for decryption outputted as a binary string; must be kept secret.\n\n\npublic_key\nbytes\nThe key used for encryption outputted as a binary string; can be shared openly.",
     "crumbs": [
-      "Function reference"
+      "Key functions",
+      "generate_asymmetric_key"
     ]
   },
   {
-    "objectID": "reference/index.html#some-functions",
-    "href": "reference/index.html#some-functions",
-    "title": "Function reference",
+    "objectID": "reference/generate_asymmetric_key.html#functions",
+    "href": "reference/generate_asymmetric_key.html#functions",
+    "title": "generate_asymmetric_key",
     "section": "",
-    "text": "Functions to inspect docstrings.\n\n\n\nget_object\nFetch a griffe object.\n\n\npreview\nPrint a friendly representation of a griffe object (e.g. function, docstring)",
+    "text": "Name\nDescription\n\n\n\n\ngenerate_asymmetric_key\nGenerates a pair of RSA keys for asymmetric encryption.\n\n\n\n\n\ngenerate_asymmetric_key.generate_asymmetric_key(\n    private_filepath=None,\n    public_filepath=None,\n    passphrase=None,\n)\nGenerates a pair of RSA keys for asymmetric encryption.\nThe public and private key will be printed out for the user to copy. If output filepath parameters are passed then the public and private keys will be saved to their respective filepaths.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprivate_filepath\n(str, optional(default=None))\nFilepath to save the private key in. If no filepath is specified the private key will not be saved in a file.\nNone\n\n\npublic_filepath\n(str, optional(default=None))\nFilepath to save the public key in. If no filepath is specified the public key will not be saved in a file.\nNone\n\n\npassphrase\nOptional[Hashable]\nHashable argument to generate a consistent RSA key if required. If specified, random.randbytes will be used to generate the RSA key, otherwise Crypto.Random.get_random_bytes will be used.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nprivate_key\nbytes\nThe key used for decryption outputted as a binary string; must be kept secret.\n\n\npublic_key\nbytes\nThe key used for encryption outputted as a binary string; can be shared openly.",
     "crumbs": [
-      "Function reference"
+      "Key functions",
+      "generate_asymmetric_key"
     ]
+  },
+  {
+    "objectID": "reference/get_object.html",
+    "href": "reference/get_object.html",
+    "title": "get_object",
+    "section": "",
+    "text": "get_object(\n    path,\n    object_name=None,\n    parser='numpy',\n    load_aliases=True,\n    dynamic=False,\n    loader=None,\n)\nFetch a griffe object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse\n\n\n\n\n\n\npreview: print a user-friendly preview of a griffe object.\n\n\n\n&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ...\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc"
+  },
+  {
+    "objectID": "reference/get_object.html#parameters",
+    "href": "reference/get_object.html#parameters",
+    "title": "get_object",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse"
+  },
+  {
+    "objectID": "reference/get_object.html#see-also",
+    "href": "reference/get_object.html#see-also",
+    "title": "get_object",
+    "section": "",
+    "text": "preview: print a user-friendly preview of a griffe object."
+  },
+  {
+    "objectID": "reference/get_object.html#examples",
+    "href": "reference/get_object.html#examples",
+    "title": "get_object",
+    "section": "",
+    "text": "&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ..."
+  },
+  {
+    "objectID": "reference/get_object.html#returns",
+    "href": "reference/get_object.html#returns",
+    "title": "get_object",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc"
   },
   {
     "objectID": "reference/preview.html",
     "href": "reference/preview.html",
     "title": "preview",
     "section": "",
-    "text": "preview(ast, max_depth=999, compact=False, as_string=False)\nPrint a friendly representation of a griffe object (e.g. function, docstring)\n\n\n&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n...",
-    "crumbs": [
-      "Some functions",
-      "preview"
-    ]
+    "text": "preview(ast, max_depth=999, compact=False, as_string=False)\nPrint a friendly representation of a griffe object (e.g. function, docstring)\n\n\n&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n..."
   },
   {
     "objectID": "reference/preview.html#examples",
     "href": "reference/preview.html#examples",
     "title": "preview",
     "section": "",
-    "text": "&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n...",
+    "text": "&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n..."
+  },
+  {
+    "objectID": "reference/generate_symmetric_key.html",
+    "href": "reference/generate_symmetric_key.html",
+    "title": "generate_symmetric_key",
+    "section": "",
+    "text": "generate_symmetric_key\n\n\n\n\n\nName\nDescription\n\n\n\n\ngenerate_symmetric_key\nGenerate a cryptographically secure random key for symmetric encryption.\n\n\n\n\n\ngenerate_symmetric_key.generate_symmetric_key(filepath=None)\nGenerate a cryptographically secure random key for symmetric encryption.\nThis function creates a URL-safe base64-encoded key that can be used with symmetric encryption algorithms. The key is generated using secure random number generation to ensure cryptographic strength.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nfilepath\n(str, optional(default=None))\nFilepath to save the generated key. If no filepath is specified, the key will not be saved to a file.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nA base64-encoded string representing the encryption key. This key should be kept secret and used for both encryption and decryption.\n\n\n\n\n\n\nThe function generates a 256-bit (32-byte) key suitable for AES-256 encryption. The key is cryptographically secure and uses the Crypto.Random module which provides access to a cryptographically strong random number generator.\nIf a filepath is provided, the function will create any necessary parent directories and save the key to the specified file.\n\n\n\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; isinstance(key, str)\nTrue\n&gt;&gt;&gt; len(key) &gt; 0\nTrue\n&gt;&gt;&gt; # Generate multiple keys - each should be unique\n&gt;&gt;&gt; key1 = generate_symmetric_key()\n&gt;&gt;&gt; key2 = generate_symmetric_key()\n&gt;&gt;&gt; key1 != key2\nTrue\n&gt;&gt;&gt; # Practical usage: Generate and store a key\n&gt;&gt;&gt; encryption_key = generate_symmetric_key()\n&gt;&gt;&gt; # Store this key securely - it will be needed for both encryption and decryption\n&gt;&gt;&gt; print(f\"Generated key: {encryption_key[:10]}...\")\nGenerated key: aB3dEf7gH9...\n&gt;&gt;&gt; # Save key to file\n&gt;&gt;&gt; key = generate_symmetric_key(\"path/to/key.txt\")",
     "crumbs": [
-      "Some functions",
-      "preview"
+      "Key functions",
+      "generate_symmetric_key"
+    ]
+  },
+  {
+    "objectID": "reference/generate_symmetric_key.html#functions",
+    "href": "reference/generate_symmetric_key.html#functions",
+    "title": "generate_symmetric_key",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\ngenerate_symmetric_key\nGenerate a cryptographically secure random key for symmetric encryption.\n\n\n\n\n\ngenerate_symmetric_key.generate_symmetric_key(filepath=None)\nGenerate a cryptographically secure random key for symmetric encryption.\nThis function creates a URL-safe base64-encoded key that can be used with symmetric encryption algorithms. The key is generated using secure random number generation to ensure cryptographic strength.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nfilepath\n(str, optional(default=None))\nFilepath to save the generated key. If no filepath is specified, the key will not be saved to a file.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nA base64-encoded string representing the encryption key. This key should be kept secret and used for both encryption and decryption.\n\n\n\n\n\n\nThe function generates a 256-bit (32-byte) key suitable for AES-256 encryption. The key is cryptographically secure and uses the Crypto.Random module which provides access to a cryptographically strong random number generator.\nIf a filepath is provided, the function will create any necessary parent directories and save the key to the specified file.\n\n\n\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; isinstance(key, str)\nTrue\n&gt;&gt;&gt; len(key) &gt; 0\nTrue\n&gt;&gt;&gt; # Generate multiple keys - each should be unique\n&gt;&gt;&gt; key1 = generate_symmetric_key()\n&gt;&gt;&gt; key2 = generate_symmetric_key()\n&gt;&gt;&gt; key1 != key2\nTrue\n&gt;&gt;&gt; # Practical usage: Generate and store a key\n&gt;&gt;&gt; encryption_key = generate_symmetric_key()\n&gt;&gt;&gt; # Store this key securely - it will be needed for both encryption and decryption\n&gt;&gt;&gt; print(f\"Generated key: {encryption_key[:10]}...\")\nGenerated key: aB3dEf7gH9...\n&gt;&gt;&gt; # Save key to file\n&gt;&gt;&gt; key = generate_symmetric_key(\"path/to/key.txt\")",
+    "crumbs": [
+      "Key functions",
+      "generate_symmetric_key"
+    ]
+  },
+  {
+    "objectID": "reference/decrypt_symmetric.html",
+    "href": "reference/decrypt_symmetric.html",
+    "title": "decrypt_symmetric",
+    "section": "",
+    "text": "decrypt_symmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\ndecrypt_symmetric\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\ndecrypt_symmetric.decrypt_symmetric(ciphertext, key)\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nciphertext\nstr\nThe Base64-encoded string to be decrypted. This must contain the 8-byte nonce followed by the actual encrypted data.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe original plaintext message, UTF-8 decoded.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key or ciphertext is not valid Base64, if the key length is incorrect, or if the data cannot be decoded as UTF-8 after decryption.\n\n\n\n\n\n\nencrypt_symmetric : The counterpart function used to create the ciphertext.\n\n\n\nThe function extracts the first 8 bytes of the decoded ciphertext to use as the nonce. This must match the nonce generated during encryption for the process to succeed.\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; from imitation_game.decrypt_symmetric import decrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key)\n&gt;&gt;&gt; decrypt_symmetric(ciphertext, key)\n'Top Secret'",
+    "crumbs": [
+      "Key functions",
+      "decrypt_symmetric"
+    ]
+  },
+  {
+    "objectID": "reference/decrypt_symmetric.html#functions",
+    "href": "reference/decrypt_symmetric.html#functions",
+    "title": "decrypt_symmetric",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\ndecrypt_symmetric\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\ndecrypt_symmetric.decrypt_symmetric(ciphertext, key)\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nciphertext\nstr\nThe Base64-encoded string to be decrypted. This must contain the 8-byte nonce followed by the actual encrypted data.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe original plaintext message, UTF-8 decoded.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key or ciphertext is not valid Base64, if the key length is incorrect, or if the data cannot be decoded as UTF-8 after decryption.\n\n\n\n\n\n\nencrypt_symmetric : The counterpart function used to create the ciphertext.\n\n\n\nThe function extracts the first 8 bytes of the decoded ciphertext to use as the nonce. This must match the nonce generated during encryption for the process to succeed.\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; from imitation_game.decrypt_symmetric import decrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key)\n&gt;&gt;&gt; decrypt_symmetric(ciphertext, key)\n'Top Secret'",
+    "crumbs": [
+      "Key functions",
+      "decrypt_symmetric"
     ]
   },
   {
@@ -182,58 +255,89 @@
     "text": "You can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
   },
   {
-    "objectID": "reference/get_object.html",
-    "href": "reference/get_object.html",
-    "title": "get_object",
+    "objectID": "reference/decrypt_asymmetric.html",
+    "href": "reference/decrypt_asymmetric.html",
+    "title": "decrypt_asymmetric",
     "section": "",
-    "text": "get_object(\n    path,\n    object_name=None,\n    parser='numpy',\n    load_aliases=True,\n    dynamic=False,\n    loader=None,\n)\nFetch a griffe object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse\n\n\n\n\n\n\npreview: print a user-friendly preview of a griffe object.\n\n\n\n&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ...\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc",
+    "text": "decrypt_asymmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\ndecrypt_asymmetric\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key.\n\n\n\n\n\ndecrypt_asymmetric.decrypt_asymmetric(\n    encrypted_data,\n    receiver_private_key,\n    sender_public_key,\n)\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key. This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nencrypted_data\nstr\nBase64-encoded JSON containing encrypted message and signature.\nrequired\n\n\nreceiver_private_key\nbytes or str\nThe receiver’s RSA private key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_public_key\nbytes or str\nThe sender’s RSA public key in PEM format (bytes) or path to key file (str) for signature verification.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe decrypted and verified plaintext message.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf decryption fails, signature verification fails, or keys are invalid.",
     "crumbs": [
-      "Some functions",
-      "get_object"
+      "Key functions",
+      "decrypt_asymmetric"
     ]
   },
   {
-    "objectID": "reference/get_object.html#parameters",
-    "href": "reference/get_object.html#parameters",
-    "title": "get_object",
+    "objectID": "reference/decrypt_asymmetric.html#functions",
+    "href": "reference/decrypt_asymmetric.html#functions",
+    "title": "decrypt_asymmetric",
     "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse",
+    "text": "Name\nDescription\n\n\n\n\ndecrypt_asymmetric\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key.\n\n\n\n\n\ndecrypt_asymmetric.decrypt_asymmetric(\n    encrypted_data,\n    receiver_private_key,\n    sender_public_key,\n)\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key. This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nencrypted_data\nstr\nBase64-encoded JSON containing encrypted message and signature.\nrequired\n\n\nreceiver_private_key\nbytes or str\nThe receiver’s RSA private key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_public_key\nbytes or str\nThe sender’s RSA public key in PEM format (bytes) or path to key file (str) for signature verification.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe decrypted and verified plaintext message.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf decryption fails, signature verification fails, or keys are invalid.",
     "crumbs": [
-      "Some functions",
-      "get_object"
+      "Key functions",
+      "decrypt_asymmetric"
     ]
   },
   {
-    "objectID": "reference/get_object.html#see-also",
-    "href": "reference/get_object.html#see-also",
-    "title": "get_object",
+    "objectID": "reference/encrypt_asymmetric.html",
+    "href": "reference/encrypt_asymmetric.html",
+    "title": "encrypt_asymmetric",
     "section": "",
-    "text": "preview: print a user-friendly preview of a griffe object.",
+    "text": "encrypt_asymmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\nencrypt_asymmetric\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key.\n\n\n\n\n\nencrypt_asymmetric.encrypt_asymmetric(\n    message,\n    receiver_public_key,\n    sender_private_key,\n)\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key. This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe plaintext message to encrypt.\nrequired\n\n\nreceiver_public_key\nbytes or str\nThe receiver’s RSA public key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_private_key\nbytes or str\nThe sender’s RSA private key in PEM format (bytes) or path to key file (str) for signing.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nBase64-encoded JSON containing encrypted message and signature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the message is too long for RSA encryption or keys are invalid.",
     "crumbs": [
-      "Some functions",
-      "get_object"
+      "Key functions",
+      "encrypt_asymmetric"
     ]
   },
   {
-    "objectID": "reference/get_object.html#examples",
-    "href": "reference/get_object.html#examples",
-    "title": "get_object",
+    "objectID": "reference/encrypt_asymmetric.html#functions",
+    "href": "reference/encrypt_asymmetric.html#functions",
+    "title": "encrypt_asymmetric",
     "section": "",
-    "text": "&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ...",
+    "text": "Name\nDescription\n\n\n\n\nencrypt_asymmetric\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key.\n\n\n\n\n\nencrypt_asymmetric.encrypt_asymmetric(\n    message,\n    receiver_public_key,\n    sender_private_key,\n)\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key. This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe plaintext message to encrypt.\nrequired\n\n\nreceiver_public_key\nbytes or str\nThe receiver’s RSA public key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_private_key\nbytes or str\nThe sender’s RSA private key in PEM format (bytes) or path to key file (str) for signing.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nBase64-encoded JSON containing encrypted message and signature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the message is too long for RSA encryption or keys are invalid.",
     "crumbs": [
-      "Some functions",
-      "get_object"
+      "Key functions",
+      "encrypt_asymmetric"
     ]
   },
   {
-    "objectID": "reference/get_object.html#returns",
-    "href": "reference/get_object.html#returns",
-    "title": "get_object",
+    "objectID": "reference/encrypt_symmetric.html",
+    "href": "reference/encrypt_symmetric.html",
+    "title": "encrypt_symmetric",
     "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc",
+    "text": "encrypt_symmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\nencrypt_symmetric\nEncrypts a plaintext message using AES in Counter (CTR) mode.\n\n\n\n\n\nencrypt_symmetric.encrypt_symmetric(message, key)\nEncrypts a plaintext message using AES in Counter (CTR) mode.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe human-readable string to be encrypted. Must be 256 characters or fewer.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nA Base64-encoded string containing the 8-byte nonce followed by the ciphertext.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key is not properly Base64 encoded, the message exceeds 256 characters, or the key length is invalid for AES.\n\n\n\n\n\n\ngenerate_symmetric_key : Function used to create a valid key.\n\n\n\nThis function uses AES-CTR mode. CTR mode turns a block cipher into a stream cipher. It generates a unique nonce for every encryption call, meaning the same plaintext will produce different ciphertext every time it is encrypted with the same key.\n\n\n\n&gt;&gt;&gt; # Basic encryption with key\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; msg = \"Top Secret Message\"\n&gt;&gt;&gt; encrypted = encrypt_symmetric(msg, key)\n&gt;&gt;&gt; encrypted\n'mgj+qxUTNBb2tRN58uXhziyJ81735PPVKAw='\n&gt;&gt;&gt; # CTR mode produces different results for the same input\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; enc1 = encrypt_symmetric(\"Hello\", key)\n&gt;&gt;&gt; enc2 = encrypt_symmetric(\"Hello\", key)\n&gt;&gt;&gt; enc1 == enc2\nFalse",
     "crumbs": [
-      "Some functions",
-      "get_object"
+      "Key functions",
+      "encrypt_symmetric"
+    ]
+  },
+  {
+    "objectID": "reference/encrypt_symmetric.html#functions",
+    "href": "reference/encrypt_symmetric.html#functions",
+    "title": "encrypt_symmetric",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nencrypt_symmetric\nEncrypts a plaintext message using AES in Counter (CTR) mode.\n\n\n\n\n\nencrypt_symmetric.encrypt_symmetric(message, key)\nEncrypts a plaintext message using AES in Counter (CTR) mode.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe human-readable string to be encrypted. Must be 256 characters or fewer.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nA Base64-encoded string containing the 8-byte nonce followed by the ciphertext.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key is not properly Base64 encoded, the message exceeds 256 characters, or the key length is invalid for AES.\n\n\n\n\n\n\ngenerate_symmetric_key : Function used to create a valid key.\n\n\n\nThis function uses AES-CTR mode. CTR mode turns a block cipher into a stream cipher. It generates a unique nonce for every encryption call, meaning the same plaintext will produce different ciphertext every time it is encrypted with the same key.\n\n\n\n&gt;&gt;&gt; # Basic encryption with key\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; msg = \"Top Secret Message\"\n&gt;&gt;&gt; encrypted = encrypt_symmetric(msg, key)\n&gt;&gt;&gt; encrypted\n'mgj+qxUTNBb2tRN58uXhziyJ81735PPVKAw='\n&gt;&gt;&gt; # CTR mode produces different results for the same input\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; enc1 = encrypt_symmetric(\"Hello\", key)\n&gt;&gt;&gt; enc2 = encrypt_symmetric(\"Hello\", key)\n&gt;&gt;&gt; enc1 == enc2\nFalse",
+    "crumbs": [
+      "Key functions",
+      "encrypt_symmetric"
+    ]
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Function reference",
+    "section": "",
+    "text": "Functions for encryption and decryption.\n\n\n\ngenerate_symmetric_key\n\n\n\nencrypt_symmetric\n\n\n\ndecrypt_symmetric\n\n\n\ngenerate_asymmetric_key\n\n\n\nencrypt_asymmetric\n\n\n\ndecrypt_asymmetric",
+    "crumbs": [
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/index.html#key-functions",
+    "href": "reference/index.html#key-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "Functions for encryption and decryption.\n\n\n\ngenerate_symmetric_key\n\n\n\nencrypt_symmetric\n\n\n\ndecrypt_symmetric\n\n\n\ngenerate_asymmetric_key\n\n\n\nencrypt_asymmetric\n\n\n\ndecrypt_asymmetric",
+    "crumbs": [
+      "Function reference"
     ]
   }
 ]
