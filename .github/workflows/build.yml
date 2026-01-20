@@ -1,5 +1,5 @@
-name: Release
-
+name: Build
+# Build the package
 on:
   workflow_dispatch:
   push:

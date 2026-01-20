@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Tests and Deploy
 # Run the test suite on pull requests and pushes to main branch
 on:
   pull_request:
