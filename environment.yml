@@ -1,0 +1,13 @@
+name: imitation_game
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - pip
+  - pip:
+    - pycryptodome
+    - pathvalidate
+    - pytest
+    - pytest-cov
+    - hatch
