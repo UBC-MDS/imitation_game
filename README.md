@@ -91,6 +91,56 @@ print(decrypted_message)  # "Secret message"
 ```
 
 
+## For Developers
+
+If you want to contribute to this package or run it locally for development, here's what you need to know.
+
+### Environment Setup
+
+We use Hatch for managing the development environment. First, make sure you have Python 3.10 or higher installed.
+
+Install Hatch:
+```bash
+pip install hatch
+```
+
+For conda users, we also provide an `environment.yml` file:
+```bash
+conda env create -f environment.yml
+conda activate imitation_game
+```
+
+### Running Tests
+
+To run the full test suite across all supported Python versions:
+```bash
+hatch run test:run
+```
+
+To run tests for a specific Python version:
+```bash
+hatch run test.py3.12:run
+```
+
+### Building Documentation
+
+The documentation is built using Sphinx. To build it locally:
+```bash
+hatch run docs:build
+```
+
+To serve the docs locally and see changes in real-time:
+```bash
+hatch run docs:serve
+```
+
+### CI/CD Pipeline
+
+We use GitHub Actions for continuous integration and deployment:
+- **Tests**: Run automatically on every push and pull request
+- **Release**: Automatically deploys to TestPyPI when changes are pushed to main
+- **Docs**: Documentation is built and deployed on every push
+
 ## Contributing
 
 For information about how to contribute to this package, please review our [Contributing document](https://github.com/UBC-MDS/imitation_game/blob/main/CONTRIBUTING.md). All contributors must abide by our [Code of Conduct](https://github.com/UBC-MDS/imitation_game/blob/main/CODE_OF_CONDUCT.md)
