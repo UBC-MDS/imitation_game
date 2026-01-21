@@ -30,14 +30,23 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: stable # Or a specific version
-        
-      - name: Build quartodoc pages
-        run: python -m quartodoc build
-
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Construct HTML
+        run: |
+          quartodoc build
+          quarto render
         with:
           target: gh-pages
-          path: book
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        
+# This assumes that the package has been pushed to PyPi
+# https://github.com/UBC-MDS/imitation_game/actions/runs/21198931035/job/60980497423
+
+#      - name: Build quartodoc pages
+#        run: python -m quartodoc build
+
+#      - name: Render and Publish
+#        uses: quarto-dev/quarto-actions/publish@v2
+#        with:
+#          target: gh-pages
+#          path: book
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
