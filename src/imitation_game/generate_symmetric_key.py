@@ -2,6 +2,7 @@ from Crypto.Random import get_random_bytes
 import base64
 import os
 from typing import Optional
+from pathvalidate import validate_filepath, ValidationError
 
 
 def generate_symmetric_key(filepath: Optional[str] = None) -> str:
@@ -65,6 +66,12 @@ def generate_symmetric_key(filepath: Optional[str] = None) -> str:
     
     # Write key to file if filepath is provided
     if filepath is not None:
+        # Validate the filepath to catch issues early
+        try:
+            validate_filepath(filepath, platform="auto")
+        except ValidationError as e:
+            raise ValueError(f"Invalid filepath: {e}")
+        
         directory, _ = os.path.split(filepath)
         if directory and not os.path.exists(directory):
             os.makedirs(directory)
