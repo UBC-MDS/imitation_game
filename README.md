@@ -1,5 +1,9 @@
 # Welcome to imitation-game
 
+[![Tests](https://github.com/UBC-MDS/imitation_game/actions/workflows/test.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/test.yml)
+[![Deploy](https://github.com/UBC-MDS/imitation_game/actions/workflows/release.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/release.yml)
+[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+
 `imitation-game` is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.
 
 Symmetric Encryption
