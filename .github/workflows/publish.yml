@@ -38,7 +38,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4 # https://github.com/peaceiris/actions-gh-pages
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site/reference # The directory containing your built static files (e.g., public, build, dist)
+          publish_dir: ./_site # The directory containing your built static files (e.g., public, build, dist)
           
           # Set the destination branch to gh-pages (default)
           publish_branch: gh-pages
