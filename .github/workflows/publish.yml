@@ -3,7 +3,9 @@ name: Build and publish docs
 on:
     workflow_dispatch:
     push:
-      branches: main
+      branches: 
+        - main
+        - yml_setup
 
 jobs:
   build-deploy:
