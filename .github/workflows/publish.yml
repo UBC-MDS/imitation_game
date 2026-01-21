@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest # windows-latest macos-latest
+    runs-on: windows-latest #ubuntu-latest  macos-latest
     permissions:
       contents: write
     steps:
