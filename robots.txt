@@ -1,0 +1,1 @@
+Sitemap: https://UBC-MDS.github.io/imitation_game/sitemap.xml
