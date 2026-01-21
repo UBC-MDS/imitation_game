@@ -24,28 +24,38 @@ jobs:
         with:
           python-version: '3.12'
           cache: 'pip'
-      - run: pip install -r requirements.txt
-
+      - run: pip install -e .[docs]
+      
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: stable # Or a specific version
+
       - name: Construct HTML
         run: |
           quartodoc build
           quarto render
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4 # https://github.com/peaceiris/actions-gh-pages
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site # The directory containing your built static files (e.g., public, build, dist)
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+#      - name: Deploy to gh-pages branch
+#        uses: peaceiris/actions-gh-pages@v4 # https://github.com/peaceiris/actions-gh-pages
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: ./_site # The directory containing your built static files (e.g., public, build, dist)
           
-          # Set the destination branch to gh-pages (default)
-          publish_branch: gh-pages
+#          # Set the destination branch to gh-pages (default)
+#          publish_branch: gh-pages
 
 
 
-# This assumes that the package has been pushed to PyPi
+# This assumes that the package has been pushed to PyPi?
 # https://github.com/UBC-MDS/imitation_game/actions/runs/21198931035/job/60980497423
 
 #      - name: Build quartodoc pages
