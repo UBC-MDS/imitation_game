@@ -1,78 +1,43 @@
-name: Build
-# Build the package
+name: Run Test Suite
+# Run the test suite on pull requests and pushes to main branch
 on:
-  workflow_dispatch:
+  pull_request:
   push:
     branches:
       - main
-
-permissions: {} # no permissions to the token at global level
+  schedule:
+    - cron: '0 23 * * Sun'
 
 jobs:
-  build_package:
-    name: Build the package
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write # need write access to commit version changes
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-      - name: Setup Python
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
-        with:
-          python-version: "3.12" # Select the version that you want to build your package on
-      - name: Upgrade pip, install Hatch, and check Hatch version
-        run: |
-          pip install --upgrade pip
-          pip install --upgrade hatch
-          hatch --version # Verify that Hatch is installed
-      - name: Increment version in pyproject.toml
-        run: |
-          current_version=$(grep 'version = ' pyproject.toml | sed 's/version = "\([^"]*\)"/\1/')
-          new_version=$(echo $current_version | awk -F. '{$NF = $NF + 1; print}' OFS=.)
-          sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" pyproject.toml
-      - name: Build artifacts
-        run: hatch build
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
-        with:
-          path: dist/
-          name: dist.zip
-          if-no-files-found: error
-          retention-days: 1
-      - name: Commit and push updated pyproject.toml
-        if: success()
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add pyproject.toml
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update pyproject.toml with new version"
-            git push
-          fi
-
-  publish-to-testpypi:
-    name: Publish Python 🐍 distribution 📦 to TestPyPI
-    needs:
-      - build_package
-    runs-on: ubuntu-latest
-
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/project/imitation_game
-
-    permissions:
-      id-token: write
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.10", "3.13"]
 
     steps:
-      - name: Download all the dists
-        uses: actions/download-artifact@v4
-        with:
-          name: dist.zip
-          path: dist/
-      - name: Publish package distributions to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          verbose: true
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.5.2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v5.1.0
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install hatch
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install hatch
+    - name: Run test suite
+      run: hatch run +py=${{ matrix.python-version }} test:run
+    # If you use this step and have a private repo- then you will need to get a
+    # token from codecov and
+    # save it as a github secret called CODECOV_TOKEN
+    - name: Upload to codecov
+      if: runner.os == 'macOS' && matrix.python-version == '3.13'
+      uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de  # v5.5.2
+      with:
+        #token: ${{ secrets.CODECOV_TOKEN }}
+        verbose: true
+        files: ./coverage.xml
+
