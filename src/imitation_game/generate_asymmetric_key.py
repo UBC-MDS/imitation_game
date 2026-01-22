@@ -30,6 +30,21 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
         The key used for decryption outputted as a binary string; must be kept secret.
     public_key : bytes
         The key used for encryption outputted as a binary string; can be shared openly.
+
+    Examples
+    --------
+    >>> from imitation_game.generate_asymmetric_key import generate_asymmetric_key
+    >>> private_key,public_key = generate_asymmetric_key()
+    PRIVATE KEY:
+
+    b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
+    PUBLIC KEY:
+
+    b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
+    >>> private_key
+    b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
+    >>> public_key
+    b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
     """
     
     """
