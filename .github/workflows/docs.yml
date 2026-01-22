@@ -5,8 +5,7 @@ on:
   push:
     branches: 
       - main
-      - yml_setup
-
+    
 jobs:
   build-deploy:
     runs-on: windows-latest 
