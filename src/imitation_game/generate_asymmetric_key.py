@@ -45,6 +45,7 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
     >>> public_key
     b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
+
     """
     
     """
@@ -52,7 +53,7 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     specific function for checking if a file path is valid without creating it
     through the interaction link https://share.google/aimode/z9UkOkSuMRvZHfhEr,
 
-    This resuted in finding the python package pathvalidate
+    This resulted in finding the python package pathvalidate
     (https://pypi.org/project/pathvalidate/) which is utilized for this testcase and
     the specific path validation check.
     """

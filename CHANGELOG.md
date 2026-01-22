@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Type hints for encrypt_asymmetric and decrypt_asymmetric functions
 - Documentation comments in test files listing all LLM-suggested tests
 - Added PGP style encryption function and tests
+- Automated documentation generation (#62)
+- Example use case and unit test for generate_asymmetric_key (#64)
 
 ### Changed
 
