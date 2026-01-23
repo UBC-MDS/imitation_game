@@ -1,5 +1,5 @@
-name: Release
-
+name: Deploy to TestPyPI
+# Update the package, and then deploy it to TestPyPI
 on:
   workflow_dispatch:
   push:

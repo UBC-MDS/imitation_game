@@ -1,27 +1,44 @@
-name: Build Docs
-
+name: Build and publish docs
+# Test yml for building + publishing docs setup
 on:
-  pull_request:
+  workflow_dispatch:
   push:
-    branches:
+    branches: 
       - main
-
+    
 jobs:
-  build-docs:
-    runs-on: ubuntu-latest
-
+  build-deploy:
+    runs-on: windows-latest 
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.5.2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v5.1.0
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install Python and Dependencies
+        uses: actions/setup-python@v5
         with:
-            python-version: ${{ matrix.python-version }}
+          python-version: '3.12'
+          cache: 'pip'
+      - run: pip install -e .[docs]
+      
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: stable 
 
-      - name: Install hatch
+      - name: Construct HTML
         run: |
-            python -m pip install --upgrade pip
-            python -m pip install hatch
+          quartodoc build
+          quarto render
 
-      - name: Build documentation using Hatch
-        run: |
-            hatch run docs:build
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

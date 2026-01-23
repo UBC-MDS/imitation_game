@@ -1,0 +1,75 @@
+# generate_symmetric_key { #imitation_game.generate_symmetric_key }
+
+`generate_symmetric_key`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [generate_symmetric_key](#imitation_game.generate_symmetric_key.generate_symmetric_key) | Generate a cryptographically secure random key for symmetric encryption. |
+
+### generate_symmetric_key { #imitation_game.generate_symmetric_key.generate_symmetric_key }
+
+```python
+generate_symmetric_key.generate_symmetric_key(filepath=None)
+```
+
+Generate a cryptographically secure random key for symmetric encryption.
+
+This function creates a URL-safe base64-encoded key that can be used 
+with symmetric encryption algorithms. The key is generated using secure 
+random number generation to ensure cryptographic strength.
+
+#### Parameters {.doc-section .doc-section-parameters}
+
+| Name     | Type                          | Description                                                                                            | Default   |
+|----------|-------------------------------|--------------------------------------------------------------------------------------------------------|-----------|
+| filepath | (str, optional(default=None)) | Filepath to save the generated key. If no filepath is specified,  the key will not be saved to a file. | `None`    |
+
+#### Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                                                                                                                           |
+|--------|--------|---------------------------------------------------------------------------------------------------------------------------------------|
+|        | str    | A base64-encoded string representing the encryption key. This key  should be kept secret and used for both encryption and decryption. |
+
+#### Notes {.doc-section .doc-section-notes}
+
+The function generates a 256-bit (32-byte) key suitable for AES-256 encryption.
+The key is cryptographically secure and uses the Crypto.Random module which
+provides access to a cryptographically strong random number generator.
+
+If a filepath is provided, the function will create any necessary parent 
+directories and save the key to the specified file.
+
+#### Examples {.doc-section .doc-section-examples}
+
+```python
+>>> key = generate_symmetric_key()
+>>> isinstance(key, str)
+True
+>>> len(key) > 0
+True
+```
+
+```python
+>>> # Generate multiple keys - each should be unique
+>>> key1 = generate_symmetric_key()
+>>> key2 = generate_symmetric_key()
+>>> key1 != key2
+True
+```
+
+```python
+>>> # Practical usage: Generate and store a key
+>>> encryption_key = generate_symmetric_key()
+>>> # Store this key securely - it will be needed for both encryption and decryption
+>>> print(f"Generated key: {encryption_key[:10]}...")
+Generated key: aB3dEf7gH9...
+```
+
+```python
+>>> # Save key to file
+>>> key = generate_symmetric_key("path/to/key.txt")
+```

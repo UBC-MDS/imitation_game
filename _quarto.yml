@@ -1,0 +1,44 @@
+project:
+  type: website
+
+website:
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Reference"
+        href: reference/index.qmd
+
+# tell quarto to read the generated sidebar
+metadata-files:
+  - reference/_sidebar.yml
+
+# tell quarto to read the generated styles
+format:
+  html:
+    css:
+      - reference/_styles-quartodoc.css
+
+quartodoc:
+  # the name used to import the package you want to create reference docs for
+  package: imitation_game
+
+  # write sidebar and style data
+  sidebar: reference/_sidebar.yml
+  css: reference/_styles-quartodoc.css
+
+  sections:
+    - title: Key functions
+      desc: Functions for encryption and decryption.
+      contents:
+        # the functions being documented in the package.
+        # you can refer to anything: class methods, modules, etc..
+        - generate_symmetric_key
+        - encrypt_symmetric
+        - decrypt_symmetric
+        - generate_asymmetric_key
+        - encrypt_asymmetric
+        - decrypt_asymmetric
+        

@@ -1,0 +1,42 @@
+# generate_asymmetric_key { #imitation_game.generate_asymmetric_key }
+
+`generate_asymmetric_key`
+
+
+
+## Functions
+
+| Name | Description |
+| --- | --- |
+| [generate_asymmetric_key](#imitation_game.generate_asymmetric_key.generate_asymmetric_key) | Generates a pair of RSA keys for asymmetric encryption. |
+
+### generate_asymmetric_key { #imitation_game.generate_asymmetric_key.generate_asymmetric_key }
+
+```python
+generate_asymmetric_key.generate_asymmetric_key(
+    private_filepath=None,
+    public_filepath=None,
+    passphrase=None,
+)
+```
+
+Generates a pair of RSA keys for asymmetric encryption.
+
+The public and private key will be printed out for the user to copy.
+If output filepath parameters are passed then the public and private
+keys will be saved to their respective filepaths.
+
+#### Parameters {.doc-section .doc-section-parameters}
+
+| Name             | Type                          | Description                                                                                                                                                                                     | Default   |
+|------------------|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| private_filepath | (str, optional(default=None)) | Filepath to save the private key in. If no filepath is specified the private key will not be saved in a file.                                                                                   | `None`    |
+| public_filepath  | (str, optional(default=None)) | Filepath to save the public key in. If no filepath is specified the public key will not be saved in a file.                                                                                     | `None`    |
+| passphrase       | Optional\[Hashable\]          | Hashable argument to generate a consistent RSA key if required. If specified, `random.randbytes` will be used to generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used. | `None`    |
+
+#### Returns {.doc-section .doc-section-returns}
+
+| Name        | Type   | Description                                                                     |
+|-------------|--------|---------------------------------------------------------------------------------|
+| private_key | bytes  | The key used for decryption outputted as a binary string; must be kept secret.  |
+| public_key  | bytes  | The key used for encryption outputted as a binary string; can be shared openly. |
