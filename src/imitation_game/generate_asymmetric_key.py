@@ -36,10 +36,10 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     >>> from imitation_game.generate_asymmetric_key import generate_asymmetric_key
     >>> private_key,public_key = generate_asymmetric_key()
     PRIVATE KEY:
-
+    <BLANKLINE>
     b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
     PUBLIC KEY:
-
+    <BLANKLINE>
     b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
     >>> private_key
     b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'

@@ -247,3 +247,4 @@ _version.py
 /.quarto/
 _site
 docs
+reference/*
