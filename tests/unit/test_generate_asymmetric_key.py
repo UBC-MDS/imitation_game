@@ -79,6 +79,31 @@ def test_full():
     assert public_read == seed_448_publickey, "Public key read from file does not match pregenerated 448 public key."
     
 
+def test_file_integrity():
+    """Test that the keys written to file are actual keys"""
+    private_file = "private_integ.pem"
+    public_file = "public_integ.pem"
+    private_path = os.path.join(test_directory,private_file)
+    public_path = os.path.join(test_directory,public_file)
+    generate_asymmetric_key(private_path, public_path)
+    
+    # confirm files produce actual RSA keys
+    private_read,public_read = None,None
+    with open(private_path, "rb") as f:
+        private_read = f.read()
+    with open(public_path, "rb") as f:
+        public_read = f.read()
+
+    # private checks
+    assert abs(len(private_read)-1674) <= 20, "Private key deviates significantly from expected length"
+    assert private_read[:31] == b'-----BEGIN RSA PRIVATE KEY-----', "Start of private file is not b'-----BEGIN RSA PRIVATE KEY-----'"
+    assert private_read[-29:] == b'-----END RSA PRIVATE KEY-----', "End of private file is not b'-----END RSA PRIVATE KEY-----'"
+    
+    # public checks
+    assert abs(len(public_read)-450) <= 20, "Public key deviates significantly from expected length"
+    assert public_read[:26] == b'-----BEGIN PUBLIC KEY-----', "Start of private file is not b'-----BEGIN PUBLIC KEY-----'"
+    assert public_read[-24:] == b'-----END PUBLIC KEY-----', "End of private file is not b'-----END PUBLIC KEY-----'"
+    
 # Argument type errors
 
 def test_wrong_type_private():
