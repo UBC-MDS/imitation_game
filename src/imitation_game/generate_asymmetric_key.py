@@ -7,13 +7,13 @@ from pathvalidate import ValidationError, validate_filepath
 def generate_asymmetric_key(private_filepath: Optional[str] = None,
                             public_filepath: Optional[str] = None,         
                             passphrase: Optional[Hashable] = None) -> tuple[bytes,bytes]:
-    """
+    r"""
     Generates a pair of RSA keys for asymmetric encryption.
 
     The public and private key will be printed out for the user to copy.
     If output filepath parameters are passed then the public and private
     keys will be saved to their respective filepaths.
-    
+
     Parameters
     ----------
     private_filepath : str, optional (default = None)
@@ -23,13 +23,28 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     passphrase: Hashable, optional (default = None)
         Hashable argument to generate a consistent RSA key if required. If specified, `random.randbytes` will be used to
         generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
-        
+    
     Returns
     -------
     private_key : bytes
         The key used for decryption outputted as a binary string; must be kept secret.
     public_key : bytes
         The key used for encryption outputted as a binary string; can be shared openly.
+
+    Examples
+    --------
+    >>> from imitation_game.generate_asymmetric_key import generate_asymmetric_key
+    >>> private_key,public_key = generate_asymmetric_key()
+    PRIVATE KEY:
+
+    b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
+    PUBLIC KEY:
+
+    b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
+    >>> private_key
+    b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
+    >>> public_key
+    b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
     """
     
     """
@@ -37,7 +52,7 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     specific function for checking if a file path is valid without creating it
     through the interaction link https://share.google/aimode/z9UkOkSuMRvZHfhEr,
 
-    This resuted in finding the python package pathvalidate
+    This resulted in finding the python package pathvalidate
     (https://pypi.org/project/pathvalidate/) which is utilized for this testcase and
     the specific path validation check.
     """
