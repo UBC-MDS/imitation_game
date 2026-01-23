@@ -13,7 +13,7 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     The public and private key will be printed out for the user to copy.
     If output filepath parameters are passed then the public and private
     keys will be saved to their respective filepaths.
-    
+
     Parameters
     ----------
     private_filepath : str, optional (default = None)
@@ -23,7 +23,7 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     passphrase: Hashable, optional (default = None)
         Hashable argument to generate a consistent RSA key if required. If specified, `random.randbytes` will be used to
         generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
-        
+    
     Returns
     -------
     private_key : bytes
@@ -45,7 +45,6 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     b'-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAA...La1DC1VOvQ==\n-----END RSA PRIVATE KEY-----'
     >>> public_key
     b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
-
     """
     
     """
