@@ -7,7 +7,7 @@ from pathvalidate import ValidationError, validate_filepath
 def generate_asymmetric_key(private_filepath: Optional[str] = None,
                             public_filepath: Optional[str] = None,         
                             passphrase: Optional[Hashable] = None) -> tuple[bytes,bytes]:
-    """
+    r"""
     Generates a pair of RSA keys for asymmetric encryption.
 
     The public and private key will be printed out for the user to copy.
