@@ -1,13 +1,12 @@
 import os
-from typing import Optional, Hashable
+from typing import Optional,Hashable
 from Crypto.PublicKey import RSA
 from random import randbytes, seed
 from pathvalidate import ValidationError, validate_filepath
 
-
 def generate_asymmetric_key(private_filepath: Optional[str] = None,
-                            public_filepath: Optional[str] = None,
-                            passphrase: Optional[Hashable] = None) -> tuple[bytes, bytes]:
+                            public_filepath: Optional[str] = None,         
+                            passphrase: Optional[Hashable] = None) -> tuple[bytes,bytes]:
     r"""
     Generates a pair of RSA keys for asymmetric encryption.
 
@@ -18,24 +17,19 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     Parameters
     ----------
     private_filepath : str, optional (default = None)
-        Filepath to save the private key in. If no filepath is specified
-        the private key will not be saved in a file.
+        Filepath to save the private key in. If no filepath is specified the private key will not be saved in a file.
     public_filepath : str, optional (default = None)
-        Filepath to save the public key in. If no filepath is specified
-        the public key will not be saved in a file.
+        Filepath to save the public key in. If no filepath is specified the public key will not be saved in a file.
     passphrase: Hashable, optional (default = None)
-        Hashable argument to generate a consistent RSA key if required.
-        If specified, `random.randbytes` will be used to generate the
-        RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
-
+        Hashable argument to generate a consistent RSA key if required. If specified, `random.randbytes` will be used to
+        generate the RSA key, otherwise `Crypto.Random.get_random_bytes` will be used.
+    
     Returns
     -------
     private_key : bytes
-        The key used for decryption outputted as a binary string; must be
-        kept secret.
+        The key used for decryption outputted as a binary string; must be kept secret.
     public_key : bytes
-        The key used for encryption outputted as a binary string; can be
-        shared openly.
+        The key used for encryption outputted as a binary string; can be shared openly.
 
     Examples
     --------
@@ -52,46 +46,41 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     >>> public_key
     b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg...f\n9wIDAQAB\n-----END PUBLIC KEY-----'
     """
-
+    
     """
     Google AI was used to initially research methods for determining if a
     specific function for checking if a file path is valid without creating it
     through the interaction link https://share.google/aimode/z9UkOkSuMRvZHfhEr,
 
     This resulted in finding the python package pathvalidate
-    (https://pypi.org/project/pathvalidate/) which is utilized
-    for this testcase and the specific path validation check.
+    (https://pypi.org/project/pathvalidate/) which is utilized for this testcase and
+    the specific path validation check.
     """
     # Typechecks and path validation where applicable
-    if private_filepath is not None:
-        if isinstance(private_filepath, str):
-            errormsg = f"private_filepath must be of type str, received {type(private_filepath)}"
-            raise TypeError(errormsg)
+    if private_filepath != None:
+        if type(private_filepath) != str: raise TypeError(f"private_filepath must be of type str, received {type(private_filepath)}")
         try:
             validate_filepath(private_filepath)
         except ValidationError as ve:
             raise ve
-    if public_filepath is not None:
-        if isinstance(public_filepath, str):
-            errormsg = f"public_filepath must be of type str, received {type(public_filepath)}"
-            raise TypeError(errormsg)
+    if public_filepath != None:
+        if type(public_filepath) != str: raise TypeError(f"public_filepath must be of type str, received {type(public_filepath)}")
         try:
             validate_filepath(public_filepath)
         except ValidationError as ve:
             raise ve
-    if passphrase is not None:
+    if passphrase != None:
         try:
             hash(passphrase)
-        except TypeError:
-            errormsg = f"passphrase must be hashable, received type {type(passphrase)}"
-            raise TypeError(errormsg)
-
+        except:
+            raise TypeError(f"passphrase must be a hashable object, recived object of type {type(passphrase)}")
+        
     # Obtain public and private keys
     key = None
-    if passphrase is not None:  # use hash method
+    if passphrase != None: # use hash method
         seed(hash(passphrase))
-        key = RSA.generate(2048, randfunc=randbytes)
-    else:  # use Crypto.Random.get_random_bytes
+        key = RSA.generate(2048,randfunc = randbytes)
+    else: # use Crypto.Random.get_random_bytes
         key = RSA.generate(2048)
     private_key = key.export_key()
     public_key = key.publickey().export_key()
@@ -101,21 +90,22 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     print(private_key)
     print("PUBLIC KEY:\n")
     print(public_key)
-
-    # Write keys to files if applicable
-    if private_filepath is not None:
-        directory, _ = os.path.split(private_filepath)
+    
+    # Write keys to files if applicable        
+    if private_filepath != None:
+        directory,_ = os.path.split(private_filepath)
         print(directory)
         if not os.path.exists(directory):
             os.makedirs(directory)
         with open(private_filepath, "wb") as f:
             f.write(private_key)
-    if public_filepath is not None:
-        directory, _ = os.path.split(public_filepath)
+    if public_filepath != None:
+        directory,_ = os.path.split(public_filepath)
         print(directory)
         if not os.path.exists(directory):
             os.makedirs(directory)
         with open(public_filepath, "wb") as f:
             f.write(public_key)
+            
+    return private_key,public_key
 
-    return private_key, public_key
