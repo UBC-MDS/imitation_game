@@ -1,8 +1,13 @@
 name: Deploy to TestPyPI
 # Update the package, and then deploy it to TestPyPI
+# Runs automatically after build.yml completes successfully on main branch
+# Can also be triggered manually via workflow_dispatch
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ["Run Test Suite"]
+    types:
+      - completed
     branches:
       - main
 
@@ -12,6 +17,10 @@ jobs:
   build_package:
     name: Build the package
     runs-on: ubuntu-latest
+    # Only run if manually triggered OR if build workflow succeeded
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     permissions:
       contents: write # need write access to commit version changes
     steps:
@@ -20,14 +29,14 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
         with:
-          python-version: "3.12" # Select the version that you want to build your package on
+          python-version: "3.12"
       - name: Upgrade pip, install Hatch, and check Hatch version
         run: |
           pip install --upgrade pip
           pip install --upgrade hatch
           hatch --version # Verify that Hatch is installed
-      - name: Increment version in pyproject.toml
-        run: |
+      - name: Increment version in pyproject.toml # Automatically updates the version number in pyproject.toml. 
+        run: | # Major numbers will be updated manually during release
           current_version=$(grep 'version = ' pyproject.toml | sed 's/version = "\([^"]*\)"/\1/')
           new_version=$(echo $current_version | awk -F. '{$NF = $NF + 1; print}' OFS=.)
           sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" pyproject.toml

@@ -1,14 +1,23 @@
 name: Build and publish docs
-# Test yml for building + publishing docs setup
+# Builds and publishes documentation to GitHub Pages
+# Runs automatically after build.yml completes successfully on main branch
+# Can also be triggered manually via workflow_dispatch
 on:
   workflow_dispatch:
-  push:
-    branches: 
+  workflow_run:
+    workflows: ["Run Test Suite"]
+    types:
+      - completed
+    branches:
       - main
-    
+
 jobs:
   build-deploy:
-    runs-on: windows-latest 
+    runs-on: windows-latest
+    # Only run if manually triggered OR if test workflow succeeded
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     permissions:
       contents: write
     steps:
