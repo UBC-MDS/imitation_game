@@ -73,6 +73,7 @@ tests = [
     "pytest-randomly",
     "pytest-xdist",
     "pathvalidate",
+    "flake8-pyproject"
 ]
 
 
@@ -119,6 +120,9 @@ precision = 2
 # Use UV to create Hatch environments
 [tool.hatch.envs.default]
 installer = "uv"
+
+[tool.flake8]
+max-line-length = 100
 
 ################################################################################
 # Hatch Environments
