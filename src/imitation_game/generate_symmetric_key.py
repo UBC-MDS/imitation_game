@@ -25,6 +25,11 @@ def generate_symmetric_key(filepath: Optional[str] = None) -> str:
         A base64-encoded string representing the encryption key. This key
         should be kept secret and used for both encryption and decryption.
 
+    Raises
+    ------
+    ValueError
+        If the provided filepath is invalid or contains illegal characters.
+
     Notes
     -----
     The function generates a 256-bit (32-byte) key suitable for AES-256 encryption.
@@ -33,6 +38,19 @@ def generate_symmetric_key(filepath: Optional[str] = None) -> str:
 
     If a filepath is provided, the function will create any necessary parent
     directories and save the key to the specified file.
+
+    **Security Best Practices:**
+
+    - **Never commit keys to version control** (add key files to .gitignore)
+    - **Store keys securely** using environment variables or secure key management systems
+    - **Restrict file permissions** when saving keys to disk (chmod 600 on Unix systems)
+    - **Use the same key** for both encryption and decryption operations
+    - **Keep keys confidential** - anyone with the key can decrypt your messages
+
+    See Also
+    --------
+    encrypt_symmetric : Encrypt messages using the generated key
+    decrypt_symmetric : Decrypt messages using the generated key
 
     Examples
     --------
@@ -54,8 +72,13 @@ def generate_symmetric_key(filepath: Optional[str] = None) -> str:
     >>> print(f"Generated key: {encryption_key[:10]}...")  # doctest: +SKIP
     Generated key: aB3dEf7gH9...
 
-    >>> # Save key to file
+    >>> # Save key to file (remember to add to .gitignore!)
     >>> key = generate_symmetric_key("path/to/key.txt")  # doctest: +SKIP
+
+    >>> # Recommended: Use environment variables instead of files
+    >>> import os  # doctest: +SKIP
+    >>> key = generate_symmetric_key()  # doctest: +SKIP
+    >>> os.environ['ENCRYPTION_KEY'] = key  # doctest: +SKIP
 
     """
     # Generate 32 bytes (256 bits) of random data for AES-256 encryption
