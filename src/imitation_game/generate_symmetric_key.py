@@ -93,7 +93,10 @@ def generate_symmetric_key(filepath: Optional[str] = None) -> str:
         try:
             validate_filepath(filepath, platform="auto")
         except ValidationError as e:
-            raise ValueError(f"Invalid filepath: {e}")
+            raise ValueError(
+                f"Cannot save key to '{filepath}': {str(e)}. "
+                f"Please provide a valid file path."
+            )
 
         directory, _ = os.path.split(filepath)
         if directory and not os.path.exists(directory):
