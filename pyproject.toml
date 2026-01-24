@@ -13,7 +13,7 @@ requires = ["hatchling"]
 [project]
 name = "imitation_game"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.1.16"
+version = "0.1.17"
 
 description = """
 project enables two users to securely exchange text messages using encryption and
