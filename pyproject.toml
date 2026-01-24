@@ -35,8 +35,18 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
 ]
-# TODO: add keywords
-keywords = []
+keywords = [
+    "encryption",
+    "decryption",
+    "cryptography",
+    "security",
+    "RSA",
+    "AES",
+    "symmetric-encryption",
+    "asymmetric-encryption",
+    "message-encryption",
+    "secure-communication",
+]
 dependencies = [
     "pycryptodome",
     "pathvalidate",
