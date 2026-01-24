@@ -30,6 +30,17 @@ def decrypt_asymmetric(encrypted_data: str, receiver_private_key: Union[bytes, s
     ------
     ValueError
         If decryption fails, signature verification fails, or keys are invalid.
+
+    Examples
+    --------
+    >>> from imitation_game.generate_asymmetric_key import generate_asymmetric_key
+    >>> from imitation_game.encrypt_asymmetric import encrypt_asymmetric
+    >>> from imitation_game.decrypt_asymmetric import decrypt_asymmetric
+    >>> receiver_public, receiver_private = generate_asymmetric_key()
+    >>> sender_public, sender_private = generate_asymmetric_key()
+    >>> encrypted = encrypt_asymmetric("Hello, world!", receiver_public, sender_private)
+    >>> decrypt_asymmetric(encrypted, receiver_private, sender_public)
+    'Hello, world!'
     """
     try:
         # Load receiver private key
