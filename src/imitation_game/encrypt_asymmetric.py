@@ -30,6 +30,14 @@ def encrypt_asymmetric(message: str, receiver_public_key: Union[bytes, str], sen
     ------
     ValueError
         If the message is too long for RSA encryption or keys are invalid.
+
+    Examples
+    --------
+    >>> from imitation_game.generate_asymmetric_key import generate_asymmetric_key
+    >>> from imitation_game.encrypt_asymmetric import encrypt_asymmetric
+    >>> receiver_public, _ = generate_asymmetric_key()
+    >>> _, sender_private = generate_asymmetric_key()
+    >>> encrypted = encrypt_asymmetric("Hello, world!", receiver_public, sender_private)
     """
     try:
         # Load receiver public key
