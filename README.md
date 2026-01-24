@@ -97,7 +97,7 @@ This packages uses the MIT License, more information can be found [here](https:/
 
 ## Credits
 
-This package `imitation-game` is created with [`passwordler`] (<https://github.com/UBC-MDS/passwordler>) and the [`pyOpenSci copier template`] (<https://github.com/pyOpenSci/pyos-package-template>)
+This package `imitation-game` is created with [`pyOpenSci copier template`] (<https://github.com/pyOpenSci/pyos-package-template>)
 
 ## Contributors
 
