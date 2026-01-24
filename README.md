@@ -167,7 +167,8 @@ The deployment workflow (`.github/workflows/docs.yml`) handles:
 - Publishing to the `gh-pages` branch
 - Making the documentation available at the repository's GitHub Pages URL
 
-No manual intervention is required for documentation deployment once changes are merged to `main`.
+No manual intervention is required for documentation deployment once changes are merged to `main`
+Documentation is deployed [here](https://ubc-mds.github.io/imitation_game/)
 
 ## Contributing
 
