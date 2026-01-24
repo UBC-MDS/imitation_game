@@ -43,7 +43,8 @@ def encrypt_symmetric(message, key):
     Examples
     --------
     >>> # Basic encryption with key
-    >>> from imitation_game.generate_symmetric_key import generate_symmetric_key
+    >>> from imitation_game.generate_symmetric_key \
+    ... import generate_symmetric_key
     >>> from imitation_game.encrypt_symmetric import encrypt_symmetric
     >>> key = generate_symmetric_key()
     >>> msg = "Top Secret"

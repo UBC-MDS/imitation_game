@@ -40,7 +40,8 @@ def decrypt_symmetric(ciphertext, key):
     Examples
     --------
     >>> # Basic decryption with key
-    >>> from imitation_game.generate_symmetric_key import generate_symmetric_key
+    >>> from imitation_game.generate_symmetric_key \
+    ... import generate_symmetric_key
     >>> from imitation_game.encrypt_symmetric import encrypt_symmetric
     >>> from imitation_game.decrypt_symmetric import decrypt_symmetric
     >>> key = generate_symmetric_key()
