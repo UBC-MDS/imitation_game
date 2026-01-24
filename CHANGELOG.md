@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Type hints for encrypt_asymmetric and decrypt_asymmetric functions
 - Documentation comments in test files listing all LLM-suggested tests
 - Added PGP style encryption function and tests
+- Developer documentation section in README with setup and workflow instructions
+- CI/CD status badges to README
+- Conda environment.yml file for easier setup
+- File integrity test for generate_symmetric_key
+- Filepath validation in generate_symmetric_key for better error handling
 - Automated documentation generation (#62)
 - Example use case and unit test for generate_asymmetric_key (#64)
 

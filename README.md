@@ -1,5 +1,9 @@
 # Welcome to imitation-game
 
+[![Tests](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml)
+[![Deploy](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml)
+[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+
 `imitation-game` is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.
 
 Symmetric Encryption
@@ -87,6 +91,7 @@ print(decrypted_message)  # "Secret message"
 ```
 
 
+
 ## Development
 
 ### Setting Up the Development Environment
@@ -97,6 +102,12 @@ This project uses conda for environment management, but dependencies are defined
    ```bash
    conda create -n imitation-game python=3.12
    conda activate imitation-game
+   ```
+   
+   Alternatively, use the provided `environment.yml` file:
+   ```bash
+   conda env create -f environment.yml
+   conda activate imitation_game
    ```
 
 2. **Install the package in editable mode** with all development dependencies:
@@ -130,6 +141,7 @@ pytest --cov=imitation_game --cov-report=term-missing
 # Run tests using hatch (recommended)
 hatch run +py=3.12 test:run
 ```
+
 
 The test suite includes both unit tests (`tests/unit/`) and integration tests (`tests/integration/`).
 
@@ -167,8 +179,16 @@ The deployment workflow (`.github/workflows/docs.yml`) handles:
 - Publishing to the `gh-pages` branch
 - Making the documentation available at the repository's GitHub Pages URL
 
-No manual intervention is required for documentation deployment once changes are merged to `main`
+No manual intervention is required for documentation deployment once changes are merged to `main`.
 Documentation is deployed [here](https://ubc-mds.github.io/imitation_game/)
+
+### CI/CD Pipeline
+
+We use GitHub Actions for continuous integration and deployment:
+- **Tests**: Run automatically on every push and pull request via `build.yml`
+- **Deploy**: Automatically deploys to TestPyPI when changes are pushed to main via `deploy.yml`
+- **Docs**: Documentation is built and deployed to GitHub Pages on every push via `docs.yml`
+
 
 ## Contributing
 
