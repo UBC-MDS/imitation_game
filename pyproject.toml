@@ -72,8 +72,7 @@ tests = [
     "pytest-raises",
     "pytest-randomly",
     "pytest-xdist",
-    "pathvalidate",
-    "flake8-pyproject"
+    "pathvalidate"
 ]
 
 
