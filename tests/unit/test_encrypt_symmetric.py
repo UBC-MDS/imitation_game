@@ -10,6 +10,7 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 # - test_encrypt_symmetric_invalid_key: Encryption with invalid key
 # - test_encrypt_symmetric_unicode_message: Encryption of unicode message
 # - test_encrypt_symmetric_key_from_file: Encryption using a key stored in a file
+# - test_encrypt_symmetric_uniqueness: Encrypting the same message twice produces different ciphertexts
 
 class TestEncryptSymmetric:
 
@@ -77,3 +78,14 @@ class TestEncryptSymmetric:
         
         encrypted_alt = encrypt_symmetric(message, original_key)
         assert isinstance(encrypted_alt, str)
+
+    def test_encrypt_symmetric_uniqueness(self):
+        """Test that encrypting the same message twice produces different ciphertexts."""
+        key = generate_symmetric_key()
+        message = "Identical Message"
+        
+        encrypted_1 = encrypt_symmetric(message, key)
+        encrypted_2 = encrypt_symmetric(message, key)
+        
+        assert encrypted_1 != encrypted_2, "Unique results expected"
+        assert len(encrypted_1) == len(encrypted_2)
