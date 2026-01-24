@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Conda environment.yml file for easier setup
 - File integrity test for generate_symmetric_key
 - Filepath validation in generate_symmetric_key for better error handling
+- Automated documentation generation (#62)
+- Example use case and unit test for generate_asymmetric_key (#64)
 
 ### Changed
 

@@ -1,0 +1,14 @@
+# Function reference {.doc .doc-index}
+
+## Key functions
+
+Functions for encryption and decryption.
+
+| | |
+| --- | --- |
+| [generate_symmetric_key](generate_symmetric_key.qmd#imitation_game.generate_symmetric_key) |  |
+| [encrypt_symmetric](encrypt_symmetric.qmd#imitation_game.encrypt_symmetric) |  |
+| [decrypt_symmetric](decrypt_symmetric.qmd#imitation_game.decrypt_symmetric) |  |
+| [generate_asymmetric_key](generate_asymmetric_key.qmd#imitation_game.generate_asymmetric_key) |  |
+| [encrypt_asymmetric](encrypt_asymmetric.qmd#imitation_game.encrypt_asymmetric) |  |
+| [decrypt_asymmetric](decrypt_asymmetric.qmd#imitation_game.decrypt_asymmetric) |  |

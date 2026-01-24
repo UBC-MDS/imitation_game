@@ -91,55 +91,104 @@ print(decrypted_message)  # "Secret message"
 ```
 
 
-## For Developers
 
-If you want to contribute to this package or run it locally for development, here's what you need to know.
+## Development
 
-### Environment Setup
+### Setting Up the Development Environment
 
-We use Hatch for managing the development environment. First, make sure you have Python 3.10 or higher installed.
+This project uses conda for environment management, but dependencies are defined in `pyproject.toml`. Follow these steps to set up your development environment:
 
-Install Hatch:
-```bash
-pip install hatch
-```
+1. **Create a conda environment** with Python 3.10 or higher:
+   ```bash
+   conda create -n imitation-game python=3.12
+   conda activate imitation-game
+   ```
+   
+   Alternatively, use the provided `environment.yml` file:
+   ```bash
+   conda env create -f environment.yml
+   conda activate imitation_game
+   ```
 
-For conda users, we also provide an `environment.yml` file:
-```bash
-conda env create -f environment.yml
-conda activate imitation_game
-```
+2. **Install the package in editable mode** with all development dependencies:
+   ```bash
+   # Clone the repository
+   git clone https://github.com/UBC-MDS/imitation_game.git
+   cd imitation_game
+   
+   # Install the package with all optional dependencies (dev, docs, tests, build)
+   pip install -e ".[dev,docs,tests,build]"
+   ```
+
+   This will install:
+   - The package itself in editable mode
+   - Development tools: `hatch`, `pre-commit`
+   - Documentation tools: `quartodoc`
+   - Testing tools: `pytest`, `pytest-cov`, `pytest-raises`, `pytest-randomly`, `pytest-xdist`, `flake8-pyproject`
+   - Build tools: `pip-audit`, `twine`
 
 ### Running Tests
 
-To run the full test suite across all supported Python versions:
+Tests are located in the `tests/` directory and can be run using pytest:
+
 ```bash
-hatch run test:run
+# Run all tests
+pytest
+
+# Run tests with coverage report
+pytest --cov=imitation_game --cov-report=term-missing
+
+# Run tests using hatch (recommended)
+hatch run +py=3.12 test:run
 ```
 
-To run tests for a specific Python version:
-```bash
-hatch run test.py3.12:run
-```
+
+The test suite includes both unit tests (`tests/unit/`) and integration tests (`tests/integration/`).
 
 ### Building Documentation
 
-The documentation is built using Sphinx. To build it locally:
-```bash
-hatch run docs:build
-```
+Documentation is built using Quarto and quartodoc. To build the documentation locally:
 
-To serve the docs locally and see changes in real-time:
-```bash
-hatch run docs:serve
-```
+1. **Ensure Quarto is installed**:
+   - Download and install Quarto from [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+
+2. **Build the documentation**:
+   ```bash
+   # Generate API reference documentation
+   quartodoc build
+   
+   # Render the Quarto website
+   quarto render
+   ```
+
+3. **Preview the documentation locally**:
+   ```bash
+   quarto preview
+   ```
+
+The documentation will be generated in the `_site/` directory (or similar, depending on your Quarto configuration).
+
+### Automated Documentation Deployment
+
+Documentation is automatically built and deployed to GitHub Pages when:
+- Changes are pushed to the `main` branch
+- The workflow is manually triggered via GitHub Actions
+
+The deployment workflow (`.github/workflows/docs.yml`) handles:
+- Building the Quarto documentation
+- Publishing to the `gh-pages` branch
+- Making the documentation available at the repository's GitHub Pages URL
+
+No manual intervention is required for documentation deployment once changes are merged to `main`.
+Documentation is deployed [here](https://ubc-mds.github.io/imitation_game/)
 
 ### CI/CD Pipeline
 
 We use GitHub Actions for continuous integration and deployment:
-- **Tests**: Run automatically on every push and pull request
-- **Release**: Automatically deploys to TestPyPI when changes are pushed to main
-- **Docs**: Documentation is built and deployed on every push
+- **Tests**: Run automatically on every push and pull request via `build.yml`
+- **Deploy**: Automatically deploys to TestPyPI when changes are pushed to main via `deploy.yml`
+- **Docs**: Documentation is built and deployed to GitHub Pages on every push via `docs.yml`
+
 
 ## Contributing
 
@@ -151,7 +200,7 @@ This packages uses the MIT License, more information can be found [here](https:/
 
 ## Credits
 
-This package `imitation-game` is created with [`passwordler`] (<https://github.com/UBC-MDS/passwordler>) and the [`pyOpenSci copier template`] (<https://github.com/pyOpenSci/pyos-package-template>)
+This package `imitation-game` is created with [`pyOpenSci copier template`] (<https://github.com/pyOpenSci/pyos-package-template>)
 
 ## Contributors
 

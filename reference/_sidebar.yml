@@ -1,0 +1,14 @@
+website:
+  sidebar:
+  - contents:
+    - reference/index.qmd
+    - contents:
+      - reference/generate_symmetric_key.qmd
+      - reference/encrypt_symmetric.qmd
+      - reference/decrypt_symmetric.qmd
+      - reference/generate_asymmetric_key.qmd
+      - reference/encrypt_asymmetric.qmd
+      - reference/decrypt_asymmetric.qmd
+      section: Key functions
+    id: reference
+  - id: dummy-sidebar

@@ -13,7 +13,7 @@ requires = ["hatchling"]
 [project]
 name = "imitation_game"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.1.11"
+version = "0.1.17"
 
 description = """
 project enables two users to securely exchange text messages using encryption and
@@ -59,13 +59,7 @@ dev = [
 ]
 
 docs = [
-    "sphinx~=8.0",
-    "myst-parser>=4.0",
-    "pydata-sphinx-theme~=0.16",
-    "sphinx-autobuild>=2024.10.3",
-    "sphinx-autoapi>=3.6.0",
-    "sphinx_design>=0.6.1",
-    "sphinx-copybutton>=0.5.2",
+    "quartodoc"
 ]
 
 build = [
@@ -78,7 +72,7 @@ tests = [
     "pytest-raises",
     "pytest-randomly",
     "pytest-xdist",
-    "pathvalidate",
+    "pathvalidate"
 ]
 
 
@@ -125,6 +119,9 @@ precision = 2
 # Use UV to create Hatch environments
 [tool.hatch.envs.default]
 installer = "uv"
+
+[tool.flake8]
+max-line-length = 100
 
 ################################################################################
 # Hatch Environments

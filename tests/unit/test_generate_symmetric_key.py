@@ -2,6 +2,8 @@
 from imitation_game.generate_symmetric_key import generate_symmetric_key
 import pytest
 import base64
+import os
+import tempfile
 
 # Test Strategy:
 # 1. Basic functionality tests - ensure function works without errors
@@ -71,8 +73,6 @@ def test_multiple_generation_consistency():
 
 def test_write_to_file():
     """Test writing key to file"""
-    import os
-    import tempfile
     
     test_directory = "tests/symmetric_key_tests"
     test_file = "test_key.txt"
@@ -103,8 +103,6 @@ def test_no_file_without_filepath():
 
 def test_create_directory_if_not_exists():
     """Test that function creates parent directories if they don't exist"""
-    import os
-    import tempfile
     
     test_directory = "tests/nested/symmetric_key_tests"
     test_file = "nested_key.txt"
@@ -128,8 +126,6 @@ def test_key_file_content_integrity():
     Makes sure the file doesn't have extra spaces or weird characters that could
     mess up the key when we try to use it later.
     """
-    import os
-    import tempfile
     
     test_directory = "tests/symmetric_key_integrity_test"
     test_file = "integrity_key.txt"
