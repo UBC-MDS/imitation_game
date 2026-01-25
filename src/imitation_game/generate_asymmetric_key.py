@@ -64,19 +64,25 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
     """
     # Typechecks and path validation where applicable
     if private_filepath is not None:
-        if isinstance(private_filepath, str):
-            errormsg = f"private_filepath must be of type str, received {type(private_filepath)}"
-            raise TypeError(errormsg)
         try:
             validate_filepath(private_filepath)
+            directory, _ = os.path.split(private_filepath)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+        except TypeError:
+            errormsg = f"private_filepath must be of type str, received {type(private_filepath)}"
+            raise TypeError(errormsg)
         except ValidationError as ve:
             raise ve
     if public_filepath is not None:
-        if isinstance(public_filepath, str):
-            errormsg = f"public_filepath must be of type str, received {type(public_filepath)}"
-            raise TypeError(errormsg)
         try:
             validate_filepath(public_filepath)
+            directory, _ = os.path.split(public_filepath)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+        except TypeError:
+            errormsg = f"public_filepath must be of type str, received {type(public_filepath)}"
+            raise TypeError(errormsg)
         except ValidationError as ve:
             raise ve
     if passphrase is not None:
@@ -104,17 +110,9 @@ def generate_asymmetric_key(private_filepath: Optional[str] = None,
 
     # Write keys to files if applicable
     if private_filepath is not None:
-        directory, _ = os.path.split(private_filepath)
-        print(directory)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
         with open(private_filepath, "wb") as f:
             f.write(private_key)
     if public_filepath is not None:
-        directory, _ = os.path.split(public_filepath)
-        print(directory)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
         with open(public_filepath, "wb") as f:
             f.write(public_key)
 

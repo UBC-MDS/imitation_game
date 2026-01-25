@@ -1,4 +1,3 @@
-"""Tests for generate_asymmetric_key function."""
 from imitation_game.generate_asymmetric_key import generate_asymmetric_key
 import pytest
 from random import randbytes, seed
