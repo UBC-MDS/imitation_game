@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><a href="#imitation_game.decrypt_asymmetric.decrypt_asymmetric">decrypt_asymmetric</a></td>
-<td>Decrypts a message using the receiver’s private key and verifies the signature using the sender’s public key.</td>
+<td>Decrypts a message using the receiver’s private key and verifies the</td>
 </tr>
 </tbody>
 </table>
@@ -332,9 +332,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> imitation_game.decrypt_asymmetric <span class="im">import</span> decrypt_asymmetric</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> receiver_public, receiver_private <span class="op">=</span> generate_asymmetric_key()</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> sender_public, sender_private <span class="op">=</span> generate_asymmetric_key()</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encrypted <span class="op">=</span> encrypt_asymmetric(<span class="st">"Hello, world!"</span>, receiver_public, sender_private)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> decrypt_asymmetric(encrypted, receiver_private, sender_public)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">'Hello, world!'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encrypted <span class="op">=</span> encrypt_asymmetric(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"Hello, world!"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>...     receiver_public,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>...     sender_private,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>... )</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> decrypt_asymmetric(encrypted, receiver_private, sender_public)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">'Hello, world!'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

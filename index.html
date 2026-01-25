@@ -148,6 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome-to-imitation-game" class="level1">
 <h1>Welcome to imitation-game</h1>
+<p><a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="Tests"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="Deploy"></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10%2B-blue" class="img-fluid" alt="Python Version"></a></p>
 <p><code>imitation-game</code> is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.</p>
 <p>Symmetric Encryption Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.</p>
 <ul>
@@ -220,6 +221,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)  <span class="co"># "Secret message"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
+<section id="development" class="level2">
+<h2 class="anchored" data-anchor-id="development">Development</h2>
+<section id="setting-up-the-development-environment" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-the-development-environment">Setting Up the Development Environment</h3>
+<p>This project uses conda for environment management, but dependencies are defined in <code>pyproject.toml</code>. Follow these steps to set up your development environment:</p>
+<ol type="1">
+<li><p><strong>Create a conda environment</strong> with Python 3.10 or higher:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> imitation-game python=3.12</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Alternatively, use the provided <code>environment.yml</code> file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate imitation_game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Install the package in editable mode</strong> with all development dependencies:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the repository</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/UBC-MDS/imitation_game.git</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> imitation_game</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the package with all optional dependencies (dev, docs, tests, build)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> <span class="st">".[dev,docs,tests,build]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will install:</p>
+<ul>
+<li>The package itself in editable mode</li>
+<li>Development tools: <code>hatch</code>, <code>pre-commit</code></li>
+<li>Documentation tools: <code>quartodoc</code></li>
+<li>Testing tools: <code>pytest</code>, <code>pytest-cov</code>, <code>pytest-raises</code>, <code>pytest-randomly</code>, <code>pytest-xdist</code>, <code>flake8-pyproject</code></li>
+<li>Build tools: <code>pip-audit</code>, <code>twine</code></li>
+</ul></li>
+</ol>
+</section>
+<section id="running-tests" class="level3">
+<h3 class="anchored" data-anchor-id="running-tests">Running Tests</h3>
+<p>Tests are located in the <code>tests/</code> directory and can be run using pytest:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run all tests</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run tests with coverage report</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">--cov</span><span class="op">=</span>imitation_game <span class="at">--cov-report</span><span class="op">=</span>term-missing</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run tests using hatch (recommended)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">hatch</span> run +py=3.12 test:run</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The test suite includes both unit tests (<code>tests/unit/</code>) and integration tests (<code>tests/integration/</code>).</p>
+</section>
+<section id="building-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="building-documentation">Building Documentation</h3>
+<p>Documentation is built using Quarto and quartodoc. To build the documentation locally:</p>
+<ol type="1">
+<li><p><strong>Ensure Quarto is installed</strong>:</p>
+<ul>
+<li>Download and install Quarto from <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started/</a></li>
+</ul></li>
+<li><p><strong>Build the documentation</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate API reference documentation</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quartodoc</span> build</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the Quarto website</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Preview the documentation locally</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ol>
+<p>The documentation will be generated in the <code>_site/</code> directory (or similar, depending on your Quarto configuration).</p>
+</section>
+<section id="automated-documentation-deployment" class="level3">
+<h3 class="anchored" data-anchor-id="automated-documentation-deployment">Automated Documentation Deployment</h3>
+<p>Documentation is automatically built and deployed to GitHub Pages when: - Changes are pushed to the <code>main</code> branch - The workflow is manually triggered via GitHub Actions</p>
+<p>The deployment workflow (<code>.github/workflows/docs.yml</code>) handles: - Building the Quarto documentation - Publishing to the <code>gh-pages</code> branch - Making the documentation available at the repository’s GitHub Pages URL</p>
+<p>No manual intervention is required for documentation deployment once changes are merged to <code>main</code>. Documentation is deployed <a href="https://ubc-mds.github.io/imitation_game/">here</a></p>
+</section>
+<section id="cicd-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="cicd-pipeline">CI/CD Pipeline</h3>
+<p>We use GitHub Actions for continuous integration and deployment: - <strong>Tests</strong>: Run automatically on every push and pull request via <code>build.yml</code> - <strong>Deploy</strong>: Automatically deploys to TestPyPI when changes are pushed to main via <code>deploy.yml</code> - <strong>Docs</strong>: Documentation is built and deployed to GitHub Pages on every push via <code>docs.yml</code></p>
+</section>
+</section>
 <section id="contributing" class="level2">
 <h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
 <p>For information about how to contribute to this package, please review our <a href="https://github.com/UBC-MDS/imitation_game/blob/main/CONTRIBUTING.md">Contributing document</a>. All contributors must abide by our <a href="https://github.com/UBC-MDS/imitation_game/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></p>
@@ -230,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="credits" class="level2">
 <h2 class="anchored" data-anchor-id="credits">Credits</h2>
-<p>This package <code>imitation-game</code> is created with [<code>passwordler</code>] (<a href="https://github.com/UBC-MDS/passwordler" class="uri">https://github.com/UBC-MDS/passwordler</a>) and the [<code>pyOpenSci copier template</code>] (<a href="https://github.com/pyOpenSci/pyos-package-template" class="uri">https://github.com/pyOpenSci/pyos-package-template</a>)</p>
+<p>This package <code>imitation-game</code> is created with [<code>pyOpenSci copier template</code>] (<a href="https://github.com/pyOpenSci/pyos-package-template" class="uri">https://github.com/pyOpenSci/pyos-package-template</a>)</p>
 </section>
 <section id="contributors" class="level2">
 <h2 class="anchored" data-anchor-id="contributors">Contributors</h2>

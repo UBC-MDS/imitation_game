@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><a href="#imitation_game.encrypt_asymmetric.encrypt_asymmetric">encrypt_asymmetric</a></td>
-<td>Encrypts a message using the receiver’s public key and signs it with the sender’s private key.</td>
+<td>Encrypts a message using the receiver’s public key and signs it with the</td>
 </tr>
 </tbody>
 </table>
@@ -336,7 +336,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> imitation_game.encrypt_asymmetric <span class="im">import</span> encrypt_asymmetric</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> receiver_public, _ <span class="op">=</span> generate_asymmetric_key()</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> _, sender_private <span class="op">=</span> generate_asymmetric_key()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encrypted <span class="op">=</span> encrypt_asymmetric(<span class="st">"Hello, world!"</span>, receiver_public, sender_private)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encrypted <span class="op">=</span> encrypt_asymmetric(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"Hello, world!"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>...     receiver_public,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>...     sender_private,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>... )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
