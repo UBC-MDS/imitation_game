@@ -3,124 +3,139 @@ import pytest
 from random import randbytes, seed
 from Crypto.PublicKey import RSA
 import os
+from pathvalidate import ValidationError
 
-# Standard Use Cases
+# Shared testcase variables
 
-test_directory = "tests/asymmetric_key_tests"
+TEST_DIRECTORY = "tests/asymmetric_key_tests"
+PRIVATE_START = b'-----BEGIN RSA PRIVATE KEY-----'
+PRIVATE_END = b'-----END RSA PRIVATE KEY-----'
+PUBLIC_START = b'-----BEGIN PUBLIC KEY-----'
+PUBLIC_END = b'-----END PUBLIC KEY-----'
 
 # pre computed exact keys
 seed(448)
-key = RSA.generate(2048,randfunc = randbytes)
+key = RSA.generate(2048, randfunc=randbytes)
 seed_448_privatekey = key.export_key()
 seed_448_publickey = key.publickey().export_key()
-    
+
 
 def test_basic():
     """Test basic use case (no arguments) to ensure no syntax errors"""
-    privatekey,publickey = generate_asymmetric_key(None, None, None)
-    assert type(privatekey) == bytes, "Private key returned is not a bytes type object"
-    assert type(publickey) == bytes, "Public key returned is not a bytes type object"
-    
+    privatekey, publickey = generate_asymmetric_key(None, None, None)
+    assert isinstance(privatekey, bytes), "Private key returned is not a bytes type object"
+    assert isinstance(publickey, bytes), "Public key returned is not a bytes type object"
+
+
 def test_write_to_file():
     """Test writing public and private key to files"""
     private_file = "private.pem"
     public_file = "public.pem"
-    private_path = os.path.join(test_directory,private_file)
-    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(TEST_DIRECTORY, private_file)
+    public_path = os.path.join(TEST_DIRECTORY, public_file)
     generate_asymmetric_key(private_path, public_path, None)
-    assert os.path.isfile(private_path), "test_write_to_file does not generate the private key file"
-    assert os.path.isfile(public_path), "test_write_to_file does not generate the public key file"
+    assert os.path.isfile(private_path), "private key file is not generated"
+    assert os.path.isfile(public_path), "public key file is not generated"
+
 
 def test_write_only_private():
     """Test writing ONLY private key to file"""
     private_file = "private3.pem"
     public_file = "public3.pem"
-    private_path = os.path.join(test_directory,private_file)
-    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(TEST_DIRECTORY, private_file)
+    public_path = os.path.join(TEST_DIRECTORY, public_file)
     generate_asymmetric_key(private_path, None, None)
-    assert os.path.isfile(private_path), "test_write_only_private does not generate the private key file"
-    assert os.path.isfile(public_path) == False, "test_write_only_private generated the public key file (should not occur)"
+    assert os.path.isfile(private_path), "private key file is not generated"
+    assert not os.path.isfile(public_path), "public key file is generated (should not occur)"
+
 
 def test_write_only_public():
     """Test writing ONLY public key to file"""
     private_file = "private2.pem"
     public_file = "public2.pem"
-    private_path = os.path.join(test_directory,private_file)
-    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(TEST_DIRECTORY, private_file)
+    public_path = os.path.join(TEST_DIRECTORY, public_file)
     generate_asymmetric_key(None, public_path, None)
-    assert os.path.isfile(private_path) == False, "test_write_only_public generated the private key file (should not occur)"
-    assert os.path.isfile(public_path), "test_write_only_public does not generate the public key file"    
+    assert not os.path.isfile(private_path), "private key file is generated (should not occur)"
+    assert os.path.isfile(public_path), "public key file is not generated"
+
 
 def test_passphrase():
-    """Test that passphrase ALWAYS generates a consistent pair of keys"""
-    privatekey,publickey = generate_asymmetric_key(None, None, 448)
-    assert privatekey == seed_448_privatekey, "Private key generated from passphrase 448 does not match expected key."
-    assert publickey == seed_448_publickey, "Public key generated from passphrase 448 does not match expected key."
-    
+    """Test that passphrase ALWAYS generates a consistent pair of keys, uses passphrase 448"""
+    privatekey, publickey = generate_asymmetric_key(None, None, 448)
+    assert privatekey == seed_448_privatekey, "Private key generated is not key from passphrase 448"
+    assert publickey == seed_448_publickey, "Public key generated is not key from passphrase 448"
+
 
 def test_full():
     """Test with every possible optional argument"""
     private_file = "private_full.pem"
     public_file = "public_full.pem"
-    private_path = os.path.join(test_directory,private_file)
-    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(TEST_DIRECTORY, private_file)
+    public_path = os.path.join(TEST_DIRECTORY, public_file)
     generate_asymmetric_key(private_path, public_path, 448)
     assert os.path.isfile(private_path), "test_full does not generate the private key file"
     assert os.path.isfile(public_path), "test_full does not generate the public key file"
-    
+
     # confirm files produce the RSA keys as expected
-    private_read,public_read = None,None
+    private_read, public_read = None, None
     with open(private_path, "rb") as f:
         private_read = f.read()
     with open(public_path, "rb") as f:
         public_read = f.read()
-    assert private_read == seed_448_privatekey, "Private key read from file does not match pregenerated 448 private key."
-    assert public_read == seed_448_publickey, "Public key read from file does not match pregenerated 448 public key."
-    
+    assert private_read == seed_448_privatekey, "Private file does not equal expected private key"
+    assert public_read == seed_448_publickey, "Public file does not equal expected public key"
+
 
 def test_file_integrity():
     """Test that the keys written to file are actual keys"""
     private_file = "private_integ.pem"
     public_file = "public_integ.pem"
-    private_path = os.path.join(test_directory,private_file)
-    public_path = os.path.join(test_directory,public_file)
+    private_path = os.path.join(TEST_DIRECTORY, private_file)
+    public_path = os.path.join(TEST_DIRECTORY, public_file)
     generate_asymmetric_key(private_path, public_path)
-    
+
     # confirm files produce actual RSA keys
-    private_read,public_read = None,None
+    private_read, public_read = None, None
     with open(private_path, "rb") as f:
         private_read = f.read()
     with open(public_path, "rb") as f:
         public_read = f.read()
 
     # private checks
-    assert abs(len(private_read)-1674) <= 20, "Private key deviates significantly from expected length"
-    assert private_read[:31] == b'-----BEGIN RSA PRIVATE KEY-----', "Start of private file is not b'-----BEGIN RSA PRIVATE KEY-----'"
-    assert private_read[-29:] == b'-----END RSA PRIVATE KEY-----', "End of private file is not b'-----END RSA PRIVATE KEY-----'"
-    
+    assert abs(len(private_read)-1674) <= 20, "Private key deviates too much from expected length"
+    assert private_read[:31] == PRIVATE_START, f"Start of private file is not {PRIVATE_START}"
+    assert private_read[-29:] == PRIVATE_END, f"End of private file is not {PRIVATE_END}"
+
     # public checks
     assert abs(len(public_read)-450) <= 20, "Public key deviates significantly from expected length"
-    assert public_read[:26] == b'-----BEGIN PUBLIC KEY-----', "Start of private file is not b'-----BEGIN PUBLIC KEY-----'"
-    assert public_read[-24:] == b'-----END PUBLIC KEY-----', "End of private file is not b'-----END PUBLIC KEY-----'"
-    
+    assert public_read[:26] == PUBLIC_START, f"Start of private file is not {PUBLIC_START}"
+    assert public_read[-24:] == PUBLIC_END, f"End of private file is not {PUBLIC_END}"
+
+
 # Argument type errors
+
 
 def test_wrong_type_private():
     """Test that function stops on wrong type in private_filepath"""
     with pytest.raises(TypeError):
         generate_asymmetric_key(False, None, None)
 
+
 def test_wrong_type_public():
     """Test that function stops on wrong type in public_filepath"""
     with pytest.raises(TypeError):
         generate_asymmetric_key(None, 727, None)
 
+
 def test_wrong_type_passphrase():
     """Test that function stops on wrong type in passphrase (List is NOT hashable)"""
     with pytest.raises(TypeError):
-        generate_asymmetric_key(False, None, ["W","Y","S","I"])
+        generate_asymmetric_key(False, None, ["W", "Y", "S", "I"])
 
 # Invalid filepath format errors
+
+
 """
 Google AI was used to initially research methods for determining if a
 specific function for checking if a file path is valid without creating it
@@ -130,15 +145,15 @@ This resuted in finding the python package pathvalidate
 (https://pypi.org/project/pathvalidate/) which is utilized for this testcase and
 the specific path validation check.
 """
-from pathvalidate import ValidationError
+
 
 def test_faulty_filepath_private():
     """Test that function stops on faulty file path naming in private_filepath"""
     with pytest.raises(ValidationError):
         generate_asymmetric_key("/\\/\\???", None, None)
 
+
 def test_faulty_filepath_public():
     """Test that function stops on faulty file path naming in public_filepath"""
     with pytest.raises(ValidationError):
         generate_asymmetric_key(None, "/\\/\\???", None)
-
