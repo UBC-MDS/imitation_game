@@ -1,0 +1,29 @@
+name: imitation_game
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - pip
+  - pip:
+    # Core dependencies
+    - pycryptodome
+    - pathvalidate
+    
+    # Development tools
+    - hatch
+    - pre-commit
+    
+    # Testing dependencies
+    - pytest
+    - pytest-cov
+    - pytest-raises
+    - pytest-randomly
+    - pytest-xdist
+    
+    # Documentation tools
+    - quartodoc
+    
+    # Build and security tools
+    - pip-audit
+    - twine
