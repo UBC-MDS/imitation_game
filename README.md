@@ -204,7 +204,22 @@ This package `imitation-game` is created with [`pyOpenSci copier template`] (<ht
 
 ## Contributors
 
-- Vinay Valson
-- Tirth Joshi
-- Teem Kwong
-- Alexander Wen
+### Vinay Valson
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@Vin-dictive](https://github.com/Vin-dictive)
+
+### Tirth Joshi
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@tirthjoship](https://github.com/tirthjoship)
+
+### Teem Kwong
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@mdskwong](https://github.com/mdskwong)
+
+### Alexander Wen
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@alxwen711](https://github.com/alxwen711)
