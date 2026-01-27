@@ -44,4 +44,4 @@ jobs:
       run: |
         python -m pip install flake8 flake8-pyproject
     - name: Run flake8 on src
-      run: flake8 src/
+      run: flake8 src/ tests/
