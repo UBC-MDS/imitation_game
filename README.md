@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml)
 [![CD](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml)
+[![Docs](https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
 [![Package Version](https://img.shields.io/badge/version-0.2.2-blue)](https://test.pypi.org/project/imitation-game/)
 
