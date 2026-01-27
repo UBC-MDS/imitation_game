@@ -1,9 +1,11 @@
 # Welcome to imitation-game
 
-[![Tests](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml)
-[![Deploy](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml)
+[![CI](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml)
+[![CD](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml)
 [![Docs](https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+[![Package Version](https://img.shields.io/badge/version-0.2.2-blue)](https://test.pypi.org/project/imitation-game/)
+
 
 `imitation-game` is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.
 
@@ -205,7 +207,22 @@ This package `imitation-game` is created with [`pyOpenSci copier template`] (<ht
 
 ## Contributors
 
-- Vinay Valson
-- Tirth Joshi
-- Teem Kwong
-- Alexander Wen
+### Vinay Valson
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@Vin-dictive](https://github.com/Vin-dictive)
+
+### Tirth Joshi
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@tirthjoship](https://github.com/tirthjoship)
+
+### Teem Kwong
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@mdskwong](https://github.com/mdskwong)
+
+### Alexander Wen
+
+- **Affiliation**: University of British Columbia
+- **GitHub**: [@alxwen711](https://github.com/alxwen711)

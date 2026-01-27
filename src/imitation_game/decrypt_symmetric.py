@@ -2,6 +2,7 @@ import base64
 import os
 from Crypto.Cipher import AES
 
+
 def decrypt_symmetric(ciphertext, key):
     """
     Decrypts an AES-CTR encrypted message and restores it to plaintext.
@@ -9,10 +10,10 @@ def decrypt_symmetric(ciphertext, key):
     Parameters
     ----------
     ciphertext : str
-        The Base64-encoded string to be decrypted. This must contain the 
+        The Base64-encoded string to be decrypted. This must contain the
         8-byte nonce followed by the actual encrypted data.
     key : str
-        The shared secret key. If a string is provided, it must be Base64 
+        The shared secret key. If a string is provided, it must be Base64
         encoded. OR a path to a file containing the key.
 
     Returns
@@ -23,7 +24,7 @@ def decrypt_symmetric(ciphertext, key):
     Raises
     ------
     ValueError
-        If the key or ciphertext is not valid Base64, if the key length is 
+        If the key or ciphertext is not valid Base64, if the key length is
         incorrect, or if the data cannot be decoded as UTF-8 after decryption.
 
     See Also
@@ -32,18 +33,37 @@ def decrypt_symmetric(ciphertext, key):
 
     Notes
     -----
-    The function extracts the first 8 bytes of the decoded ciphertext to use 
-    as the nonce. This must match the nonce generated during encryption for 
+    The function extracts the first 8 bytes of the decoded ciphertext to use
+    as the nonce. This must match the nonce generated during encryption for
     the process to succeed.
 
     Examples
     --------
-    >>> from imitation_game.generate_symmetric_key import generate_symmetric_key
+    >>> # Basic decryption with key
+    >>> from imitation_game.generate_symmetric_key \
+    ... import generate_symmetric_key
     >>> from imitation_game.encrypt_symmetric import encrypt_symmetric
     >>> from imitation_game.decrypt_symmetric import decrypt_symmetric
     >>> key = generate_symmetric_key()
     >>> ciphertext = encrypt_symmetric("Top Secret", key)
-    >>> decrypt_symmetric(ciphertext, key)
+    >>> decrypted = decrypt_symmetric(ciphertext, key)
+    >>> decrypted
+    'Top Secret'
+
+    >>> # Decryption using a key file
+    >>> key_path = "secret.key"
+    >>> generate_symmetric_key(key_path)
+    >>> ciphertext = encrypt_symmetric("Top Secret", key_path)
+    >>> decrypted = decrypt_symmetric(ciphertext, key_path)
+    >>> decrypted
+    'Top Secret'
+
+    >>> # Decryption using an existing key file
+    >>> with open("secret.key", "w") as f:
+    ...     f.write("aNa/PmjyUk2hrFFm+lqOTFE/nPhi+elUFg3SGt6EETg=")
+    >>> ciphertext = "0rH1lkuVpskHbqMkgAOx0+pd"
+    >>> decrypted = decrypt_symmetric(ciphertext, "secret.key")
+    >>> decrypted
     'Top Secret'
     """
     try:
@@ -53,7 +73,7 @@ def decrypt_symmetric(ciphertext, key):
 
         if isinstance(key, str):
             key = base64.b64decode(key)
-        
+
         ciphertext_decoded = base64.b64decode(ciphertext)
 
         nonce = ciphertext_decoded[:8]

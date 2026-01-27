@@ -37,7 +37,7 @@ from .decrypt_asymmetric import decrypt_asymmetric
 
 __all__ = [
     "generate_symmetric_key",
-    "encrypt_symmetric", 
+    "encrypt_symmetric",
     "decrypt_symmetric",
     "generate_asymmetric_key",
     "encrypt_asymmetric",
