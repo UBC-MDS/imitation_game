@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added badge for CICD and TestPyPi
+
+
+
+## [0.0.3] - (2026-01-25)
+
+### Added
+
 - Type hints for encrypt_asymmetric and decrypt_asymmetric functions
 - Documentation comments in test files listing all LLM-suggested tests
 - Added PGP style encryption function and tests
