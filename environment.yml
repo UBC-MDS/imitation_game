@@ -1,4 +1,4 @@
-name: imitation_game
+name: imitation-game
 channels:
   - conda-forge
   - defaults
