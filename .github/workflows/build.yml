@@ -30,14 +30,12 @@ jobs:
         python -m pip install hatch
     - name: Run test suite
       run: hatch run +py=${{ matrix.python-version }} test:run
-    # If you use this step and have a private repo- then you will need to get a
-    # token from codecov and
-    # save it as a github secret called CODECOV_TOKEN
+    # Upload coverage to Codecov for badge generation
     - name: Upload to codecov
-      if: runner.os == 'macOS' && matrix.python-version == '3.13'
+      if: matrix.python-version == '3.13'
       uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de  # v5.5.2
       with:
-        #token: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}
         verbose: true
         files: ./coverage.xml
     - name: Install flake8
