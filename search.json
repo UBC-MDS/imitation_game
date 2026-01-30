@@ -195,25 +195,32 @@
     "href": "CHANGELOG.html",
     "title": "Changelog",
     "section": "",
-    "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\n\n\nType hints for encrypt_asymmetric and decrypt_asymmetric functions\nDocumentation comments in test files listing all LLM-suggested tests\nAdded PGP style encryption function and tests\nDeveloper documentation section in README with setup and workflow instructions\nCI/CD status badges to README\nConda environment.yml file for easier setup\nFile integrity test for generate_symmetric_key\nFilepath validation in generate_symmetric_key for better error handling\nAutomated documentation generation (#62)\nExample use case and unit test for generate_asymmetric_key (#64)\n\n\n\n\n\nUpdated parameter types in encrypt_asymmetric\nUpdated parameter types in decrypt_asymmetric\nUpdated docstrings to reflect correct parameter types (bytes instead of str)\n\n\n\n\n\n\n\n\nImplementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)\nImplementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)\nAdded pathvalidate dependency for file path validation (#36)\nAdded key file support for symmetric encryption and decryption (#39)\nComplete README with usage examples for all functions (#36)\nComprehensive test suite with 55 tests covering all functions\n\n\n\n\n\n\nCONTRIBUTING.md, add feature request template #9\nREADME.md and function docstrings #10 #14\nCODE_OF_CONDUCT.md #15\nFix GitHub workflow #17"
+    "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\n\n\nAdded badges for CICD, TestPyPi, and documentation\nCleaned up codebase to be compliant with flake8\n\n\n\n\n\n\n\n\nType hints for encrypt_asymmetric and decrypt_asymmetric functions\nDocumentation comments in test files listing all LLM-suggested tests\nAdded PGP style encryption function and tests\nDeveloper documentation section in README with setup and workflow instructions\nCI/CD status badges to README\nConda environment.yml file for easier setup\nFile integrity test for generate_symmetric_key\nFilepath validation in generate_symmetric_key for better error handling\nAutomated documentation generation (#62)\nExample use case and unit test for generate_asymmetric_key (#64)\n\n\n\n\n\nUpdated parameter types in encrypt_asymmetric\nUpdated parameter types in decrypt_asymmetric\nUpdated docstrings to reflect correct parameter types (bytes instead of str)\n\n\n\n\n\n\n\n\nImplementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)\nImplementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)\nAdded pathvalidate dependency for file path validation (#36)\nAdded key file support for symmetric encryption and decryption (#39)\nComplete README with usage examples for all functions (#36)\nComprehensive test suite with 55 tests covering all functions\n\n\n\n\n\n\nCONTRIBUTING.md, add feature request template #9\nREADME.md and function docstrings #10 #14\nCODE_OF_CONDUCT.md #15\nFix GitHub workflow #17"
   },
   {
     "objectID": "CHANGELOG.html#unreleased",
     "href": "CHANGELOG.html#unreleased",
     "title": "Changelog",
     "section": "",
-    "text": "Type hints for encrypt_asymmetric and decrypt_asymmetric functions\nDocumentation comments in test files listing all LLM-suggested tests\nAdded PGP style encryption function and tests\nDeveloper documentation section in README with setup and workflow instructions\nCI/CD status badges to README\nConda environment.yml file for easier setup\nFile integrity test for generate_symmetric_key\nFilepath validation in generate_symmetric_key for better error handling\nAutomated documentation generation (#62)\nExample use case and unit test for generate_asymmetric_key (#64)\n\n\n\n\n\nUpdated parameter types in encrypt_asymmetric\nUpdated parameter types in decrypt_asymmetric\nUpdated docstrings to reflect correct parameter types (bytes instead of str)"
+    "text": "Added badges for CICD, TestPyPi, and documentation\nCleaned up codebase to be compliant with flake8"
   },
   {
     "objectID": "CHANGELOG.html#section",
     "href": "CHANGELOG.html#section",
     "title": "Changelog",
     "section": "",
-    "text": "Implementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)\nImplementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)\nAdded pathvalidate dependency for file path validation (#36)\nAdded key file support for symmetric encryption and decryption (#39)\nComplete README with usage examples for all functions (#36)\nComprehensive test suite with 55 tests covering all functions"
+    "text": "Type hints for encrypt_asymmetric and decrypt_asymmetric functions\nDocumentation comments in test files listing all LLM-suggested tests\nAdded PGP style encryption function and tests\nDeveloper documentation section in README with setup and workflow instructions\nCI/CD status badges to README\nConda environment.yml file for easier setup\nFile integrity test for generate_symmetric_key\nFilepath validation in generate_symmetric_key for better error handling\nAutomated documentation generation (#62)\nExample use case and unit test for generate_asymmetric_key (#64)\n\n\n\n\n\nUpdated parameter types in encrypt_asymmetric\nUpdated parameter types in decrypt_asymmetric\nUpdated docstrings to reflect correct parameter types (bytes instead of str)"
   },
   {
     "objectID": "CHANGELOG.html#section-1",
     "href": "CHANGELOG.html#section-1",
+    "title": "Changelog",
+    "section": "",
+    "text": "Implementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)\nImplementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)\nAdded pathvalidate dependency for file path validation (#36)\nAdded key file support for symmetric encryption and decryption (#39)\nComplete README with usage examples for all functions (#36)\nComprehensive test suite with 55 tests covering all functions"
+  },
+  {
+    "objectID": "CHANGELOG.html#section-2",
+    "href": "CHANGELOG.html#section-2",
     "title": "Changelog",
     "section": "",
     "text": "CONTRIBUTING.md, add feature request template #9\nREADME.md and function docstrings #10 #14\nCODE_OF_CONDUCT.md #15\nFix GitHub workflow #17"
