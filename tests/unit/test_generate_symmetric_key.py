@@ -36,7 +36,7 @@ def test_returns_string():
 
 
 def test_key_length():
-    """Test that generated key has correct length for base64-encoded 32 bytes"""
+    """Test that generated key has correct length for base64 32 bytes"""
     key = generate_symmetric_key()
     # 32 bytes encoded in base64 should be 44 characters
     assert len(key) == 44, f"Expected key length of 44, got {len(key)}"
@@ -47,7 +47,8 @@ def test_valid_base64_encoding():
     key = generate_symmetric_key()
     try:
         decoded = base64.b64decode(key)
-        assert len(decoded) == 32, f"Decoded key should be 32 bytes, got {len(decoded)}"
+        assert len(decoded) == 32, (
+            f"Decoded key should be 32 bytes, got {len(decoded)}")
     except Exception as e:
         pytest.fail(f"Generated key is not valid base64: {e}")
 
@@ -65,14 +66,15 @@ def test_key_uniqueness():
 
 
 def test_multiple_generation_consistency():
-    """Test that function consistently returns valid keys across multiple calls"""
+    """Test function returns valid keys across multiple calls"""
     for i in range(10):
         key = generate_symmetric_key()
         assert isinstance(key, str), f"Iteration {i}: key should be a string"
         assert len(key) == 44, f"Iteration {i}: key should have length 44"
         # Verify each key is valid base64
         decoded = base64.b64decode(key)
-        assert len(decoded) == 32, f"Iteration {i}: decoded key should be 32 bytes"
+        assert len(decoded) == 32, (
+            f"Iteration {i}: decoded key should be 32 bytes")
 
 # File Writing Tests
 
@@ -105,7 +107,8 @@ def test_no_file_without_filepath():
     """Test that no file is created when filepath is not provided"""
     key = generate_symmetric_key()
     # Just verify the function works without filepath
-    assert isinstance(key, str), "Key should be generated even without filepath"
+    assert isinstance(key, str), (
+        "Key should be generated even without filepath")
     assert len(key) == 44, "Key should have correct length"
 
 
