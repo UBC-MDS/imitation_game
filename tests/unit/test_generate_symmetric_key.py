@@ -113,20 +113,18 @@ def test_no_file_without_filepath():
 
 
 def test_create_directory_if_not_exists():
-    """Test that function creates parent directories if not exist"""
+    """Test that function creates parent directories if they don't exist"""
 
     test_directory = "tests/nested/symmetric_key_tests"
     test_file = "nested_key.txt"
     test_path = os.path.join(test_directory, test_file)
 
     # Generate key with nested path
-    generate_symmetric_key(test_path)
+    _ = generate_symmetric_key(test_path)
 
     # Verify directory and file were created
-    assert os.path.exists(test_directory), (
-        "Parent directories were not created")
-    assert os.path.isfile(test_path), (
-        "Key file was not created in nested directory")
+    assert os.path.exists(test_directory), "Parent directories were not created"
+    assert os.path.isfile(test_path), "Key file was not created in nested directory"
 
     # Cleanup
     os.remove(test_path)
@@ -135,10 +133,10 @@ def test_create_directory_if_not_exists():
 
 
 def test_key_file_content_integrity():
-    """Test key file is saved correctly and can be read back.
+    """Test that the key file is saved correctly and can be read back without issues
 
-    Makes sure the file doesn't have extra spaces or weird characters
-    that could mess up the key when we try to use it later.
+    Makes sure the file doesn't have extra spaces or weird characters that could
+    mess up the key when we try to use it later.
     """
 
     test_directory = "tests/symmetric_key_integrity_test"
@@ -152,23 +150,19 @@ def test_key_file_content_integrity():
     with open(test_path, "r", encoding="utf-8") as f:
         file_content = f.read()
 
-    # Verify exact match (no extra whitespace, newlines, encoding issues)
-    assert file_content == generated_key, (
-        "File content does not exactly match generated key")
+    # Verify exact match (no extra whitespace, newlines, or encoding issues)
+    assert file_content == generated_key, "File content does not exactly match generated key"
 
     # Verify the read key is still valid base64
     decoded = base64.b64decode(file_content)
-    assert len(decoded) == 32, (
-        "Key read from file does not decode to 32 bytes")
+    assert len(decoded) == 32, "Key read from file does not decode to 32 bytes"
 
     # Verify no trailing whitespace or newlines
-    assert file_content == file_content.strip(), (
-        "File contains unexpected whitespace")
+    assert file_content == file_content.strip(), "File contains unexpected whitespace"
 
     # Verify file size is exactly 44 bytes (no extra characters)
     file_size = os.path.getsize(test_path)
-    assert file_size == 44, (
-        f"Expected file size of 44 bytes, got {file_size}")
+    assert file_size == 44, f"Expected file size of 44 bytes, got {file_size}"
 
     # Cleanup
     os.remove(test_path)

@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added badges for CICD, TestPyPi, and documentation
-
+- Cleaned up codebase to be compliant with flake8
 
 
 ## [0.0.3] - (2026-01-25)
