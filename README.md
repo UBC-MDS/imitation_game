@@ -6,6 +6,7 @@
 [![codecov](https://codecov.io/gh/UBC-MDS/imitation_game/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/imitation_game)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
 [![Package Version](https://img.shields.io/badge/version-0.2.2-blue)](https://test.pypi.org/project/imitation-game/)
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 
 `imitation-game` is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.
