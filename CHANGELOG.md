@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!--versionlist-->
 
+## v1.1.0 (2026-01-31)
+
+### Features
+
+- Add changelog configuration for semantic release in pyproject.toml
+  ([`4a201ef`](https://github.com/UBC-MDS/imitation_game/commit/4a201efcb966ae275f09605fa70199fbdd9f21e6))
+
+
 ### Added
 
 - Added badges for CICD, TestPyPi, and documentation
