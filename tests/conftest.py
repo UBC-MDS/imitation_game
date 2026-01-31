@@ -2,7 +2,7 @@ import pytest
 import shutil
 
 # Test cleanup code is adapted from
-# https://github.com/ttimbers/breast-cancer-predictor/blob/3.0.0/tests/conftest.py.
+# https://github.com/ttimbers/breast-cancer-predictor/blob/3.0.0/tests/conftest.py
 
 
 @pytest.fixture(autouse=True, scope="session")
