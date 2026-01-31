@@ -38,7 +38,7 @@ While the packages above are powerful, they often cater to either a single encry
 ## Installation
 
 ```bash
-pip install -i https://test.pypi.org/simple/ imitation-game
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ imitation-game
 ```
 
 **Dependencies:**
@@ -57,9 +57,12 @@ from imitation_game import generate_symmetric_key
 # Generate a secure random key for symmetric encryption
 key = generate_symmetric_key()
 print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
+# Output: Generated key: b'\x8f\x9a...
 
 # Save the key to a file for later use
 key = generate_symmetric_key("keys/my_encryption_key.txt")
+# Output: Key saved to keys/my_encryption_key.txt
+# Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')
 ```
 
 ### Symmetric Encryption
@@ -73,8 +76,12 @@ key = generate_symmetric_key()
 # Encrypts and decrypts message with key
 message = "Secret message"
 encrypted_data = encrypt_symmetric(message, key)
+print(f"Encrypted: {encrypted_data[:20]}...")  
+# Output: Encrypted: b'\x9f\x2a\x8b...' (binary ciphertext)
+
 decrypted_message = decrypt_symmetric(encrypted_data, key)
-print(decrypted_message)  # "Secret message"
+print(decrypted_message)
+# Output: Secret message
 ```
 
 ### Asymmetric Encryption (Sender/Receiver)
@@ -85,14 +92,20 @@ from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_
 # Generate key pairs for sender and receiver
 sender_private, sender_public = generate_asymmetric_key()
 receiver_private, receiver_public = generate_asymmetric_key()
+print("Keys generated successfully")
+# Output: Keys generated successfully
+# Each key pair contains RSA public and private keys
 
 # Sender encrypts message with receiver's public key and signs with their private key
 message = "Secret message"
 encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
+print(f"Encrypted data length: {len(encrypted_data)} bytes")
+# Output: Encrypted data length: 512 bytes (includes encrypted message + signature)
 
 # Receiver decrypts with their private key and verifies sender's signature
 decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
-print(decrypted_message)  # "Secret message"
+print(decrypted_message)
+# Output: Secret message
 ```
 
 
@@ -209,6 +222,39 @@ For information about how to contribute to this package, please review our [Cont
 ## License
 
 This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE)
+
+## Citation
+
+If you use this package in your research or project, please cite it as:
+
+```bibtex
+@software{imitation_game2026,
+  author = {Valson, Vinay and Joshi, Tirth and Kwong, Teem and Wen, Alexander},
+  title = {imitation-game: A Python Package for Secure Message Encryption},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/UBC-MDS/imitation_game}
+}
+```
+
+**APA Style:**
+Valson, V., Joshi, T., Kwong, T., & Wen, A. (2026). *imitation-game: A Python Package for Secure Message Encryption* [Computer software]. GitHub. https://github.com/UBC-MDS/imitation_game
+
+## References
+
+This package implements cryptographic operations based on established standards and best practices:
+
+### Cryptographic Standards
+- **AES (Advanced Encryption Standard)**: [FIPS PUB 197](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf) - Federal Information Processing Standards Publication for symmetric encryption
+- **RSA Cryptography**: [RFC 8017 - PKCS #1: RSA Cryptography Specifications Version 2.2](https://datatracker.ietf.org/doc/html/rfc8017) - Standard for asymmetric encryption
+- **SHA-256 Hashing**: [FIPS PUB 180-4](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) - Secure Hash Standard used in digital signatures
+
+### Security Best Practices
+- **OWASP Cryptographic Storage Cheat Sheet**: [OWASP Guidelines](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)
+- **NIST Cryptographic Standards and Guidelines**: [NIST Computer Security Resource Center](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines)
+
+### Python Cryptography Libraries
+- **PyCryptodome Documentation**: [https://pycryptodome.readthedocs.io/](https://pycryptodome.readthedocs.io/) - The underlying cryptographic library used in this package
 
 ## Credits
 
