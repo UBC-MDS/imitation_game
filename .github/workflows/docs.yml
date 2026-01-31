@@ -16,7 +16,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     # For workflow_run, only run when tests succeeded; always run for PR or manual trigger
     if: |
       github.event_name == 'pull_request' ||
