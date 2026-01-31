@@ -38,7 +38,7 @@ While the packages above are powerful, they often cater to either a single encry
 ## Installation
 
 ```bash
-pip install -i https://test.pypi.org/simple/ imitation-game
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ imitation-game
 ```
 
 **Dependencies:**
@@ -209,6 +209,39 @@ For information about how to contribute to this package, please review our [Cont
 ## License
 
 This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE)
+
+## Citation
+
+If you use this package in your research or project, please cite it as:
+
+```bibtex
+@software{imitation_game2026,
+  author = {Valson, Vinay and Joshi, Tirth and Kwong, Teem and Wen, Alexander},
+  title = {imitation-game: A Python Package for Secure Message Encryption},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/UBC-MDS/imitation_game}
+}
+```
+
+**APA Style:**
+Valson, V., Joshi, T., Kwong, T., & Wen, A. (2026). *imitation-game: A Python Package for Secure Message Encryption* [Computer software]. GitHub. https://github.com/UBC-MDS/imitation_game
+
+## References
+
+This package implements cryptographic operations based on established standards and best practices:
+
+### Cryptographic Standards
+- **AES (Advanced Encryption Standard)**: [FIPS PUB 197](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf) - Federal Information Processing Standards Publication for symmetric encryption
+- **RSA Cryptography**: [RFC 8017 - PKCS #1: RSA Cryptography Specifications Version 2.2](https://datatracker.ietf.org/doc/html/rfc8017) - Standard for asymmetric encryption
+- **SHA-256 Hashing**: [FIPS PUB 180-4](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) - Secure Hash Standard used in digital signatures
+
+### Security Best Practices
+- **OWASP Cryptographic Storage Cheat Sheet**: [OWASP Guidelines](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)
+- **NIST Cryptographic Standards and Guidelines**: [NIST Computer Security Resource Center](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines)
+
+### Python Cryptography Libraries
+- **PyCryptodome Documentation**: [https://pycryptodome.readthedocs.io/](https://pycryptodome.readthedocs.io/) - The underlying cryptographic library used in this package
 
 ## Credits
 
