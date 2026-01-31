@@ -29,11 +29,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: stable
-
       - name: Set up Python and install package
         uses: actions/setup-python@v5
         with:
@@ -49,7 +44,6 @@ jobs:
       - name: Build documentation
         run: |
           quartodoc build
-          quarto render
 
       # Publish to GitHub Pages when not a PR (manual or after tests on main)
       - name: Publish to GitHub Pages
