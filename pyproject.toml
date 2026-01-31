@@ -53,11 +53,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com//imitation-game"
-"Source Code" = "https://github.com//imitation-game"
-"Bug Tracker" = "https://github.com//imitation-game/issues"
-Documentation = "https://github.com//imitation-game/blob/main/README.md"
-Download = "https://pypi.org/project/imitation-game/#files"
+Homepage = "https://github.com/UBC-MDS/imitation_game"
+"Source Code" = "https://github.com/UBC-MDS/imitation_game"
+"Bug Tracker" = "https://github.com/UBC-MDS/imitation_game/issues"
+Documentation = "https://ubc-mds.github.io/imitation_game/"
+Download = "https://test.pypi.org/project/imitation-game/#files"
 
 [project.optional-dependencies]
 # The groups below should be in the [development-groups] table
