@@ -44,6 +44,7 @@ jobs:
       - name: Build documentation
         run: |
           quartodoc build
+          quarto render
 
       # Publish to GitHub Pages when not a PR (manual or after tests on main)
       - name: Publish to GitHub Pages
