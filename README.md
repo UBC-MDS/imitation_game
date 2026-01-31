@@ -189,7 +189,7 @@ Documentation is deployed [here](https://ubc-mds.github.io/imitation_game/)
 
 #### PR deployment previews
 
-Pull requests get an automatic documentation preview so you can see how the docs will look before merging. The preview is built by `.github/workflows/docs-preview.yml` and deployed to Netlify; a comment with the preview URL is posted on each PR.
+Pull requests get an automatic documentation preview so you can see how the docs will look before merging. The preview is built by `.github/workflows/docs.yml` and deployed to Netlify; a comment with the preview URL is posted on each PR.
 
 Every new PR will get a Netlify deploy preview and a comment with the preview link. 
 
@@ -199,7 +199,7 @@ We use GitHub Actions for continuous integration and deployment:
 - **Tests**: Run automatically on every push and pull request via `build.yml`
 - **Deploy**: Automatically deploys to TestPyPI when changes are pushed to main via `deploy.yml`
 - **Docs**: Documentation is built and deployed to GitHub Pages on every push via `docs.yml`
-- **Docs preview**: Each pull request gets a documentation preview deployed to Netlify via `docs-preview.yml` (requires Netlify secrets; see above)
+- **Docs preview**: Each pull request gets a documentation preview deployed to Netlify via `docs.yml` (requires Netlify secrets; see above)
 
 
 ## Contributing

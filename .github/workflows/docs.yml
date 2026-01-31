@@ -1,8 +1,11 @@
 name: Build and publish docs
-# Builds and publishes documentation to GitHub Pages
-# Runs automatically after build.yml completes successfully on main branch
-# Can also be triggered manually via workflow_dispatch
+# Builds documentation and either publishes to GitHub Pages (production) or deploys a
+# preview to Netlify (on PRs). PRs get a preview URL commented on the PR.
+# Triggers: pull_request (main, development), workflow_run (after tests pass on main),
+# workflow_dispatch (manual). Requires NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID for PR previews.
 on:
+  pull_request:
+    branches: [main, development]
   workflow_dispatch:
   workflow_run:
     workflows: ["Run Test Suite"]
@@ -13,41 +16,57 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: windows-latest
-    # Only run if manually triggered OR if test workflow succeeded
+    runs-on: ubuntu-latest
+    # For workflow_run, only run when tests succeeded; always run for PR or manual trigger
     if: |
+      github.event_name == 'pull_request' ||
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     permissions:
-      contents: write
+      contents: write   # push to gh-pages when publishing
+      pull-requests: write  # comment preview URL on PRs
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: stable
 
-      - name: Install Python and Dependencies
+      - name: Set up Python and install package
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          cache: 'pip'
+          python-version: "3.12"
+          cache: "pip"
       - run: pip install -e .[docs]
-      
-      - name: Install Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: stable 
 
-      - name: Construct HTML
+      - name: Build documentation
         run: |
           quartodoc build
           quarto render
 
-      - name: Render and Publish
+      # Publish to GitHub Pages when not a PR (manual or after tests on main)
+      - name: Publish to GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Deploy preview to Netlify and comment on PR when triggered by a PR
+      - name: Deploy preview to Netlify
+        if: github.event_name == 'pull_request'
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: "./_site"
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Docs preview: ${{ github.event.pull_request.title }}"
+          enable-pull-request-comment: true
+          overwrites-pull-request-comment: true
+          fails-without-credentials: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
