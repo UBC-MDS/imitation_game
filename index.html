@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome-to-imitation-game" class="level1">
 <h1>Welcome to imitation-game</h1>
-<p><a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="CD"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg" class="img-fluid" alt="Docs"></a> <a href="https://codecov.io/gh/UBC-MDS/imitation_game"><img src="https://codecov.io/gh/UBC-MDS/imitation_game/branch/main/graph/badge.svg" class="img-fluid" alt="codecov"></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10%2B-blue" class="img-fluid" alt="Python Version"></a> <a href="https://test.pypi.org/project/imitation-game/"><img src="https://img.shields.io/badge/version-0.2.2-blue" class="img-fluid" alt="Package Version"></a> <a href="https://www.python.org/dev/peps/pep-0008/"><img src="https://img.shields.io/badge/code%20style-pep8-orange.svg" class="img-fluid" alt="PEP8"></a></p>
+<p><a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="CD"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg" class="img-fluid" alt="Docs"></a> <a href="https://codecov.io/gh/UBC-MDS/imitation_game"><img src="https://codecov.io/gh/UBC-MDS/imitation_game/branch/main/graph/badge.svg" class="img-fluid" alt="codecov"></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10%2B-blue" class="img-fluid" alt="Python Version"></a> <a href="https://test.pypi.org/project/imitation-game/"><img src="https://img.shields.io/badge/TestPyPI-package-blue.png" class="img-fluid" alt="TestPyPI"></a> <a href="https://www.python.org/dev/peps/pep-0008/"><img src="https://img.shields.io/badge/code%20style-pep8-orange.svg" class="img-fluid" alt="PEP8"></a></p>
 <p><code>imitation-game</code> is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.</p>
 <p>Symmetric Encryption Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.</p>
 <ul>
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://test.pypi.org/simple/ imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://test.pypi.org/simple/ <span class="at">--extra-index-url</span> https://pypi.org/simple/ imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Dependencies:</strong> - <code>pycryptodome</code> - Cryptographic operations - <code>pathvalidate</code> - File path validation</p>
 <p><strong>Test PyPI</strong>: <a href="https://test.pypi.org/project/imitation_game" class="uri">https://test.pypi.org/project/imitation_game</a></p>
 </section>
@@ -187,9 +187,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a secure random key for symmetric encryption</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> generate_symmetric_key()</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Generated key: </span><span class="sc">{</span>key[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">..."</span>)  <span class="co"># Shows first 10 characters</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the key to a file for later use</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> generate_symmetric_key(<span class="st">"keys/my_encryption_key.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Generated key: b'\x8f\x9a...</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the key to a file for later use</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> generate_symmetric_key(<span class="st">"keys/my_encryption_key.txt"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Key saved to keys/my_encryption_key.txt</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="symmetric-encryption" class="level3">
 <h3 class="anchored" data-anchor-id="symmetric-encryption">Symmetric Encryption</h3>
@@ -201,8 +204,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Encrypts and decrypts message with key</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">"Secret message"</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>encrypted_data <span class="op">=</span> encrypt_symmetric(message, key)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>decrypted_message <span class="op">=</span> decrypt_symmetric(encrypted_data, key)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)  <span class="co"># "Secret message"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Encrypted: </span><span class="sc">{</span>encrypted_data[:<span class="dv">20</span>]<span class="sc">}</span><span class="ss">..."</span>)  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Encrypted: b'\x9f\x2a\x8b...' (binary ciphertext)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>decrypted_message <span class="op">=</span> decrypt_symmetric(encrypted_data, key)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Secret message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="asymmetric-encryption-senderreceiver" class="level3">
 <h3 class="anchored" data-anchor-id="asymmetric-encryption-senderreceiver">Asymmetric Encryption (Sender/Receiver)</h3>
@@ -211,14 +218,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate key pairs for sender and receiver</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sender_private, sender_public <span class="op">=</span> generate_asymmetric_key()</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>receiver_private, receiver_public <span class="op">=</span> generate_asymmetric_key()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sender encrypts message with receiver's public key and signs with their private key</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">"Secret message"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>encrypted_data <span class="op">=</span> encrypt_asymmetric(message, receiver_public, sender_private)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Receiver decrypts with their private key and verifies sender's signature</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>decrypted_message <span class="op">=</span> decrypt_asymmetric(encrypted_data, receiver_private, sender_public)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)  <span class="co"># "Secret message"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Keys generated successfully"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Keys generated successfully</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Each key pair contains RSA public and private keys</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sender encrypts message with receiver's public key and signs with their private key</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">"Secret message"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>encrypted_data <span class="op">=</span> encrypt_asymmetric(message, receiver_public, sender_private)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Encrypted data length: </span><span class="sc">{</span><span class="bu">len</span>(encrypted_data)<span class="sc">}</span><span class="ss"> bytes"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Encrypted data length: 512 bytes (includes encrypted message + signature)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Receiver decrypts with their private key and verifies sender's signature</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>decrypted_message <span class="op">=</span> decrypt_asymmetric(encrypted_data, receiver_private, sender_public)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Secret message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="development" class="level2">
@@ -305,6 +318,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
 <p>This packages uses the MIT License, more information can be found <a href="https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE">here</a></p>
+</section>
+<section id="citation" class="level2">
+<h2 class="anchored" data-anchor-id="citation">Citation</h2>
+<p>If you use this package in your research or project, please cite it as:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">@software{imitation_game2026,</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">  author = {Valson, Vinay and Joshi, Tirth and Kwong, Teem and Wen, Alexander},</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">  title = {imitation-game: A Python Package for Secure Message Encryption},</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">  year = {2026},</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">  publisher = {GitHub},</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">  url = {https://github.com/UBC-MDS/imitation_game}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>APA Style:</strong> Valson, V., Joshi, T., Kwong, T., &amp; Wen, A. (2026). <em>imitation-game: A Python Package for Secure Message Encryption</em> [Computer software]. GitHub. https://github.com/UBC-MDS/imitation_game</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>This package implements cryptographic operations based on established standards and best practices:</p>
+<section id="cryptographic-standards" class="level3">
+<h3 class="anchored" data-anchor-id="cryptographic-standards">Cryptographic Standards</h3>
+<ul>
+<li><strong>AES (Advanced Encryption Standard)</strong>: <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf">FIPS PUB 197</a> - Federal Information Processing Standards Publication for symmetric encryption</li>
+<li><strong>RSA Cryptography</strong>: <a href="https://datatracker.ietf.org/doc/html/rfc8017">RFC 8017 - PKCS #1: RSA Cryptography Specifications Version 2.2</a> - Standard for asymmetric encryption</li>
+<li><strong>SHA-256 Hashing</strong>: <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">FIPS PUB 180-4</a> - Secure Hash Standard used in digital signatures</li>
+</ul>
+</section>
+<section id="security-best-practices" class="level3">
+<h3 class="anchored" data-anchor-id="security-best-practices">Security Best Practices</h3>
+<ul>
+<li><strong>OWASP Cryptographic Storage Cheat Sheet</strong>: <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html">OWASP Guidelines</a></li>
+<li><strong>NIST Cryptographic Standards and Guidelines</strong>: <a href="https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines">NIST Computer Security Resource Center</a></li>
+</ul>
+</section>
+<section id="python-cryptography-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="python-cryptography-libraries">Python Cryptography Libraries</h3>
+<ul>
+<li><strong>PyCryptodome Documentation</strong>: <a href="https://pycryptodome.readthedocs.io/">https://pycryptodome.readthedocs.io/</a> - The underlying cryptographic library used in this package</li>
+</ul>
+</section>
 </section>
 <section id="credits" class="level2">
 <h2 class="anchored" data-anchor-id="credits">Credits</h2>
