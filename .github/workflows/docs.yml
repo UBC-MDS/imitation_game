@@ -16,7 +16,7 @@ on:
 
 jobs:
   build-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # For workflow_run, only run when tests succeeded; always run for PR or manual trigger
     if: |
       github.event_name == 'pull_request' ||
@@ -27,10 +27,10 @@ jobs:
       pull-requests: write  # comment preview URL on PRs
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.5.2
 
       - name: Set up Python and install package
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v5.1.0
         with:
           python-version: "3.12"
           cache: "pip"
@@ -39,10 +39,9 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: stable 
+          version: stable
 
       - name: Build documentation
-        shell: bash
         run: |
           quartodoc build
           quarto render
