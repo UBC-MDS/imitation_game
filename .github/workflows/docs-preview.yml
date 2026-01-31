@@ -1,0 +1,50 @@
+name: Documentation preview
+# Purpose: When someone opens a PR, build the docs and deploy a live preview so reviewers
+# can see exactly how the documentation will look before merging (links, formatting, API
+# reference, etc.) instead of having to build locally. The preview URL is posted as a PR comment.
+# Runs on PRs targeting main or development so previews are available for both flows.
+# Requires NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID repository secrets (see README).
+on:
+  pull_request:
+    branches: [main, development]
+
+jobs:
+  build-and-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write  # post preview URL comment on PR
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: stable
+
+      - name: Set up Python and install package
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - run: pip install -e .[docs]
+
+      - name: Build documentation
+        run: |
+          quartodoc build
+          quarto render
+
+      - name: Deploy preview to Netlify
+        uses: nwtgck/actions-netlify@v3.0
+        with:
+          publish-dir: "./_site"
+          production-deploy: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Docs preview: ${{ github.event.pull_request.title }}"
+          enable-pull-request-comment: true
+          overwrites-pull-request-comment: true
+          fails-without-credentials: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
