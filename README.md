@@ -38,7 +38,7 @@ While the packages above are powerful, they often cater to either a single encry
 ## Installation
 
 ```bash
-pip install imitation-game
+pip install -i https://test.pypi.org/simple/ imitation-game
 ```
 
 **Dependencies:**
@@ -112,7 +112,7 @@ This project uses conda for environment management, but dependencies are defined
    Alternatively, use the provided `environment.yml` file:
    ```bash
    conda env create -f environment.yml
-   conda activate imitation_game
+   conda activate imitation-game
    ```
 
 2. **Install the package in editable mode** with all development dependencies:
