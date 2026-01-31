@@ -42,6 +42,7 @@ jobs:
           version: stable 
 
       - name: Build documentation
+        shell: bash
         run: |
           quartodoc build
           quarto render
