@@ -39,7 +39,7 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: stable
+          version: release
 
       - name: Build documentation
         run: |
