@@ -57,9 +57,12 @@ from imitation_game import generate_symmetric_key
 # Generate a secure random key for symmetric encryption
 key = generate_symmetric_key()
 print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
+# Output: Generated key: b'\x8f\x9a...
 
 # Save the key to a file for later use
 key = generate_symmetric_key("keys/my_encryption_key.txt")
+# Output: Key saved to keys/my_encryption_key.txt
+# Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')
 ```
 
 ### Symmetric Encryption
@@ -73,8 +76,12 @@ key = generate_symmetric_key()
 # Encrypts and decrypts message with key
 message = "Secret message"
 encrypted_data = encrypt_symmetric(message, key)
+print(f"Encrypted: {encrypted_data[:20]}...")  
+# Output: Encrypted: b'\x9f\x2a\x8b...' (binary ciphertext)
+
 decrypted_message = decrypt_symmetric(encrypted_data, key)
-print(decrypted_message)  # "Secret message"
+print(decrypted_message)
+# Output: Secret message
 ```
 
 ### Asymmetric Encryption (Sender/Receiver)
@@ -85,14 +92,20 @@ from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_
 # Generate key pairs for sender and receiver
 sender_private, sender_public = generate_asymmetric_key()
 receiver_private, receiver_public = generate_asymmetric_key()
+print("Keys generated successfully")
+# Output: Keys generated successfully
+# Each key pair contains RSA public and private keys
 
 # Sender encrypts message with receiver's public key and signs with their private key
 message = "Secret message"
 encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
+print(f"Encrypted data length: {len(encrypted_data)} bytes")
+# Output: Encrypted data length: 512 bytes (includes encrypted message + signature)
 
 # Receiver decrypts with their private key and verifies sender's signature
 decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
-print(decrypted_message)  # "Secret message"
+print(decrypted_message)
+# Output: Secret message
 ```
 
 
