@@ -41,6 +41,11 @@ jobs:
           cache: "pip"
       - run: pip install -e .[docs]
 
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: stable 
+
       - name: Build documentation
         run: |
           quartodoc build
