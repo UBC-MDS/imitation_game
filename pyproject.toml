@@ -139,7 +139,7 @@ max-line-length = 100
 ################################################################################
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
-build_command = "hatch build"
+build_command = "pip install hatch && hatch build"
 commit_parser = "conventional"
 commit_parser_options = { parse_squash_commits = true, ignore_merge_commits = true }
 commit_message = "chore(release): release v{version} [skip ci]"
