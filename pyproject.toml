@@ -151,6 +151,12 @@ token = { env = "GH_TOKEN" }
 [tool.semantic_release.publish]
 upload_to_vcs_release = true
 
+[tool.semantic_release.changelog]
+# Where to insert new version blocks (must exist in CHANGELOG.md)
+insertion_flag = "<!--versionlist-->"
+# Changelog is updated (not overwritten); new versions inserted at flag
+mode = "update"
+
 ################################################################################
 # Hatch Environments
 ################################################################################
