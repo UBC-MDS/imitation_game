@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!--versionlist-->
 
+## v1.1.1 (2026-01-31)
+
+### Bug Fixes
+
+- Correct broken project URLs and enhance installation docs
+  ([`eafd9c6`](https://github.com/UBC-MDS/imitation_game/commit/eafd9c60fb0b19dc601ae8536a27a63d8eba92ef))
+
+- Remove trailing dot from conftest.py link causing 404 error
+  ([`45cb1d9`](https://github.com/UBC-MDS/imitation_game/commit/45cb1d93fbd7cea748e86867e72bbc16dab6a3f8))
+
+### Documentation
+
+- Add expected output examples to usage demonstrations
+  ([`e6065eb`](https://github.com/UBC-MDS/imitation_game/commit/e6065ebee8535ce793b6b6c3bff39dbdf8fcea26))
+
+
 ## v1.1.0 (2026-01-31)
 
 ### Features
