@@ -1,140 +1,5 @@
 [
   {
-    "objectID": "reference/preview.html",
-    "href": "reference/preview.html",
-    "title": "preview",
-    "section": "",
-    "text": "preview(ast, max_depth=999, compact=False, as_string=False)\nPrint a friendly representation of a griffe object (e.g. function, docstring)\n\n\n&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n..."
-  },
-  {
-    "objectID": "reference/preview.html#examples",
-    "href": "reference/preview.html#examples",
-    "title": "preview",
-    "section": "",
-    "text": "&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n..."
-  },
-  {
-    "objectID": "reference/get_object.html",
-    "href": "reference/get_object.html",
-    "title": "get_object",
-    "section": "",
-    "text": "get_object(\n    path,\n    object_name=None,\n    parser='numpy',\n    load_aliases=True,\n    dynamic=False,\n    loader=None,\n)\nFetch a griffe object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse\n\n\n\n\n\n\npreview: print a user-friendly preview of a griffe object.\n\n\n\n&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ...\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc"
-  },
-  {
-    "objectID": "reference/get_object.html#parameters",
-    "href": "reference/get_object.html#parameters",
-    "title": "get_object",
-    "section": "",
-    "text": "Name\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse"
-  },
-  {
-    "objectID": "reference/get_object.html#see-also",
-    "href": "reference/get_object.html#see-also",
-    "title": "get_object",
-    "section": "",
-    "text": "preview: print a user-friendly preview of a griffe object."
-  },
-  {
-    "objectID": "reference/get_object.html#examples",
-    "href": "reference/get_object.html#examples",
-    "title": "get_object",
-    "section": "",
-    "text": "&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ..."
-  },
-  {
-    "objectID": "reference/get_object.html#returns",
-    "href": "reference/get_object.html#returns",
-    "title": "get_object",
-    "section": "",
-    "text": "Name\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc"
-  },
-  {
-    "objectID": "reference/generate_asymmetric_key.html",
-    "href": "reference/generate_asymmetric_key.html",
-    "title": "generate_asymmetric_key",
-    "section": "",
-    "text": "generate_asymmetric_key\n\n\n\n\n\nName\nDescription\n\n\n\n\ngenerate_asymmetric_key\nGenerates a pair of RSA keys for asymmetric encryption.\n\n\n\n\n\ngenerate_asymmetric_key.generate_asymmetric_key(\n    private_filepath=None,\n    public_filepath=None,\n    passphrase=None,\n)\nGenerates a pair of RSA keys for asymmetric encryption.\nThe public and private key will be printed out for the user to copy. If output filepath parameters are passed then the public and private keys will be saved to their respective filepaths.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprivate_filepath\n(str, optional(default=None))\nFilepath to save the private key in. If no filepath is specified the private key will not be saved in a file.\nNone\n\n\npublic_filepath\n(str, optional(default=None))\nFilepath to save the public key in. If no filepath is specified the public key will not be saved in a file.\nNone\n\n\npassphrase\nOptional[Hashable]\nHashable argument to generate a consistent RSA key if required. If specified, random.randbytes will be used to generate the RSA key, otherwise Crypto.Random.get_random_bytes will be used.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nprivate_key\nbytes\nThe key used for decryption outputted as a binary string; must be kept secret.\n\n\npublic_key\nbytes\nThe key used for encryption outputted as a binary string; can be shared openly.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; private_key,public_key = generate_asymmetric_key()\nPRIVATE KEY:\n\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\nPUBLIC KEY:\n\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'\n&gt;&gt;&gt; private_key\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\n&gt;&gt;&gt; public_key\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "generate_asymmetric_key"
-    ]
-  },
-  {
-    "objectID": "reference/generate_asymmetric_key.html#functions",
-    "href": "reference/generate_asymmetric_key.html#functions",
-    "title": "generate_asymmetric_key",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\ngenerate_asymmetric_key\nGenerates a pair of RSA keys for asymmetric encryption.\n\n\n\n\n\ngenerate_asymmetric_key.generate_asymmetric_key(\n    private_filepath=None,\n    public_filepath=None,\n    passphrase=None,\n)\nGenerates a pair of RSA keys for asymmetric encryption.\nThe public and private key will be printed out for the user to copy. If output filepath parameters are passed then the public and private keys will be saved to their respective filepaths.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprivate_filepath\n(str, optional(default=None))\nFilepath to save the private key in. If no filepath is specified the private key will not be saved in a file.\nNone\n\n\npublic_filepath\n(str, optional(default=None))\nFilepath to save the public key in. If no filepath is specified the public key will not be saved in a file.\nNone\n\n\npassphrase\nOptional[Hashable]\nHashable argument to generate a consistent RSA key if required. If specified, random.randbytes will be used to generate the RSA key, otherwise Crypto.Random.get_random_bytes will be used.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nprivate_key\nbytes\nThe key used for decryption outputted as a binary string; must be kept secret.\n\n\npublic_key\nbytes\nThe key used for encryption outputted as a binary string; can be shared openly.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; private_key,public_key = generate_asymmetric_key()\nPRIVATE KEY:\n\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\nPUBLIC KEY:\n\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'\n&gt;&gt;&gt; private_key\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\n&gt;&gt;&gt; public_key\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "generate_asymmetric_key"
-    ]
-  },
-  {
-    "objectID": "reference/encrypt_asymmetric.html",
-    "href": "reference/encrypt_asymmetric.html",
-    "title": "encrypt_asymmetric",
-    "section": "",
-    "text": "encrypt_asymmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\nencrypt_asymmetric\nEncrypts a message using the receiver’s public key and signs it with the\n\n\n\n\n\nencrypt_asymmetric.encrypt_asymmetric(\n    message,\n    receiver_public_key,\n    sender_private_key,\n)\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key. This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe plaintext message to encrypt.\nrequired\n\n\nreceiver_public_key\nbytes or str\nThe receiver’s RSA public key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_private_key\nbytes or str\nThe sender’s RSA private key in PEM format (bytes) or path to key file (str) for signing.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nBase64-encoded JSON containing encrypted message and signature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the message is too long for RSA encryption or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; receiver_public, _ = generate_asymmetric_key()\n&gt;&gt;&gt; _, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "encrypt_asymmetric"
-    ]
-  },
-  {
-    "objectID": "reference/encrypt_asymmetric.html#functions",
-    "href": "reference/encrypt_asymmetric.html#functions",
-    "title": "encrypt_asymmetric",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\nencrypt_asymmetric\nEncrypts a message using the receiver’s public key and signs it with the\n\n\n\n\n\nencrypt_asymmetric.encrypt_asymmetric(\n    message,\n    receiver_public_key,\n    sender_private_key,\n)\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key. This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe plaintext message to encrypt.\nrequired\n\n\nreceiver_public_key\nbytes or str\nThe receiver’s RSA public key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_private_key\nbytes or str\nThe sender’s RSA private key in PEM format (bytes) or path to key file (str) for signing.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nBase64-encoded JSON containing encrypted message and signature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the message is too long for RSA encryption or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; receiver_public, _ = generate_asymmetric_key()\n&gt;&gt;&gt; _, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "encrypt_asymmetric"
-    ]
-  },
-  {
-    "objectID": "reference/decrypt_asymmetric.html",
-    "href": "reference/decrypt_asymmetric.html",
-    "title": "decrypt_asymmetric",
-    "section": "",
-    "text": "decrypt_asymmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\ndecrypt_asymmetric\nDecrypts a message using the receiver’s private key and verifies the\n\n\n\n\n\ndecrypt_asymmetric.decrypt_asymmetric(\n    encrypted_data,\n    receiver_private_key,\n    sender_public_key,\n)\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key. This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nencrypted_data\nstr\nBase64-encoded JSON containing encrypted message and signature.\nrequired\n\n\nreceiver_private_key\nbytes or str\nThe receiver’s RSA private key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_public_key\nbytes or str\nThe sender’s RSA public key in PEM format (bytes) or path to key file (str) for signature verification.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe decrypted and verified plaintext message.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf decryption fails, signature verification fails, or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; from imitation_game.decrypt_asymmetric import decrypt_asymmetric\n&gt;&gt;&gt; receiver_public, receiver_private = generate_asymmetric_key()\n&gt;&gt;&gt; sender_public, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )\n&gt;&gt;&gt; decrypt_asymmetric(encrypted, receiver_private, sender_public)\n'Hello, world!'",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "decrypt_asymmetric"
-    ]
-  },
-  {
-    "objectID": "reference/decrypt_asymmetric.html#functions",
-    "href": "reference/decrypt_asymmetric.html#functions",
-    "title": "decrypt_asymmetric",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\ndecrypt_asymmetric\nDecrypts a message using the receiver’s private key and verifies the\n\n\n\n\n\ndecrypt_asymmetric.decrypt_asymmetric(\n    encrypted_data,\n    receiver_private_key,\n    sender_public_key,\n)\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key. This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nencrypted_data\nstr\nBase64-encoded JSON containing encrypted message and signature.\nrequired\n\n\nreceiver_private_key\nbytes or str\nThe receiver’s RSA private key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_public_key\nbytes or str\nThe sender’s RSA public key in PEM format (bytes) or path to key file (str) for signature verification.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe decrypted and verified plaintext message.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf decryption fails, signature verification fails, or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; from imitation_game.decrypt_asymmetric import decrypt_asymmetric\n&gt;&gt;&gt; receiver_public, receiver_private = generate_asymmetric_key()\n&gt;&gt;&gt; sender_public, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )\n&gt;&gt;&gt; decrypt_asymmetric(encrypted, receiver_private, sender_public)\n'Hello, world!'",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "decrypt_asymmetric"
-    ]
-  },
-  {
-    "objectID": "DEVELOPMENT.html",
-    "href": "DEVELOPMENT.html",
-    "title": "Development Guide",
-    "section": "",
-    "text": "Welcome to your shiny new package. This page will help you get started with using Hatch to manage your package.\nIf you look at your project, you will see that a pyproject.toml file. This file stores both your package configuration and settings for development tools like Hatch that you will use to work on your package.\nThis file is written using a .toml format. You can learn more about toml here. Here’s the TL&DR:\n\nEach [] section in the toml file is called a table.\nYou can nest tables with double brackets like this[[]]\nTables contain information about a element that you want to configure.\n\nWe are using Hatch as the default packaging tool. Hatch allows you to configure and run environments and scripts similar to workflow tools like tox or nox.\nHach, by default, uses virtual environments (venv) to manage environments. But you can configure it to use other environment tools.Read the hatch documentation to learn more about environments.\nFor this template, we have set up Hatch environments for you to use. At the bottom of your pyproject.toml file, notice a hatch environment section that looks like this:\n########################################\n# Hatch Environments\n########################################\nBelow is the Hatch environment to install your package. Notice that it defines pip and twine as two packages that the environment needs.\n[tool.hatch.envs.build]\ndescription = \"\"\"Test the installation the package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\nThe table below defines the scripts that you will run build and check your package.\n[tool.hatch.envs.build.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\ndetached = true\nYou can enter that environment to check it out:\n$ hatch shell build\nIf you run pip list, in the environment, twine will be there:\n$ pip list\nHatch by default, installs your package in editable mode (-e) into its virtual environments. But if detached=True is set, then it will skip installing your package into the virtual enviornment.\n\n\nBelow you see the Hatch environment test table.\ntool.hatch.envs says, “Hey, Hatch, this is the definition for an environment.” test is the name of the environment.\nThe environment below defines the dependencies that Hatch needs to install into the environment named test.\n[tool.hatch.envs.test]\ndescription = \"\"\"Run the test suite.\"\"\"\ndependencies = [\n    \"pytest\",\n    \"pytest-cov\",\n    \"pytest-raises\",\n    \"pytest-randomly\",\n    \"pytest-xdist\",\n]\nTo enter a Hatch environment use:\nhatch shell environmentname\nSo you can enter the test environment above with:\nhatch shell test\n\n\n\nIf the environment has a matrix associated with it, that tells Hatch to run the test scripts across different Python versions.\n[[tool.hatch.envs.test.matrix]]\npython = [\"3.10\", \"3.11\", \"3.12\", \"3.13\"]\nIf you run hatch shell test, you will see the output below. To enter an environment with a matrix attached to it, you need to pick the Python environment version that you want to open.\n$ hatch shell test                           \nEnvironment `test` defines a matrix, choose one of the following instead:\n\ntest.py3.10\ntest.py3.11\ntest.py3.12\ntest.py3.13\nOpen the Python 3.13 environment like this:\n$ hatch shell test.py3.13\nTo leave an environment use:\n$ deactivate\n\n\n\nIn the tests section of your pyproject.toml, you will see a tool.hatch.envs.test.scripts table.\nThis table defines the commands that you want Hatch to run in the test environment. Notice that the script has one command called run.\n[tool.hatch.envs.test.scripts]\nrun = \"pytest {args:--cov=greatproject --cov-report=term-missing}\"\nTo run this script , use:\nhatch run test:run\n\nhatch run: calls Hatch and tells it that it will be running a command\ntest:run: defines the environment you want it to run (test) and defines the name of the “script” to berun.\n\nIf you have a Hatch matrix setup for tests, it will both install the necessary Python version using UV and run your tests on each version of the Python versions that you declare in the matrix table. In this case, there are 4 Python versions in the environment, so your tests will run 4 times, once in each Python version listed in the matrix table.\n@lwasser ➜ /workspaces/pyopensci-scipy25-create-python-package (main) $ hatch run test:run\n──────────────────────────────────────────────────────────────────────── test.py3.10 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.10.16, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1490740387\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.10.16-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n──────────────────────────────────────────────────────────────────────── test.py3.11 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.11.12, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1596865075\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.11.12-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n\n\n\nYou can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
-  },
-  {
-    "objectID": "DEVELOPMENT.html#build-your-package",
-    "href": "DEVELOPMENT.html#build-your-package",
-    "title": "Development Guide",
-    "section": "",
-    "text": "You can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
-  },
-  {
     "objectID": "CODE_OF_CONDUCT.html",
     "href": "CODE_OF_CONDUCT.html",
     "title": "Contributor Covenant Code of Conduct",
@@ -191,11 +56,174 @@
     "text": "This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.\nCommunity Impact Guidelines were inspired by Mozilla’s code of conduct enforcement ladder.\nFor answers to common questions about this code of conduct, see the FAQ at https://www.contributor-covenant.org/faq. Translations are available at https://www.contributor-covenant.org/translations."
   },
   {
+    "objectID": "reference/preview.html",
+    "href": "reference/preview.html",
+    "title": "preview",
+    "section": "",
+    "text": "preview(ast, max_depth=999, compact=False, as_string=False)\nPrint a friendly representation of a griffe object (e.g. function, docstring)\n\n\n&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n..."
+  },
+  {
+    "objectID": "reference/preview.html#examples",
+    "href": "reference/preview.html#examples",
+    "title": "preview",
+    "section": "",
+    "text": "&gt;&gt;&gt; from quartodoc import get_object\n&gt;&gt;&gt; obj = get_object(\"quartodoc\", \"get_object\")\n&gt;&gt;&gt; preview(obj.docstring.parsed)\n...\n&gt;&gt;&gt; preview(obj)\n..."
+  },
+  {
+    "objectID": "reference/generate_asymmetric_key.html",
+    "href": "reference/generate_asymmetric_key.html",
+    "title": "generate_asymmetric_key",
+    "section": "",
+    "text": "generate_asymmetric_key\n\n\n\n\n\nName\nDescription\n\n\n\n\ngenerate_asymmetric_key\nGenerates a pair of RSA keys for asymmetric encryption.\n\n\n\n\n\ngenerate_asymmetric_key.generate_asymmetric_key(\n    private_filepath=None,\n    public_filepath=None,\n    passphrase=None,\n)\nGenerates a pair of RSA keys for asymmetric encryption.\nThe public and private key will be printed out for the user to copy. If output filepath parameters are passed then the public and private keys will be saved to their respective filepaths.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprivate_filepath\n(str, optional(default=None))\nFilepath to save the private key in. If no filepath is specified the private key will not be saved in a file.\nNone\n\n\npublic_filepath\n(str, optional(default=None))\nFilepath to save the public key in. If no filepath is specified the public key will not be saved in a file.\nNone\n\n\npassphrase\nOptional[Hashable]\nHashable argument to generate a consistent RSA key if required. If specified, random.randbytes will be used to generate the RSA key, otherwise Crypto.Random.get_random_bytes will be used.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nprivate_key\nbytes\nThe key used for decryption outputted as a binary string; must be kept secret.\n\n\npublic_key\nbytes\nThe key used for encryption outputted as a binary string; can be shared openly.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; private_key,public_key = generate_asymmetric_key()\nPRIVATE KEY:\n\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\nPUBLIC KEY:\n\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'\n&gt;&gt;&gt; private_key\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\n&gt;&gt;&gt; public_key\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'",
+    "crumbs": [
+      "Reference",
+      "Key functions",
+      "generate_asymmetric_key"
+    ]
+  },
+  {
+    "objectID": "reference/generate_asymmetric_key.html#functions",
+    "href": "reference/generate_asymmetric_key.html#functions",
+    "title": "generate_asymmetric_key",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\ngenerate_asymmetric_key\nGenerates a pair of RSA keys for asymmetric encryption.\n\n\n\n\n\ngenerate_asymmetric_key.generate_asymmetric_key(\n    private_filepath=None,\n    public_filepath=None,\n    passphrase=None,\n)\nGenerates a pair of RSA keys for asymmetric encryption.\nThe public and private key will be printed out for the user to copy. If output filepath parameters are passed then the public and private keys will be saved to their respective filepaths.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nprivate_filepath\n(str, optional(default=None))\nFilepath to save the private key in. If no filepath is specified the private key will not be saved in a file.\nNone\n\n\npublic_filepath\n(str, optional(default=None))\nFilepath to save the public key in. If no filepath is specified the public key will not be saved in a file.\nNone\n\n\npassphrase\nOptional[Hashable]\nHashable argument to generate a consistent RSA key if required. If specified, random.randbytes will be used to generate the RSA key, otherwise Crypto.Random.get_random_bytes will be used.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nprivate_key\nbytes\nThe key used for decryption outputted as a binary string; must be kept secret.\n\n\npublic_key\nbytes\nThe key used for encryption outputted as a binary string; can be shared openly.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; private_key,public_key = generate_asymmetric_key()\nPRIVATE KEY:\n\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\nPUBLIC KEY:\n\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'\n&gt;&gt;&gt; private_key\nb'-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAA...La1DC1VOvQ==\\n-----END RSA PRIVATE KEY-----'\n&gt;&gt;&gt; public_key\nb'-----BEGIN PUBLIC KEY-----\\nMIIBIjANBg...f\\n9wIDAQAB\\n-----END PUBLIC KEY-----'",
+    "crumbs": [
+      "Reference",
+      "Key functions",
+      "generate_asymmetric_key"
+    ]
+  },
+  {
+    "objectID": "reference/decrypt_asymmetric.html",
+    "href": "reference/decrypt_asymmetric.html",
+    "title": "decrypt_asymmetric",
+    "section": "",
+    "text": "decrypt_asymmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\ndecrypt_asymmetric\nDecrypts a message using the receiver’s private key and verifies the\n\n\n\n\n\ndecrypt_asymmetric.decrypt_asymmetric(\n    encrypted_data,\n    receiver_private_key,\n    sender_public_key,\n)\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key. This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nencrypted_data\nstr\nBase64-encoded JSON containing encrypted message and signature.\nrequired\n\n\nreceiver_private_key\nbytes or str\nThe receiver’s RSA private key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_public_key\nbytes or str\nThe sender’s RSA public key in PEM format (bytes) or path to key file (str) for signature verification.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe decrypted and verified plaintext message.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf decryption fails, signature verification fails, or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; from imitation_game.decrypt_asymmetric import decrypt_asymmetric\n&gt;&gt;&gt; receiver_public, receiver_private = generate_asymmetric_key()\n&gt;&gt;&gt; sender_public, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )\n&gt;&gt;&gt; decrypt_asymmetric(encrypted, receiver_private, sender_public)\n'Hello, world!'",
+    "crumbs": [
+      "Reference",
+      "Key functions",
+      "decrypt_asymmetric"
+    ]
+  },
+  {
+    "objectID": "reference/decrypt_asymmetric.html#functions",
+    "href": "reference/decrypt_asymmetric.html#functions",
+    "title": "decrypt_asymmetric",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\ndecrypt_asymmetric\nDecrypts a message using the receiver’s private key and verifies the\n\n\n\n\n\ndecrypt_asymmetric.decrypt_asymmetric(\n    encrypted_data,\n    receiver_private_key,\n    sender_public_key,\n)\nDecrypts a message using the receiver’s private key and verifies the signature using the sender’s public key. This ensures both confidentiality (only receiver can decrypt) and authenticity (verifies sender identity).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nencrypted_data\nstr\nBase64-encoded JSON containing encrypted message and signature.\nrequired\n\n\nreceiver_private_key\nbytes or str\nThe receiver’s RSA private key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_public_key\nbytes or str\nThe sender’s RSA public key in PEM format (bytes) or path to key file (str) for signature verification.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe decrypted and verified plaintext message.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf decryption fails, signature verification fails, or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; from imitation_game.decrypt_asymmetric import decrypt_asymmetric\n&gt;&gt;&gt; receiver_public, receiver_private = generate_asymmetric_key()\n&gt;&gt;&gt; sender_public, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )\n&gt;&gt;&gt; decrypt_asymmetric(encrypted, receiver_private, sender_public)\n'Hello, world!'",
+    "crumbs": [
+      "Reference",
+      "Key functions",
+      "decrypt_asymmetric"
+    ]
+  },
+  {
+    "objectID": "reference/encrypt_asymmetric.html",
+    "href": "reference/encrypt_asymmetric.html",
+    "title": "encrypt_asymmetric",
+    "section": "",
+    "text": "encrypt_asymmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\nencrypt_asymmetric\nEncrypts a message using the receiver’s public key and signs it with the\n\n\n\n\n\nencrypt_asymmetric.encrypt_asymmetric(\n    message,\n    receiver_public_key,\n    sender_private_key,\n)\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key. This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe plaintext message to encrypt.\nrequired\n\n\nreceiver_public_key\nbytes or str\nThe receiver’s RSA public key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_private_key\nbytes or str\nThe sender’s RSA private key in PEM format (bytes) or path to key file (str) for signing.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nBase64-encoded JSON containing encrypted message and signature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the message is too long for RSA encryption or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; receiver_public, _ = generate_asymmetric_key()\n&gt;&gt;&gt; _, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )",
+    "crumbs": [
+      "Reference",
+      "Key functions",
+      "encrypt_asymmetric"
+    ]
+  },
+  {
+    "objectID": "reference/encrypt_asymmetric.html#functions",
+    "href": "reference/encrypt_asymmetric.html#functions",
+    "title": "encrypt_asymmetric",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nencrypt_asymmetric\nEncrypts a message using the receiver’s public key and signs it with the\n\n\n\n\n\nencrypt_asymmetric.encrypt_asymmetric(\n    message,\n    receiver_public_key,\n    sender_private_key,\n)\nEncrypts a message using the receiver’s public key and signs it with the sender’s private key. This ensures both confidentiality (only receiver can decrypt) and authenticity (receiver can verify sender).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nmessage\nstr\nThe plaintext message to encrypt.\nrequired\n\n\nreceiver_public_key\nbytes or str\nThe receiver’s RSA public key in PEM format (bytes) or path to key file (str).\nrequired\n\n\nsender_private_key\nbytes or str\nThe sender’s RSA private key in PEM format (bytes) or path to key file (str) for signing.\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nBase64-encoded JSON containing encrypted message and signature.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the message is too long for RSA encryption or keys are invalid.\n\n\n\n\n\n\n&gt;&gt;&gt; from imitation_game.generate_asymmetric_key import generate_asymmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_asymmetric import encrypt_asymmetric\n&gt;&gt;&gt; receiver_public, _ = generate_asymmetric_key()\n&gt;&gt;&gt; _, sender_private = generate_asymmetric_key()\n&gt;&gt;&gt; encrypted = encrypt_asymmetric(\n...     \"Hello, world!\",\n...     receiver_public,\n...     sender_private,\n... )",
+    "crumbs": [
+      "Reference",
+      "Key functions",
+      "encrypt_asymmetric"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "imitation-game is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.\nSymmetric Encryption Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.\n\ngenerate_symmetric_key: Creates a cryptographically secure random key.\nencrypt_symmetric: Encrypts a plaintext message using a symmetric key.\ndecrypt_symmetric: Restores an encrypted message back to plaintext using the same key.\n\nAsymmetric Encryption (RSA) Secure communication between two parties without needing to share a secret key beforehand. Uses sender/receiver key combinations where the sender encrypts with the receiver’s public key AND signs with their own private key. This provides both confidentiality (only receiver can decrypt) and authenticity (receiver can verify the sender’s identity), similar to PGP encryption.\n\ngenerate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).\nencrypt_asymmetric: Encrypts a message using the receiver’s public key and signs it with the sender’s private key. Takes parameters: (message, receiver_public_key, sender_private_key).\ndecrypt_asymmetric: Decrypts a message using the receiver’s private key and verifies the sender’s signature using the sender’s public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).\n\n\n\nThere are many message encoding and decoding related packages on the PyPI server. We have selected a few key examples that with similar functionality as our package.\n\nCipher-symmetric: Focuses exclusively on symmetric string encryption, acting as a high-level wrapper for the cryptography module.\nEncryption: A broad educational tool demonstrating AES, RSA, and hashing via pycryptodome. It is comprehensive but often requires more boilerplate code to implement.\nencrypt_data: Specializes in Hybrid Encryption, which uses asymmetric keys to securely exchange symmetric keys.\n\nWhile the packages above are powerful, they often cater to either a single encryption style or require deep cryptographic knowledge to configure properly. The primary benefit of imitation-game is its focus on a unified, high-level API that abstracts away the complexity of both symmetric and asymmetric workflows.\n\n\n\npip install -i https://test.pypi.org/simple/ imitation-game\nDependencies: - pycryptodome - Cryptographic operations - pathvalidate - File path validation\nTest PyPI: https://test.pypi.org/project/imitation_game\n\n\n\n\n\nfrom imitation_game import generate_symmetric_key\n\n# Generate a secure random key for symmetric encryption\nkey = generate_symmetric_key()\nprint(f\"Generated key: {key[:10]}...\")  # Shows first 10 characters\n\n# Save the key to a file for later use\nkey = generate_symmetric_key(\"keys/my_encryption_key.txt\")\n\n\n\nfrom imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric\n\n# Generate key \nkey = generate_symmetric_key()\n\n# Encrypts and decrypts message with key\nmessage = \"Secret message\"\nencrypted_data = encrypt_symmetric(message, key)\ndecrypted_message = decrypt_symmetric(encrypted_data, key)\nprint(decrypted_message)  # \"Secret message\"\n\n\n\nfrom imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric\n\n# Generate key pairs for sender and receiver\nsender_private, sender_public = generate_asymmetric_key()\nreceiver_private, receiver_public = generate_asymmetric_key()\n\n# Sender encrypts message with receiver's public key and signs with their private key\nmessage = \"Secret message\"\nencrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)\n\n# Receiver decrypts with their private key and verifies sender's signature\ndecrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)\nprint(decrypted_message)  # \"Secret message\"\n\n\n\n\n\n\nThis project uses conda for environment management, but dependencies are defined in pyproject.toml. Follow these steps to set up your development environment:\n\nCreate a conda environment with Python 3.10 or higher:\nconda create -n imitation-game python=3.12\nconda activate imitation-game\nAlternatively, use the provided environment.yml file:\nconda env create -f environment.yml\nconda activate imitation-game\nInstall the package in editable mode with all development dependencies:\n# Clone the repository\ngit clone https://github.com/UBC-MDS/imitation_game.git\ncd imitation_game\n\n# Install the package with all optional dependencies (dev, docs, tests, build)\npip install -e \".[dev,docs,tests,build]\"\nThis will install:\n\nThe package itself in editable mode\nDevelopment tools: hatch, pre-commit\nDocumentation tools: quartodoc\nTesting tools: pytest, pytest-cov, pytest-raises, pytest-randomly, pytest-xdist, flake8-pyproject\nBuild tools: pip-audit, twine\n\n\n\n\n\nTests are located in the tests/ directory and can be run using pytest:\n# Run all tests\npytest\n\n# Run tests with coverage report\npytest --cov=imitation_game --cov-report=term-missing\n\n# Run tests using hatch (recommended)\nhatch run +py=3.12 test:run\nThe test suite includes both unit tests (tests/unit/) and integration tests (tests/integration/).\n\n\n\nDocumentation is built using Quarto and quartodoc. To build the documentation locally:\n\nEnsure Quarto is installed:\n\nDownload and install Quarto from https://quarto.org/docs/get-started/\n\nBuild the documentation:\n# Generate API reference documentation\nquartodoc build\n\n# Render the Quarto website\nquarto render\nPreview the documentation locally:\nquarto preview\n\nThe documentation will be generated in the _site/ directory (or similar, depending on your Quarto configuration).\n\n\n\nDocumentation is automatically built and deployed to GitHub Pages when: - Changes are pushed to the main branch - The workflow is manually triggered via GitHub Actions\nThe deployment workflow (.github/workflows/docs.yml) handles: - Building the Quarto documentation - Publishing to the gh-pages branch - Making the documentation available at the repository’s GitHub Pages URL\nNo manual intervention is required for documentation deployment once changes are merged to main. Documentation is deployed here\n\n\nPull requests get an automatic documentation preview so you can see how the docs will look before merging. The preview is built by .github/workflows/docs.yml and deployed to Netlify; a comment with the preview URL is posted on each PR.\nEvery new PR will get a Netlify deploy preview and a comment with the preview link.\n\n\n\n\nWe use GitHub Actions for continuous integration and deployment: - Tests: Run automatically on every push and pull request via build.yml - Deploy: Automatically deploys to TestPyPI when changes are pushed to main via deploy.yml - Docs: Documentation is built and deployed to GitHub Pages on every push via docs.yml - Docs preview: Each pull request gets a documentation preview deployed to Netlify via docs.yml (requires Netlify secrets; see above)\n\n\n\n\nFor information about how to contribute to this package, please review our Contributing document. All contributors must abide by our Code of Conduct\n\n\n\nThis packages uses the MIT License, more information can be found here\n\n\n\nThis package imitation-game is created with [pyOpenSci copier template] (https://github.com/pyOpenSci/pyos-package-template)\n\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @Vin-dictive\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @tirthjoship\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @mdskwong\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @alxwen711"
+  },
+  {
+    "objectID": "index.html#comparison-with-the-python-ecosystem",
+    "href": "index.html#comparison-with-the-python-ecosystem",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "There are many message encoding and decoding related packages on the PyPI server. We have selected a few key examples that with similar functionality as our package.\n\nCipher-symmetric: Focuses exclusively on symmetric string encryption, acting as a high-level wrapper for the cryptography module.\nEncryption: A broad educational tool demonstrating AES, RSA, and hashing via pycryptodome. It is comprehensive but often requires more boilerplate code to implement.\nencrypt_data: Specializes in Hybrid Encryption, which uses asymmetric keys to securely exchange symmetric keys.\n\nWhile the packages above are powerful, they often cater to either a single encryption style or require deep cryptographic knowledge to configure properly. The primary benefit of imitation-game is its focus on a unified, high-level API that abstracts away the complexity of both symmetric and asymmetric workflows."
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "pip install -i https://test.pypi.org/simple/ imitation-game\nDependencies: - pycryptodome - Cryptographic operations - pathvalidate - File path validation\nTest PyPI: https://test.pypi.org/project/imitation_game"
+  },
+  {
+    "objectID": "index.html#usage-examples",
+    "href": "index.html#usage-examples",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "from imitation_game import generate_symmetric_key\n\n# Generate a secure random key for symmetric encryption\nkey = generate_symmetric_key()\nprint(f\"Generated key: {key[:10]}...\")  # Shows first 10 characters\n\n# Save the key to a file for later use\nkey = generate_symmetric_key(\"keys/my_encryption_key.txt\")\n\n\n\nfrom imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric\n\n# Generate key \nkey = generate_symmetric_key()\n\n# Encrypts and decrypts message with key\nmessage = \"Secret message\"\nencrypted_data = encrypt_symmetric(message, key)\ndecrypted_message = decrypt_symmetric(encrypted_data, key)\nprint(decrypted_message)  # \"Secret message\"\n\n\n\nfrom imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric\n\n# Generate key pairs for sender and receiver\nsender_private, sender_public = generate_asymmetric_key()\nreceiver_private, receiver_public = generate_asymmetric_key()\n\n# Sender encrypts message with receiver's public key and signs with their private key\nmessage = \"Secret message\"\nencrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)\n\n# Receiver decrypts with their private key and verifies sender's signature\ndecrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)\nprint(decrypted_message)  # \"Secret message\""
+  },
+  {
+    "objectID": "index.html#development",
+    "href": "index.html#development",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "This project uses conda for environment management, but dependencies are defined in pyproject.toml. Follow these steps to set up your development environment:\n\nCreate a conda environment with Python 3.10 or higher:\nconda create -n imitation-game python=3.12\nconda activate imitation-game\nAlternatively, use the provided environment.yml file:\nconda env create -f environment.yml\nconda activate imitation-game\nInstall the package in editable mode with all development dependencies:\n# Clone the repository\ngit clone https://github.com/UBC-MDS/imitation_game.git\ncd imitation_game\n\n# Install the package with all optional dependencies (dev, docs, tests, build)\npip install -e \".[dev,docs,tests,build]\"\nThis will install:\n\nThe package itself in editable mode\nDevelopment tools: hatch, pre-commit\nDocumentation tools: quartodoc\nTesting tools: pytest, pytest-cov, pytest-raises, pytest-randomly, pytest-xdist, flake8-pyproject\nBuild tools: pip-audit, twine\n\n\n\n\n\nTests are located in the tests/ directory and can be run using pytest:\n# Run all tests\npytest\n\n# Run tests with coverage report\npytest --cov=imitation_game --cov-report=term-missing\n\n# Run tests using hatch (recommended)\nhatch run +py=3.12 test:run\nThe test suite includes both unit tests (tests/unit/) and integration tests (tests/integration/).\n\n\n\nDocumentation is built using Quarto and quartodoc. To build the documentation locally:\n\nEnsure Quarto is installed:\n\nDownload and install Quarto from https://quarto.org/docs/get-started/\n\nBuild the documentation:\n# Generate API reference documentation\nquartodoc build\n\n# Render the Quarto website\nquarto render\nPreview the documentation locally:\nquarto preview\n\nThe documentation will be generated in the _site/ directory (or similar, depending on your Quarto configuration).\n\n\n\nDocumentation is automatically built and deployed to GitHub Pages when: - Changes are pushed to the main branch - The workflow is manually triggered via GitHub Actions\nThe deployment workflow (.github/workflows/docs.yml) handles: - Building the Quarto documentation - Publishing to the gh-pages branch - Making the documentation available at the repository’s GitHub Pages URL\nNo manual intervention is required for documentation deployment once changes are merged to main. Documentation is deployed here\n\n\nPull requests get an automatic documentation preview so you can see how the docs will look before merging. The preview is built by .github/workflows/docs.yml and deployed to Netlify; a comment with the preview URL is posted on each PR.\nEvery new PR will get a Netlify deploy preview and a comment with the preview link.\n\n\n\n\nWe use GitHub Actions for continuous integration and deployment: - Tests: Run automatically on every push and pull request via build.yml - Deploy: Automatically deploys to TestPyPI when changes are pushed to main via deploy.yml - Docs: Documentation is built and deployed to GitHub Pages on every push via docs.yml - Docs preview: Each pull request gets a documentation preview deployed to Netlify via docs.yml (requires Netlify secrets; see above)"
+  },
+  {
+    "objectID": "index.html#contributing",
+    "href": "index.html#contributing",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "For information about how to contribute to this package, please review our Contributing document. All contributors must abide by our Code of Conduct"
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "This packages uses the MIT License, more information can be found here"
+  },
+  {
+    "objectID": "index.html#credits",
+    "href": "index.html#credits",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "This package imitation-game is created with [pyOpenSci copier template] (https://github.com/pyOpenSci/pyos-package-template)"
+  },
+  {
+    "objectID": "index.html#contributors",
+    "href": "index.html#contributors",
+    "title": "Welcome to imitation-game",
+    "section": "",
+    "text": "Affiliation: University of British Columbia\nGitHub: @Vin-dictive\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @tirthjoship\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @mdskwong\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @alxwen711"
+  },
+  {
+    "objectID": "DEVELOPMENT.html",
+    "href": "DEVELOPMENT.html",
+    "title": "Development Guide",
+    "section": "",
+    "text": "Welcome to your shiny new package. This page will help you get started with using Hatch to manage your package.\nIf you look at your project, you will see that a pyproject.toml file. This file stores both your package configuration and settings for development tools like Hatch that you will use to work on your package.\nThis file is written using a .toml format. You can learn more about toml here. Here’s the TL&DR:\n\nEach [] section in the toml file is called a table.\nYou can nest tables with double brackets like this[[]]\nTables contain information about a element that you want to configure.\n\nWe are using Hatch as the default packaging tool. Hatch allows you to configure and run environments and scripts similar to workflow tools like tox or nox.\nHach, by default, uses virtual environments (venv) to manage environments. But you can configure it to use other environment tools.Read the hatch documentation to learn more about environments.\nFor this template, we have set up Hatch environments for you to use. At the bottom of your pyproject.toml file, notice a hatch environment section that looks like this:\n########################################\n# Hatch Environments\n########################################\nBelow is the Hatch environment to install your package. Notice that it defines pip and twine as two packages that the environment needs.\n[tool.hatch.envs.build]\ndescription = \"\"\"Test the installation the package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\nThe table below defines the scripts that you will run build and check your package.\n[tool.hatch.envs.build.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\ndetached = true\nYou can enter that environment to check it out:\n$ hatch shell build\nIf you run pip list, in the environment, twine will be there:\n$ pip list\nHatch by default, installs your package in editable mode (-e) into its virtual environments. But if detached=True is set, then it will skip installing your package into the virtual enviornment.\n\n\nBelow you see the Hatch environment test table.\ntool.hatch.envs says, “Hey, Hatch, this is the definition for an environment.” test is the name of the environment.\nThe environment below defines the dependencies that Hatch needs to install into the environment named test.\n[tool.hatch.envs.test]\ndescription = \"\"\"Run the test suite.\"\"\"\ndependencies = [\n    \"pytest\",\n    \"pytest-cov\",\n    \"pytest-raises\",\n    \"pytest-randomly\",\n    \"pytest-xdist\",\n]\nTo enter a Hatch environment use:\nhatch shell environmentname\nSo you can enter the test environment above with:\nhatch shell test\n\n\n\nIf the environment has a matrix associated with it, that tells Hatch to run the test scripts across different Python versions.\n[[tool.hatch.envs.test.matrix]]\npython = [\"3.10\", \"3.11\", \"3.12\", \"3.13\"]\nIf you run hatch shell test, you will see the output below. To enter an environment with a matrix attached to it, you need to pick the Python environment version that you want to open.\n$ hatch shell test                           \nEnvironment `test` defines a matrix, choose one of the following instead:\n\ntest.py3.10\ntest.py3.11\ntest.py3.12\ntest.py3.13\nOpen the Python 3.13 environment like this:\n$ hatch shell test.py3.13\nTo leave an environment use:\n$ deactivate\n\n\n\nIn the tests section of your pyproject.toml, you will see a tool.hatch.envs.test.scripts table.\nThis table defines the commands that you want Hatch to run in the test environment. Notice that the script has one command called run.\n[tool.hatch.envs.test.scripts]\nrun = \"pytest {args:--cov=greatproject --cov-report=term-missing}\"\nTo run this script , use:\nhatch run test:run\n\nhatch run: calls Hatch and tells it that it will be running a command\ntest:run: defines the environment you want it to run (test) and defines the name of the “script” to berun.\n\nIf you have a Hatch matrix setup for tests, it will both install the necessary Python version using UV and run your tests on each version of the Python versions that you declare in the matrix table. In this case, there are 4 Python versions in the environment, so your tests will run 4 times, once in each Python version listed in the matrix table.\n@lwasser ➜ /workspaces/pyopensci-scipy25-create-python-package (main) $ hatch run test:run\n──────────────────────────────────────────────────────────────────────── test.py3.10 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.10.16, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1490740387\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.10.16-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n──────────────────────────────────────────────────────────────────────── test.py3.11 ────────────────────────────────────────────────────────────────────────\n==================================================================== test session starts ====================================================================\nplatform linux -- Python 3.11.12, pytest-8.4.1, pluggy-1.6.0\nUsing --randomly-seed=1596865075\nrootdir: /workspaces/pyopensci-scipy25-create-python-package\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: xdist-3.8.0, randomly-3.16.0, raises-0.11, cov-6.2.1\ncollected 2 items                                                                                                                                           \n\ntests/system/test_import.py .                                                                                                                         [ 50%]\ntests/unit/test_example.py .                                                                                                                          [100%]\n\n====================================================================== tests coverage =======================================================================\n_____________________________________________________ coverage: platform linux, python 3.11.12-final-0 ______________________________________________________\n\nName                           Stmts   Miss Branch BrPart    Cover   Missing\n----------------------------------------------------------------------------\nsrc/greatproject/__init__.py       0      0      0      0  100.00%\nsrc/greatproject/example.py        2      0      0      0  100.00%\n----------------------------------------------------------------------------\nTOTAL                              2      0      0      0  100.00%\n===================================================================== 2 passed in 0.05s =====================================================================\n\n\n\nYou can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
+  },
+  {
+    "objectID": "DEVELOPMENT.html#build-your-package",
+    "href": "DEVELOPMENT.html#build-your-package",
+    "title": "Development Guide",
+    "section": "",
+    "text": "You can build your package using the environment and scripts defined in the build tables:\nhatch run build:check\nThis script builds and checks the output distribution files of your package.\nThis build environment table declares that pip and twine should be added to that environment. Adding pip to the environment ensures that it is a current, up-to-date version.\n[tool.hatch.envs.build]\ndescription = \"\"\"Build and test your package.\"\"\"\ndependencies = [\n    \"pip\",\n    \"twine\",\n]\ndetached = true\n# This table installs created the command hatch run install:check which will build and check your package.\n[tool.hatch.envs.install.scripts]\ncheck = [\n    \"pip check\",\n    \"hatch build {args:--clean}\",\n    \"twine check dist/*\",\n]\nThis uses the above environment and tells hatch to run\n\npip check, # verifies your dependencies\nhatch build --clean\n\ntwine check dist/* # this checks your distribution for metadata and other potential issues. to build and test your package."
+  },
+  {
     "objectID": "CHANGELOG.html",
     "href": "CHANGELOG.html",
     "title": "Changelog",
     "section": "",
-    "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\n\n\nAdded badges for CICD, TestPyPi, and documentation\nCleaned up codebase to be compliant with flake8\n\n\n\n\n\n\n\n\nType hints for encrypt_asymmetric and decrypt_asymmetric functions\nDocumentation comments in test files listing all LLM-suggested tests\nAdded PGP style encryption function and tests\nDeveloper documentation section in README with setup and workflow instructions\nCI/CD status badges to README\nConda environment.yml file for easier setup\nFile integrity test for generate_symmetric_key\nFilepath validation in generate_symmetric_key for better error handling\nAutomated documentation generation (#62)\nExample use case and unit test for generate_asymmetric_key (#64)\n\n\n\n\n\nUpdated parameter types in encrypt_asymmetric\nUpdated parameter types in decrypt_asymmetric\nUpdated docstrings to reflect correct parameter types (bytes instead of str)\n\n\n\n\n\n\n\n\nImplementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)\nImplementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)\nAdded pathvalidate dependency for file path validation (#36)\nAdded key file support for symmetric encryption and decryption (#39)\nComplete README with usage examples for all functions (#36)\nComprehensive test suite with 55 tests covering all functions\n\n\n\n\n\n\nCONTRIBUTING.md, add feature request template #9\nREADME.md and function docstrings #10 #14\nCODE_OF_CONDUCT.md #15\nFix GitHub workflow #17"
+    "text": "All notable changes to this project will be documented in this file.\nThe format is based on Keep a Changelog, and this project adheres to Semantic Versioning.\n\n\n\n\n\n\nAdded badges for CICD, TestPyPi, and documentation\nCleaned up codebase to be compliant with flake8\n\n\n\n\n\n\n\n\nType hints for encrypt_asymmetric and decrypt_asymmetric functions\nDocumentation comments in test files listing all LLM-suggested tests\nAdded PGP style encryption function and tests\nDeveloper documentation section in README with setup and workflow instructions\nCI/CD status badges to README\nConda environment.yml file for easier setup\nFile integrity test for generate_symmetric_key\nFilepath validation in generate_symmetric_key for better error handling\nAutomated documentation generation (#62)\nExample use case and unit test for generate_asymmetric_key (#64)\n\n\n\n\n\nUpdated parameter types in encrypt_asymmetric\nUpdated parameter types in decrypt_asymmetric\nUpdated docstrings to reflect correct parameter types (bytes instead of str)\n\n\n\n\n\n\n\n\nImplementation of symmetric encryption functions: generate_symmetric_key, encrypt_symmetric, decrypt_symmetric (#21 #30 #35 #39)\nImplementation of asymmetric encryption functions: generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric (#26 #27 #29 #31 #32)\nAdded pathvalidate dependency for file path validation (#36)\nAdded key file support for symmetric encryption and decryption (#39)\nComplete README with usage examples for all functions (#36)\nComprehensive test suite with 55 tests covering all functions\n\n\n\n\n\n\nCONTRIBUTING.md, add feature request template #9\nREADME.md and function docstrings #10 #14\nCODE_OF_CONDUCT.md #15\nFix GitHub workflow #17"
   },
   {
     "objectID": "CHANGELOG.html#unreleased",
@@ -247,93 +275,6 @@
     "text": "Ready to contribute? Here’s how to set up imitation-game for local development.\n\nFork the https://github.com/UBC-MDS/imitation_game repository on GitHub.\nClone your fork locally (if you want to work locally)\ngit clone git@github.com:your_name_here/imitation_game.git\nInstall hatch.\nCreate a branch for local development using the default branch (typically main) as a starting point. Use fix or feat as a prefix for your branch name.\ngit checkout main\ngit checkout -b fix-name-of-your-bugfix\nNow you can make your changes locally.\nWhen you’re done making changes, apply the quality assurance tools and check that your changes pass our test suite. This is all included with tox\nhatch run test:run\nCommit your changes and push your branch to GitHub. Please use semantic commit messages.\ngit add .\ngit commit -m \"fix: summarize your changes\"\ngit push -u origin fix-name-of-your-bugfix\nOpen the link displayed in the message when pushing your new branch in order to submit a pull request.\n\n\n\nBefore you submit a pull request, check that it meets these guidelines:\n\nThe pull request should include tests.\nIf the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring.\nAny outside help or work for this pull request is properly credited. This includes generative AI usage if applicable.\nYour pull request will automatically be checked by the full test suite. It needs to pass all of them before it can be considered for merging."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "imitation-game is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.\nSymmetric Encryption Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.\n\ngenerate_symmetric_key: Creates a cryptographically secure random key.\nencrypt_symmetric: Encrypts a plaintext message using a symmetric key.\ndecrypt_symmetric: Restores an encrypted message back to plaintext using the same key.\n\nAsymmetric Encryption (RSA) Secure communication between two parties without needing to share a secret key beforehand. Uses sender/receiver key combinations where the sender encrypts with the receiver’s public key AND signs with their own private key. This provides both confidentiality (only receiver can decrypt) and authenticity (receiver can verify the sender’s identity), similar to PGP encryption.\n\ngenerate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).\nencrypt_asymmetric: Encrypts a message using the receiver’s public key and signs it with the sender’s private key. Takes parameters: (message, receiver_public_key, sender_private_key).\ndecrypt_asymmetric: Decrypts a message using the receiver’s private key and verifies the sender’s signature using the sender’s public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).\n\n\n\nThere are many message encoding and decoding related packages on the PyPI server. We have selected a few key examples that with similar functionality as our package.\n\nCipher-symmetric: Focuses exclusively on symmetric string encryption, acting as a high-level wrapper for the cryptography module.\nEncryption: A broad educational tool demonstrating AES, RSA, and hashing via pycryptodome. It is comprehensive but often requires more boilerplate code to implement.\nencrypt_data: Specializes in Hybrid Encryption, which uses asymmetric keys to securely exchange symmetric keys.\n\nWhile the packages above are powerful, they often cater to either a single encryption style or require deep cryptographic knowledge to configure properly. The primary benefit of imitation-game is its focus on a unified, high-level API that abstracts away the complexity of both symmetric and asymmetric workflows.\n\n\n\npip install imitation-game\nDependencies: - pycryptodome - Cryptographic operations - pathvalidate - File path validation\nTest PyPI: https://test.pypi.org/project/imitation_game\n\n\n\n\n\nfrom imitation_game import generate_symmetric_key\n\n# Generate a secure random key for symmetric encryption\nkey = generate_symmetric_key()\nprint(f\"Generated key: {key[:10]}...\")  # Shows first 10 characters\n\n# Save the key to a file for later use\nkey = generate_symmetric_key(\"keys/my_encryption_key.txt\")\n\n\n\nfrom imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric\n\n# Generate key \nkey = generate_symmetric_key()\n\n# Encrypts and decrypts message with key\nmessage = \"Secret message\"\nencrypted_data = encrypt_symmetric(message, key)\ndecrypted_message = decrypt_symmetric(encrypted_data, key)\nprint(decrypted_message)  # \"Secret message\"\n\n\n\nfrom imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric\n\n# Generate key pairs for sender and receiver\nsender_private, sender_public = generate_asymmetric_key()\nreceiver_private, receiver_public = generate_asymmetric_key()\n\n# Sender encrypts message with receiver's public key and signs with their private key\nmessage = \"Secret message\"\nencrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)\n\n# Receiver decrypts with their private key and verifies sender's signature\ndecrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)\nprint(decrypted_message)  # \"Secret message\"\n\n\n\n\n\n\nThis project uses conda for environment management, but dependencies are defined in pyproject.toml. Follow these steps to set up your development environment:\n\nCreate a conda environment with Python 3.10 or higher:\nconda create -n imitation-game python=3.12\nconda activate imitation-game\nAlternatively, use the provided environment.yml file:\nconda env create -f environment.yml\nconda activate imitation_game\nInstall the package in editable mode with all development dependencies:\n# Clone the repository\ngit clone https://github.com/UBC-MDS/imitation_game.git\ncd imitation_game\n\n# Install the package with all optional dependencies (dev, docs, tests, build)\npip install -e \".[dev,docs,tests,build]\"\nThis will install:\n\nThe package itself in editable mode\nDevelopment tools: hatch, pre-commit\nDocumentation tools: quartodoc\nTesting tools: pytest, pytest-cov, pytest-raises, pytest-randomly, pytest-xdist, flake8-pyproject\nBuild tools: pip-audit, twine\n\n\n\n\n\nTests are located in the tests/ directory and can be run using pytest:\n# Run all tests\npytest\n\n# Run tests with coverage report\npytest --cov=imitation_game --cov-report=term-missing\n\n# Run tests using hatch (recommended)\nhatch run +py=3.12 test:run\nThe test suite includes both unit tests (tests/unit/) and integration tests (tests/integration/).\n\n\n\nDocumentation is built using Quarto and quartodoc. To build the documentation locally:\n\nEnsure Quarto is installed:\n\nDownload and install Quarto from https://quarto.org/docs/get-started/\n\nBuild the documentation:\n# Generate API reference documentation\nquartodoc build\n\n# Render the Quarto website\nquarto render\nPreview the documentation locally:\nquarto preview\n\nThe documentation will be generated in the _site/ directory (or similar, depending on your Quarto configuration).\n\n\n\nDocumentation is automatically built and deployed to GitHub Pages when: - Changes are pushed to the main branch - The workflow is manually triggered via GitHub Actions\nThe deployment workflow (.github/workflows/docs.yml) handles: - Building the Quarto documentation - Publishing to the gh-pages branch - Making the documentation available at the repository’s GitHub Pages URL\nNo manual intervention is required for documentation deployment once changes are merged to main. Documentation is deployed here\n\n\n\nWe use GitHub Actions for continuous integration and deployment: - Tests: Run automatically on every push and pull request via build.yml - Deploy: Automatically deploys to TestPyPI when changes are pushed to main via deploy.yml - Docs: Documentation is built and deployed to GitHub Pages on every push via docs.yml\n\n\n\n\nFor information about how to contribute to this package, please review our Contributing document. All contributors must abide by our Code of Conduct\n\n\n\nThis packages uses the MIT License, more information can be found here\n\n\n\nThis package imitation-game is created with [pyOpenSci copier template] (https://github.com/pyOpenSci/pyos-package-template)\n\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @Vin-dictive\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @tirthjoship\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @mdskwong\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @alxwen711"
-  },
-  {
-    "objectID": "index.html#comparison-with-the-python-ecosystem",
-    "href": "index.html#comparison-with-the-python-ecosystem",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "There are many message encoding and decoding related packages on the PyPI server. We have selected a few key examples that with similar functionality as our package.\n\nCipher-symmetric: Focuses exclusively on symmetric string encryption, acting as a high-level wrapper for the cryptography module.\nEncryption: A broad educational tool demonstrating AES, RSA, and hashing via pycryptodome. It is comprehensive but often requires more boilerplate code to implement.\nencrypt_data: Specializes in Hybrid Encryption, which uses asymmetric keys to securely exchange symmetric keys.\n\nWhile the packages above are powerful, they often cater to either a single encryption style or require deep cryptographic knowledge to configure properly. The primary benefit of imitation-game is its focus on a unified, high-level API that abstracts away the complexity of both symmetric and asymmetric workflows."
-  },
-  {
-    "objectID": "index.html#installation",
-    "href": "index.html#installation",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "pip install imitation-game\nDependencies: - pycryptodome - Cryptographic operations - pathvalidate - File path validation\nTest PyPI: https://test.pypi.org/project/imitation_game"
-  },
-  {
-    "objectID": "index.html#usage-examples",
-    "href": "index.html#usage-examples",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "from imitation_game import generate_symmetric_key\n\n# Generate a secure random key for symmetric encryption\nkey = generate_symmetric_key()\nprint(f\"Generated key: {key[:10]}...\")  # Shows first 10 characters\n\n# Save the key to a file for later use\nkey = generate_symmetric_key(\"keys/my_encryption_key.txt\")\n\n\n\nfrom imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric\n\n# Generate key \nkey = generate_symmetric_key()\n\n# Encrypts and decrypts message with key\nmessage = \"Secret message\"\nencrypted_data = encrypt_symmetric(message, key)\ndecrypted_message = decrypt_symmetric(encrypted_data, key)\nprint(decrypted_message)  # \"Secret message\"\n\n\n\nfrom imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric\n\n# Generate key pairs for sender and receiver\nsender_private, sender_public = generate_asymmetric_key()\nreceiver_private, receiver_public = generate_asymmetric_key()\n\n# Sender encrypts message with receiver's public key and signs with their private key\nmessage = \"Secret message\"\nencrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)\n\n# Receiver decrypts with their private key and verifies sender's signature\ndecrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)\nprint(decrypted_message)  # \"Secret message\""
-  },
-  {
-    "objectID": "index.html#development",
-    "href": "index.html#development",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "This project uses conda for environment management, but dependencies are defined in pyproject.toml. Follow these steps to set up your development environment:\n\nCreate a conda environment with Python 3.10 or higher:\nconda create -n imitation-game python=3.12\nconda activate imitation-game\nAlternatively, use the provided environment.yml file:\nconda env create -f environment.yml\nconda activate imitation_game\nInstall the package in editable mode with all development dependencies:\n# Clone the repository\ngit clone https://github.com/UBC-MDS/imitation_game.git\ncd imitation_game\n\n# Install the package with all optional dependencies (dev, docs, tests, build)\npip install -e \".[dev,docs,tests,build]\"\nThis will install:\n\nThe package itself in editable mode\nDevelopment tools: hatch, pre-commit\nDocumentation tools: quartodoc\nTesting tools: pytest, pytest-cov, pytest-raises, pytest-randomly, pytest-xdist, flake8-pyproject\nBuild tools: pip-audit, twine\n\n\n\n\n\nTests are located in the tests/ directory and can be run using pytest:\n# Run all tests\npytest\n\n# Run tests with coverage report\npytest --cov=imitation_game --cov-report=term-missing\n\n# Run tests using hatch (recommended)\nhatch run +py=3.12 test:run\nThe test suite includes both unit tests (tests/unit/) and integration tests (tests/integration/).\n\n\n\nDocumentation is built using Quarto and quartodoc. To build the documentation locally:\n\nEnsure Quarto is installed:\n\nDownload and install Quarto from https://quarto.org/docs/get-started/\n\nBuild the documentation:\n# Generate API reference documentation\nquartodoc build\n\n# Render the Quarto website\nquarto render\nPreview the documentation locally:\nquarto preview\n\nThe documentation will be generated in the _site/ directory (or similar, depending on your Quarto configuration).\n\n\n\nDocumentation is automatically built and deployed to GitHub Pages when: - Changes are pushed to the main branch - The workflow is manually triggered via GitHub Actions\nThe deployment workflow (.github/workflows/docs.yml) handles: - Building the Quarto documentation - Publishing to the gh-pages branch - Making the documentation available at the repository’s GitHub Pages URL\nNo manual intervention is required for documentation deployment once changes are merged to main. Documentation is deployed here\n\n\n\nWe use GitHub Actions for continuous integration and deployment: - Tests: Run automatically on every push and pull request via build.yml - Deploy: Automatically deploys to TestPyPI when changes are pushed to main via deploy.yml - Docs: Documentation is built and deployed to GitHub Pages on every push via docs.yml"
-  },
-  {
-    "objectID": "index.html#contributing",
-    "href": "index.html#contributing",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "For information about how to contribute to this package, please review our Contributing document. All contributors must abide by our Code of Conduct"
-  },
-  {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "This packages uses the MIT License, more information can be found here"
-  },
-  {
-    "objectID": "index.html#credits",
-    "href": "index.html#credits",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "This package imitation-game is created with [pyOpenSci copier template] (https://github.com/pyOpenSci/pyos-package-template)"
-  },
-  {
-    "objectID": "index.html#contributors",
-    "href": "index.html#contributors",
-    "title": "Welcome to imitation-game",
-    "section": "",
-    "text": "Affiliation: University of British Columbia\nGitHub: @Vin-dictive\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @tirthjoship\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @mdskwong\n\n\n\n\n\nAffiliation: University of British Columbia\nGitHub: @alxwen711"
-  },
-  {
-    "objectID": "reference/decrypt_symmetric.html",
-    "href": "reference/decrypt_symmetric.html",
-    "title": "decrypt_symmetric",
-    "section": "",
-    "text": "decrypt_symmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\ndecrypt_symmetric\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\ndecrypt_symmetric.decrypt_symmetric(ciphertext, key)\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nciphertext\nstr\nThe Base64-encoded string to be decrypted. This must contain the 8-byte nonce followed by the actual encrypted data.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe original plaintext message, UTF-8 decoded.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key or ciphertext is not valid Base64, if the key length is incorrect, or if the data cannot be decoded as UTF-8 after decryption.\n\n\n\n\n\n\nencrypt_symmetric : The counterpart function used to create the ciphertext.\n\n\n\nThe function extracts the first 8 bytes of the decoded ciphertext to use as the nonce. This must match the nonce generated during encryption for the process to succeed.\n\n\n\n&gt;&gt;&gt; # Basic decryption with key\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key     ... import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; from imitation_game.decrypt_symmetric import decrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using a key file\n&gt;&gt;&gt; key_path = \"secret.key\"\n&gt;&gt;&gt; generate_symmetric_key(key_path)\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key_path)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key_path)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using an existing key file\n&gt;&gt;&gt; with open(\"secret.key\", \"w\") as f:\n...     f.write(\"aNa/PmjyUk2hrFFm+lqOTFE/nPhi+elUFg3SGt6EETg=\")\n&gt;&gt;&gt; ciphertext = \"0rH1lkuVpskHbqMkgAOx0+pd\"\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, \"secret.key\")\n&gt;&gt;&gt; decrypted\n'Top Secret'",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "decrypt_symmetric"
-    ]
-  },
-  {
-    "objectID": "reference/decrypt_symmetric.html#functions",
-    "href": "reference/decrypt_symmetric.html#functions",
-    "title": "decrypt_symmetric",
-    "section": "",
-    "text": "Name\nDescription\n\n\n\n\ndecrypt_symmetric\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\ndecrypt_symmetric.decrypt_symmetric(ciphertext, key)\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nciphertext\nstr\nThe Base64-encoded string to be decrypted. This must contain the 8-byte nonce followed by the actual encrypted data.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe original plaintext message, UTF-8 decoded.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key or ciphertext is not valid Base64, if the key length is incorrect, or if the data cannot be decoded as UTF-8 after decryption.\n\n\n\n\n\n\nencrypt_symmetric : The counterpart function used to create the ciphertext.\n\n\n\nThe function extracts the first 8 bytes of the decoded ciphertext to use as the nonce. This must match the nonce generated during encryption for the process to succeed.\n\n\n\n&gt;&gt;&gt; # Basic decryption with key\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key     ... import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; from imitation_game.decrypt_symmetric import decrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using a key file\n&gt;&gt;&gt; key_path = \"secret.key\"\n&gt;&gt;&gt; generate_symmetric_key(key_path)\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key_path)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key_path)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using an existing key file\n&gt;&gt;&gt; with open(\"secret.key\", \"w\") as f:\n...     f.write(\"aNa/PmjyUk2hrFFm+lqOTFE/nPhi+elUFg3SGt6EETg=\")\n&gt;&gt;&gt; ciphertext = \"0rH1lkuVpskHbqMkgAOx0+pd\"\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, \"secret.key\")\n&gt;&gt;&gt; decrypted\n'Top Secret'",
-    "crumbs": [
-      "Reference",
-      "Key functions",
-      "decrypt_symmetric"
-    ]
-  },
-  {
     "objectID": "reference/encrypt_symmetric.html",
     "href": "reference/encrypt_symmetric.html",
     "title": "encrypt_symmetric",
@@ -356,6 +297,63 @@
       "Key functions",
       "encrypt_symmetric"
     ]
+  },
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Function reference",
+    "section": "",
+    "text": "Functions for encryption and decryption.\n\n\n\ngenerate_symmetric_key\n\n\n\nencrypt_symmetric\n\n\n\ndecrypt_symmetric\n\n\n\ngenerate_asymmetric_key\n\n\n\nencrypt_asymmetric\n\n\n\ndecrypt_asymmetric",
+    "crumbs": [
+      "Reference",
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/index.html#key-functions",
+    "href": "reference/index.html#key-functions",
+    "title": "Function reference",
+    "section": "",
+    "text": "Functions for encryption and decryption.\n\n\n\ngenerate_symmetric_key\n\n\n\nencrypt_symmetric\n\n\n\ndecrypt_symmetric\n\n\n\ngenerate_asymmetric_key\n\n\n\nencrypt_asymmetric\n\n\n\ndecrypt_asymmetric",
+    "crumbs": [
+      "Reference",
+      "Function reference"
+    ]
+  },
+  {
+    "objectID": "reference/get_object.html",
+    "href": "reference/get_object.html",
+    "title": "get_object",
+    "section": "",
+    "text": "get_object(\n    path,\n    object_name=None,\n    parser='numpy',\n    load_aliases=True,\n    dynamic=False,\n    loader=None,\n)\nFetch a griffe object.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse\n\n\n\n\n\n\npreview: print a user-friendly preview of a griffe object.\n\n\n\n&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ...\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc"
+  },
+  {
+    "objectID": "reference/get_object.html#parameters",
+    "href": "reference/get_object.html#parameters",
+    "title": "get_object",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\npath\nstr\nAn import path to the object. This should have the form path.to.module:object. For example, quartodoc:get_object or quartodoc:MdRenderer.render.\nrequired\n\n\nobject_name\n'str | None'\n(Deprecated). A function name.\nNone\n\n\nparser\nstr\nA docstring parser to use.\n'numpy'\n\n\nload_aliases\n\nFor aliases that were imported from other modules, should we load that module?\nTrue\n\n\ndynamic\n\nWhether to dynamically import object. Useful if docstring is not hard-coded, but was set on object by running python code.\nFalse"
+  },
+  {
+    "objectID": "reference/get_object.html#see-also",
+    "href": "reference/get_object.html#see-also",
+    "title": "get_object",
+    "section": "",
+    "text": "preview: print a user-friendly preview of a griffe object."
+  },
+  {
+    "objectID": "reference/get_object.html#examples",
+    "href": "reference/get_object.html#examples",
+    "title": "get_object",
+    "section": "",
+    "text": "&gt;&gt;&gt; get_function(\"quartodoc\", \"get_function\")\n&lt;Function('get_function', ..."
+  },
+  {
+    "objectID": "reference/get_object.html#returns",
+    "href": "reference/get_object.html#returns",
+    "title": "get_object",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nx\ndc.Object\nabc"
   },
   {
     "objectID": "reference/generate_symmetric_key.html",
@@ -382,25 +380,27 @@
     ]
   },
   {
-    "objectID": "reference/index.html",
-    "href": "reference/index.html",
-    "title": "Function reference",
+    "objectID": "reference/decrypt_symmetric.html",
+    "href": "reference/decrypt_symmetric.html",
+    "title": "decrypt_symmetric",
     "section": "",
-    "text": "Functions for encryption and decryption.\n\n\n\ngenerate_symmetric_key\n\n\n\nencrypt_symmetric\n\n\n\ndecrypt_symmetric\n\n\n\ngenerate_asymmetric_key\n\n\n\nencrypt_asymmetric\n\n\n\ndecrypt_asymmetric",
+    "text": "decrypt_symmetric\n\n\n\n\n\nName\nDescription\n\n\n\n\ndecrypt_symmetric\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\ndecrypt_symmetric.decrypt_symmetric(ciphertext, key)\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nciphertext\nstr\nThe Base64-encoded string to be decrypted. This must contain the 8-byte nonce followed by the actual encrypted data.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe original plaintext message, UTF-8 decoded.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key or ciphertext is not valid Base64, if the key length is incorrect, or if the data cannot be decoded as UTF-8 after decryption.\n\n\n\n\n\n\nencrypt_symmetric : The counterpart function used to create the ciphertext.\n\n\n\nThe function extracts the first 8 bytes of the decoded ciphertext to use as the nonce. This must match the nonce generated during encryption for the process to succeed.\n\n\n\n&gt;&gt;&gt; # Basic decryption with key\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key     ... import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; from imitation_game.decrypt_symmetric import decrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using a key file\n&gt;&gt;&gt; key_path = \"secret.key\"\n&gt;&gt;&gt; generate_symmetric_key(key_path)\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key_path)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key_path)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using an existing key file\n&gt;&gt;&gt; with open(\"secret.key\", \"w\") as f:\n...     f.write(\"aNa/PmjyUk2hrFFm+lqOTFE/nPhi+elUFg3SGt6EETg=\")\n&gt;&gt;&gt; ciphertext = \"0rH1lkuVpskHbqMkgAOx0+pd\"\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, \"secret.key\")\n&gt;&gt;&gt; decrypted\n'Top Secret'",
     "crumbs": [
       "Reference",
-      "Function reference"
+      "Key functions",
+      "decrypt_symmetric"
     ]
   },
   {
-    "objectID": "reference/index.html#key-functions",
-    "href": "reference/index.html#key-functions",
-    "title": "Function reference",
+    "objectID": "reference/decrypt_symmetric.html#functions",
+    "href": "reference/decrypt_symmetric.html#functions",
+    "title": "decrypt_symmetric",
     "section": "",
-    "text": "Functions for encryption and decryption.\n\n\n\ngenerate_symmetric_key\n\n\n\nencrypt_symmetric\n\n\n\ndecrypt_symmetric\n\n\n\ngenerate_asymmetric_key\n\n\n\nencrypt_asymmetric\n\n\n\ndecrypt_asymmetric",
+    "text": "Name\nDescription\n\n\n\n\ndecrypt_symmetric\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\ndecrypt_symmetric.decrypt_symmetric(ciphertext, key)\nDecrypts an AES-CTR encrypted message and restores it to plaintext.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nciphertext\nstr\nThe Base64-encoded string to be decrypted. This must contain the 8-byte nonce followed by the actual encrypted data.\nrequired\n\n\nkey\nstr\nThe shared secret key. If a string is provided, it must be Base64 encoded. OR a path to a file containing the key.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nstr\nThe original plaintext message, UTF-8 decoded.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nValueError\nIf the key or ciphertext is not valid Base64, if the key length is incorrect, or if the data cannot be decoded as UTF-8 after decryption.\n\n\n\n\n\n\nencrypt_symmetric : The counterpart function used to create the ciphertext.\n\n\n\nThe function extracts the first 8 bytes of the decoded ciphertext to use as the nonce. This must match the nonce generated during encryption for the process to succeed.\n\n\n\n&gt;&gt;&gt; # Basic decryption with key\n&gt;&gt;&gt; from imitation_game.generate_symmetric_key     ... import generate_symmetric_key\n&gt;&gt;&gt; from imitation_game.encrypt_symmetric import encrypt_symmetric\n&gt;&gt;&gt; from imitation_game.decrypt_symmetric import decrypt_symmetric\n&gt;&gt;&gt; key = generate_symmetric_key()\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using a key file\n&gt;&gt;&gt; key_path = \"secret.key\"\n&gt;&gt;&gt; generate_symmetric_key(key_path)\n&gt;&gt;&gt; ciphertext = encrypt_symmetric(\"Top Secret\", key_path)\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, key_path)\n&gt;&gt;&gt; decrypted\n'Top Secret'\n&gt;&gt;&gt; # Decryption using an existing key file\n&gt;&gt;&gt; with open(\"secret.key\", \"w\") as f:\n...     f.write(\"aNa/PmjyUk2hrFFm+lqOTFE/nPhi+elUFg3SGt6EETg=\")\n&gt;&gt;&gt; ciphertext = \"0rH1lkuVpskHbqMkgAOx0+pd\"\n&gt;&gt;&gt; decrypted = decrypt_symmetric(ciphertext, \"secret.key\")\n&gt;&gt;&gt; decrypted\n'Top Secret'",
     "crumbs": [
       "Reference",
-      "Function reference"
+      "Key functions",
+      "decrypt_symmetric"
     ]
   }
 ]

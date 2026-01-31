@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dec27a635df3619fee3abd01ce5a42f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ee47912cae73dc7932e3cc93c52697b6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome-to-imitation-game" class="level1">
 <h1>Welcome to imitation-game</h1>
-<p><a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="CD"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg" class="img-fluid" alt="Docs"></a> <a href="https://codecov.io/gh/UBC-MDS/imitation_game"><img src="https://codecov.io/gh/UBC-MDS/imitation_game/branch/main/graph/badge.svg" class="img-fluid" alt="codecov"></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10%2B-blue" class="img-fluid" alt="Python Version"></a> <a href="https://test.pypi.org/project/imitation-game/"><img src="https://img.shields.io/badge/version-0.2.2-blue" class="img-fluid" alt="Package Version"></a></p>
+<p><a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="CI"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg" class="img-fluid" alt="CD"></a> <a href="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml"><img src="https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg" class="img-fluid" alt="Docs"></a> <a href="https://codecov.io/gh/UBC-MDS/imitation_game"><img src="https://codecov.io/gh/UBC-MDS/imitation_game/branch/main/graph/badge.svg" class="img-fluid" alt="codecov"></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.10%2B-blue" class="img-fluid" alt="Python Version"></a> <a href="https://test.pypi.org/project/imitation-game/"><img src="https://img.shields.io/badge/version-0.2.2-blue" class="img-fluid" alt="Package Version"></a> <a href="https://www.python.org/dev/peps/pep-0008/"><img src="https://img.shields.io/badge/code%20style-pep8-orange.svg" class="img-fluid" alt="PEP8"></a></p>
 <p><code>imitation-game</code> is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.</p>
 <p>Symmetric Encryption Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.</p>
 <ul>
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://test.pypi.org/simple/ imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Dependencies:</strong> - <code>pycryptodome</code> - Cryptographic operations - <code>pathvalidate</code> - File path validation</p>
 <p><strong>Test PyPI</strong>: <a href="https://test.pypi.org/project/imitation_game" class="uri">https://test.pypi.org/project/imitation_game</a></p>
 </section>
@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Alternatively, use the provided <code>environment.yml</code> file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate imitation_game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate imitation-game</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Install the package in editable mode</strong> with all development dependencies:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clone the repository</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/UBC-MDS/imitation_game.git</span>
@@ -287,10 +287,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Documentation is automatically built and deployed to GitHub Pages when: - Changes are pushed to the <code>main</code> branch - The workflow is manually triggered via GitHub Actions</p>
 <p>The deployment workflow (<code>.github/workflows/docs.yml</code>) handles: - Building the Quarto documentation - Publishing to the <code>gh-pages</code> branch - Making the documentation available at the repository’s GitHub Pages URL</p>
 <p>No manual intervention is required for documentation deployment once changes are merged to <code>main</code>. Documentation is deployed <a href="https://ubc-mds.github.io/imitation_game/">here</a></p>
+<section id="pr-deployment-previews" class="level4">
+<h4 class="anchored" data-anchor-id="pr-deployment-previews">PR deployment previews</h4>
+<p>Pull requests get an automatic documentation preview so you can see how the docs will look before merging. The preview is built by <code>.github/workflows/docs.yml</code> and deployed to Netlify; a comment with the preview URL is posted on each PR.</p>
+<p>Every new PR will get a Netlify deploy preview and a comment with the preview link.</p>
+</section>
 </section>
 <section id="cicd-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="cicd-pipeline">CI/CD Pipeline</h3>
-<p>We use GitHub Actions for continuous integration and deployment: - <strong>Tests</strong>: Run automatically on every push and pull request via <code>build.yml</code> - <strong>Deploy</strong>: Automatically deploys to TestPyPI when changes are pushed to main via <code>deploy.yml</code> - <strong>Docs</strong>: Documentation is built and deployed to GitHub Pages on every push via <code>docs.yml</code></p>
+<p>We use GitHub Actions for continuous integration and deployment: - <strong>Tests</strong>: Run automatically on every push and pull request via <code>build.yml</code> - <strong>Deploy</strong>: Automatically deploys to TestPyPI when changes are pushed to main via <code>deploy.yml</code> - <strong>Docs</strong>: Documentation is built and deployed to GitHub Pages on every push via <code>docs.yml</code> - <strong>Docs preview</strong>: Each pull request gets a documentation preview deployed to Netlify via <code>docs.yml</code> (requires Netlify secrets; see above)</p>
 </section>
 </section>
 <section id="contributing" class="level2">
