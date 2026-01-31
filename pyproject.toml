@@ -66,6 +66,7 @@ Download = "https://pypi.org/project/imitation-game/#files"
 dev = [
     "hatch",
     "pre-commit",
+    "python-semantic-release",
 ]
 
 docs = [
@@ -132,6 +133,23 @@ installer = "uv"
 
 [tool.flake8]
 max-line-length = 100
+
+################################################################################
+# Semantic Release (version from conventional commits)
+################################################################################
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+build_command = "hatch build"
+commit_parser = "conventional"
+commit_parser_options = { parse_squash_commits = true, ignore_merge_commits = true }
+commit_message = "chore(release): release v{version} [skip ci]"
+
+[tool.semantic_release.remote]
+type = "github"
+token = { env = "GH_TOKEN" }
+
+[tool.semantic_release.publish]
+upload_to_vcs_release = true
 
 ################################################################################
 # Hatch Environments
