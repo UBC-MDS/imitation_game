@@ -14,16 +14,16 @@
 Symmetric Encryption
 Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.
 
-- generate_symmetric_key: Creates a cryptographically secure random key.
-- encrypt_symmetric: Encrypts a plaintext message using a symmetric key.
-- decrypt_symmetric: Restores an encrypted message back to plaintext using the same key.
+- `generate_symmetric_key`: Creates a cryptographically secure random key.
+- `encrypt_symmetric`: Encrypts a plaintext message using a symmetric key.
+- `decrypt_symmetric`: Restores an encrypted message back to plaintext using the same key.
 
 Asymmetric Encryption (RSA)
 Secure communication between two parties without needing to share a secret key beforehand. Uses sender/receiver key combinations where the sender encrypts with the receiver's public key AND signs with their own private key. This provides both confidentiality (only receiver can decrypt) and authenticity (receiver can verify the sender's identity), similar to PGP encryption.
 
-- generate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).
-- encrypt_asymmetric: Encrypts a message using the receiver's public key and signs it with the sender's private key. Takes parameters: (message, receiver_public_key, sender_private_key).
-- decrypt_asymmetric: Decrypts a message using the receiver's private key and verifies the sender's signature using the sender's public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).
+- `generate_asymmetric_key`: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).
+- `encrypt_asymmetric`: Encrypts a message using the receiver's public key and signs it with the sender's private key. Takes parameters: (message, receiver_public_key, sender_private_key).
+- `decrypt_asymmetric`: Decrypts a message using the receiver's private key and verifies the sender's signature using the sender's public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).
 
 ## Comparison with the Python Ecosystem
 
@@ -51,61 +51,72 @@ pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/
 
 ### Symmetric Key Generation
 
+Note: All outputted keys will vary on uses of `generate_symmetric_key` and `generate_asymmetric_key`. 
+
 ```python
-from imitation_game import generate_symmetric_key
+>>> from imitation_game import generate_symmetric_key
 
-# Generate a secure random key for symmetric encryption
-key = generate_symmetric_key()
-print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
-# Output: Generated key: b'\x8f\x9a...
+>>> # Generate a secure random key for symmetric encryption
+>>> key = generate_symmetric_key() # Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')
+>>> print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
+Generated key: Vy7K5usqcE...
 
-# Save the key to a file for later use
-key = generate_symmetric_key("keys/my_encryption_key.txt")
-# Output: Key saved to keys/my_encryption_key.txt
-# Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')
+# Save the key keys/my_encryption_key.txt for later use
+>>> key = generate_symmetric_key("keys/my_encryption_key.txt")
 ```
 
 ### Symmetric Encryption
 
 ```python
-from imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric
+>>> from imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric
 
 # Generate key 
-key = generate_symmetric_key()
+>>> key = generate_symmetric_key()
 
 # Encrypts and decrypts message with key
-message = "Secret message"
-encrypted_data = encrypt_symmetric(message, key)
-print(f"Encrypted: {encrypted_data[:20]}...")  
-# Output: Encrypted: b'\x9f\x2a\x8b...' (binary ciphertext)
-
-decrypted_message = decrypt_symmetric(encrypted_data, key)
-print(decrypted_message)
-# Output: Secret message
+>>> message = "Secret message"
+>>> encrypted_data = encrypt_symmetric(message, key)
+>>> print(f"Encrypted: {encrypted_data[:20]}...")
+Encrypted: 6k8HkEQUosOXaOFGW1hq...
+>>> decrypted_message = decrypt_symmetric(encrypted_data, key)
+>>> print(decrypted_message) 
+Secret message
 ```
 
 ### Asymmetric Encryption (Sender/Receiver)
 
 ```python
-from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric
+>>> from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric
 
 # Generate key pairs for sender and receiver
-sender_private, sender_public = generate_asymmetric_key()
-receiver_private, receiver_public = generate_asymmetric_key()
-print("Keys generated successfully")
-# Output: Keys generated successfully
-# Each key pair contains RSA public and private keys
+# NOTE: Printed output has been shortened for ease of this README.
+# The function will print out the full keys.
+>>> sender_private, sender_public = generate_asymmetric_key()
+PRIVATE KEY:
+
+b'-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAK......V8WZ5NRcY=\n-----END RSA PRIVATE KEY-----'
+PUBLIC KEY:
+
+b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg......L4\n8wIDAQAB\n-----END PUBLIC KEY-----'
+
+>>> receiver_private, receiver_public = generate_asymmetric_key()
+PRIVATE KEY:
+
+b'-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAK......azpF3S3lzNWJ\n-----END RSA PRIVATE KEY-----'
+PUBLIC KEY:
+
+b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg......T8G\nowIDAQAB\n-----END PUBLIC KEY-----'
 
 # Sender encrypts message with receiver's public key and signs with their private key
-message = "Secret message"
-encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
-print(f"Encrypted data length: {len(encrypted_data)} bytes")
-# Output: Encrypted data length: 512 bytes (includes encrypted message + signature)
+>>> message = "Secret message"
+>>> encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
+>>> print(f"Encrypted data length: {len(encrypted_data)} bytes")
+Encrypted data length: 512 bytes
 
 # Receiver decrypts with their private key and verifies sender's signature
-decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
-print(decrypted_message)
-# Output: Secret message
+>>> decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
+>>> print(decrypted_message)
+Secret message
 ```
 
 
@@ -221,7 +232,7 @@ For information about how to contribute to this package, please review our [Cont
 
 ## License
 
-This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE)
+This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE) alongside reasoning for this license [here](https://github.com/UBC-MDS/imitation_game/issues/80).
 
 ## Citation
 
