@@ -11,6 +11,8 @@ website:
         href: index.qmd
       - text: "Reference"
         href: reference/index.qmd
+      - text: "Reflection"
+        href: docs/reflection.qmd
 
 # tell quarto to read the generated sidebar
 metadata-files:
