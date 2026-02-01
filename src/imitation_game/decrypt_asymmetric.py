@@ -54,8 +54,8 @@ def decrypt_asymmetric(
     >>> decrypt_asymmetric(encrypted, receiver_private, sender_public)
     'Hello, world!'
     """
+    # Load receiver private key
     try:
-        # Load receiver private key
         if isinstance(receiver_private_key, str) and os.path.isfile(
             receiver_private_key
         ):
@@ -63,26 +63,38 @@ def decrypt_asymmetric(
                 receiver_key = RSA.import_key(f.read())
         else:
             receiver_key = RSA.import_key(receiver_private_key)
+    except (ValueError, IndexError, TypeError) as e:
+        raise ValueError(f"Invalid receiver private key: {str(e)}")
 
-        # Load sender public key
+    # Load sender public key
+    try:
         if isinstance(sender_public_key, str) and os.path.isfile(sender_public_key):
             with open(sender_public_key, 'rb') as f:
                 sender_key = RSA.import_key(f.read())
         else:
             sender_key = RSA.import_key(sender_public_key)
+    except (ValueError, IndexError, TypeError) as e:
+        raise ValueError(f"Invalid sender public key: {str(e)}")
 
+    try:
         # Decode the encrypted data
-        decoded_payload = base64.b64decode(encrypted_data.encode('utf-8'))
-        data = json.loads(decoded_payload.decode('utf-8'))
-        encrypted_message = base64.b64decode(
-            data['encrypted_message'].encode('utf-8')
-        )
-        signature = base64.b64decode(data['signature'].encode('utf-8'))
+        try:
+            decoded_payload = base64.b64decode(encrypted_data.encode('utf-8'))
+            data = json.loads(decoded_payload.decode('utf-8'))
+            encrypted_message = base64.b64decode(
+                data['encrypted_message'].encode('utf-8')
+            )
+            signature = base64.b64decode(data['signature'].encode('utf-8'))
+        except (json.JSONDecodeError, KeyError, IndexError,  Exception):
+            raise ValueError("Invalid encrypted data format")
 
         # Decrypt with receiver's private key
-        cipher = PKCS1_OAEP.new(receiver_key)
-        decrypted_bytes = cipher.decrypt(encrypted_message)
-        message = decrypted_bytes.decode('utf-8')
+        try:
+            cipher = PKCS1_OAEP.new(receiver_key)
+            decrypted_bytes = cipher.decrypt(encrypted_message)
+            message = decrypted_bytes.decode('utf-8')
+        except ValueError as e:
+            raise ValueError(f"Decryption failed (incorrect key?): {str(e)}")
 
         # Verify signature with sender's public key
         message_hash = SHA256.new(message.encode('utf-8'))
@@ -95,7 +107,7 @@ def decrypt_asymmetric(
             )
 
         return message
-    except json.JSONDecodeError:
-        raise ValueError("Invalid encrypted data format")
+    except ValueError:
+        raise
     except Exception as e:
-        raise ValueError(f"Decryption failed: {str(e)}")
+        raise ValueError(f"Unexpected decryption error: {str(e)}")
