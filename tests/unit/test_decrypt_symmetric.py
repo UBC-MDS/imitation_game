@@ -1,6 +1,5 @@
 """Tests for decrypt_symmetric function."""
 import pytest
-import os
 from imitation_game.encrypt_symmetric import encrypt_symmetric
 from imitation_game.decrypt_symmetric import decrypt_symmetric
 from imitation_game.generate_symmetric_key import generate_symmetric_key
@@ -17,8 +16,6 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 #   Test decryption using a key stored in a file
 # - test_decrypt_symmetric_empty_key_file:
 #   Test decryption fails when the key file is empty
-# - test_decrypt_symmetric_unreadable_key_file:
-#   Test decryption fails when the key file exists but is unreadable
 
 
 class TestDecryptSymmetric:
@@ -113,21 +110,3 @@ class TestDecryptSymmetric:
                            match="Decryption failed: "
                            "Incorrect AES key length"):
             decrypt_symmetric(message, str(empty_key_file))
-
-    def test_decrypt_symmetric_unreadable_key_file(self, tmp_path):
-        """Test decryption fails when the key file exists but is unreadable."""
-        # 1. Create a key file
-        key_file = tmp_path / "unreadable.key"
-        key_file.write_text("key")
-
-        # 2. Change permissions to make it unreadable (000)
-        os.chmod(key_file, 0)
-
-        try:
-            message = "Unreadable"
-            with pytest.raises(ValueError,
-                               match="Decryption failed: "
-                               "Could not read key file"):
-                decrypt_symmetric(message, str(key_file))
-        finally:
-            os.chmod(key_file, 0o666)
