@@ -14,19 +14,23 @@ We utilized a suite of diverse tools to ensure code quality, reliability, and ea
    - **Role:** Automates our testing, linting, documentation building, and publishing workflows.
    - **Benefit:** Ensures that every pull request is verified before merging, preventing regressions and maintaining high code standards.
 
-### 2. **Pytest & Codecov**
+### 2. **Flake8 & Black**
+   - **Role:** Linting and code formatting.
+   - **Benefit:** Enforces a consistent coding style (PEP 8) across the entire codebase. Flake8 catches potential bugs and style deviations, while Black ensures uniform formatting, eliminating meaningless diffs during code review.
+
+### 3. **Pytest & Codecov**
    - **Role:** Unit and integration testing framework combined with coverage reporting.
    - **Benefit:** Provides confidence in our cryptographic implementations. Codecov integration gives us visibility into untested code paths, driving our coverage metrics.
 
-### 3. **Poetry / Hatch / Pyproject.toml**
+### 4. **Poetry / Hatch / Pyproject.toml**
    - **Role:** Dependency management and packaging.
    - **Benefit:** Standardizes our build system. We use `pyproject.toml` as the single source of truth for project metadata and dependencies.
 
-### 4. **Quartodoc & Quarto**
+### 5. **Quartodoc & Quarto**
    - **Role:** Auto-generating API documentation and rendering the documentation website.
    - **Benefit:** Keeps our documentation in sync with our code docstrings automatically, reducing manual maintenance effort.
 
-### 5. **Semantic Release**
+### 6. **Semantic Release**
    - **Role:** Automated versioning and changelog generation.
    - **Benefit:** Eliminates manual version management. Commits following Conventional Commits specification trigger automatic version bumps (patch/minor/major) and release notes.
 
