@@ -75,8 +75,11 @@ def encrypt_symmetric(message, key):
     '0rH1lkuVpskHbqMkgAOx0+pd'
     """
     if isinstance(key, str) and os.path.isfile(key):
-        with open(key, 'r') as f:
-            key = f.read().strip()
+        try:
+            with open(key, 'r') as f:
+                key = f.read().strip()
+        except OSError as e:
+            raise ValueError(f"Encryption failed: Could not read key file: {e}")
 
     if isinstance(key, str):
         try:

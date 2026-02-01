@@ -24,8 +24,8 @@ def decrypt_symmetric(ciphertext, key):
     Raises
     ------
     ValueError
-        If the key or ciphertext is not valid Base64, if the key length is
-        incorrect, or if the data cannot be decoded as UTF-8 after decryption.
+        If the key or ciphertext is not valid Base64,
+        or if the data cannot be decoded as UTF-8 after decryption.
 
     See Also
     --------
@@ -68,13 +68,23 @@ def decrypt_symmetric(ciphertext, key):
     """
     try:
         if isinstance(key, str) and os.path.isfile(key):
-            with open(key, 'r') as f:
-                key = f.read().strip()
+            try:
+                with open(key, 'r') as f:
+                    key = f.read().strip()
+            except OSError as e:
+                raise ValueError(f"Decryption failed: Could not read key file: {e}")
 
         if isinstance(key, str):
-            key = base64.b64decode(key)
+            try:
+                key = base64.b64decode(key)
+            except Exception:
+                raise ValueError("Decryption failed: Invalid key encoding")
 
-        ciphertext_decoded = base64.b64decode(ciphertext)
+        if isinstance(ciphertext, str):
+            try:
+                ciphertext_decoded = base64.b64decode(ciphertext)
+            except Exception:
+                raise ValueError("Decryption failed: Invalid ciphertext encoding")
 
         nonce = ciphertext_decoded[:8]
         ciphertext = ciphertext_decoded[8:]
