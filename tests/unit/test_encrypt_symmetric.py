@@ -1,5 +1,4 @@
 """Tests for encrypt_symmetric function."""
-from imitation_game.decrypt_symmetric import decrypt_symmetric
 import pytest
 from imitation_game.encrypt_symmetric import encrypt_symmetric
 from imitation_game.generate_symmetric_key import generate_symmetric_key
