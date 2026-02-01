@@ -117,7 +117,8 @@ class TestDecryptAsymmetric:
         encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
 
         # Tamper with the encrypted data by modifying a character
-        tampered_encrypted = encrypted[:-1] + ('A' if encrypted[-1] != 'A' else 'B')
+        last_char = 'A' if encrypted[-1] != 'A' else 'B'
+        tampered_encrypted = encrypted[:-1] + last_char
 
         with pytest.raises(ValueError):
             decrypt_asymmetric(tampered_encrypted, receiver_private, sender_public)
@@ -128,7 +129,7 @@ class TestDecryptAsymmetric:
         receiver_private, receiver_public = generate_asymmetric_key()
 
         with pytest.raises(ValueError, match="Invalid encrypted data format"):
-             # .encode() on None raises AttributeError which is caught and wrapped
+            # .encode() on None raises AttributeError, caught and wrapped
             decrypt_asymmetric(None, receiver_private, sender_public)
 
     def test_decrypt_asymmetric_none_key(self):

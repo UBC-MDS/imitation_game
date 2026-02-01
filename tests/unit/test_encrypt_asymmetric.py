@@ -94,7 +94,9 @@ class TestEncryptAsymmetric:
             with open(sender_priv_path, 'wb') as f:
                 f.write(sender_private)
 
-            encrypted = encrypt_asymmetric(message, receiver_pub_path, sender_priv_path)
+            encrypted = encrypt_asymmetric(
+                message, receiver_pub_path, sender_priv_path
+            )
 
             assert isinstance(encrypted, str)
             assert len(encrypted) > 0
@@ -112,7 +114,7 @@ class TestEncryptAsymmetric:
         """Test encryption with directory path as key."""
         sender_private, sender_public = generate_asymmetric_key()
         message = "Hello, World!"
-        
+
         with tempfile.TemporaryDirectory() as tmpdir:
             with pytest.raises(ValueError, match="Invalid receiver public key"):
                 encrypt_asymmetric(message, tmpdir, sender_private)
@@ -124,4 +126,4 @@ class TestEncryptAsymmetric:
         message = 12345
 
         with pytest.raises(ValueError, match="Encryption failed"):
-             encrypt_asymmetric(message, receiver_public, sender_private)
+            encrypt_asymmetric(message, receiver_public, sender_private)
