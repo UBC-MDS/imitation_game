@@ -16,6 +16,8 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 #   Encrypting the same message twice produces different ciphertexts
 # - test_encrypt_symmetric_empty_key_file:
 #   Encryption fails when the key file is empty
+# - test_encrypt_symmetric_key_not_string:
+#   Encryption fails when the key is not string
 
 
 class TestEncryptSymmetric:
@@ -112,7 +114,7 @@ class TestEncryptSymmetric:
                            "Incorrect AES key length"):
             encrypt_symmetric(message, str(empty_key_file))
 
-    def test_encrypt_symmetric_invalid_key_encoding(self):
+    def test_encrypt_symmetric_key_not_string(self):
         """Test encryption fails when the key is not string."""
         invalid_key = 123
         message = "Test message"
