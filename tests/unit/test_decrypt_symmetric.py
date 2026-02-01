@@ -14,6 +14,8 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 # - test_decrypt_symmetric_invalid_key: Test decryption with invalid key
 # - test_decrypt_symmetric_key_from_file:
 #   Test decryption using a key stored in a file
+# - test_decrypt_symmetric_empty_key_file:
+#   Test decryption fails when the key file is empty
 
 
 class TestDecryptSymmetric:
@@ -95,3 +97,16 @@ class TestDecryptSymmetric:
 
         assert decrypted == message
         assert isinstance(decrypted, str)
+
+    def test_decrypt_symmetric_empty_key_file(self, tmp_path):
+        """Test decryption fails when the key file is empty."""
+        # 1. Create a file that exists but has no content
+        empty_key_file = tmp_path / "empty.key"
+        empty_key_file.write_text("")
+
+        message = "Empty key"
+
+        with pytest.raises(ValueError,
+                           match="Decryption failed: "
+                           "Incorrect AES key length"):
+            decrypt_symmetric(message, str(empty_key_file))
