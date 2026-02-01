@@ -62,3 +62,19 @@ We adopted several key practices to facilitate collaboration:
 ### 3. **Conventional Commits**
    - We adhere to the Conventional Commits specification (e.g., `feat:`, `fix:`, `docs:`).
    - This discipline drives our Semantic Release tool, allowing it to accurately determine strict version numbers and generate meaningful changelogs.
+
+## Scalability and Future Improvements
+
+If the project were to scale significantly (more users, more contributors, broader scope), we would consider the following changes:
+
+### 1. **Staging Environment**
+   - Although TestPyPI serves as a staging ground for packaging, we would introduce a dedicated **beta** or **staging** channel for the application itself if it had a front-end or service component. This ensures that major releases are battle-tested before general availability.
+
+### 2. **Stricter Linting and Typing**
+   - We would adopt strictly enforced type checking (e.g., `mypy --strict`) and more rigorous linting rules (e.g., `ruff`). As the codebase grows, dynamic typing becomes a liability; explicit types act as documentation and prevent entire classes of bugs.
+
+### 3. **Expanded Integration Tests**
+   - While our unit tests are comprehensive, scaling up would require robust end-to-end integration tests that simulate realistic user workflows (e.g., encrypting large files, handling network transmission simulations). This ensures that individual components work harmoniously in diverse scenarios.
+
+### 4. **Automated Security Scanning**
+   - Given the nature of this package (cryptography), we would integrate automated security scanners (SAST) like **Bandit** or **CodeQL** into our CI pipeline to detect vulnerabilities early in the development cycle.
