@@ -24,8 +24,8 @@ def decrypt_symmetric(ciphertext, key):
     Raises
     ------
     ValueError
-        If the key or ciphertext is not valid Base64, if the key length is
-        incorrect, or if the data cannot be decoded as UTF-8 after decryption.
+        If the key or ciphertext is not valid Base64,
+        or if the data cannot be decoded as UTF-8 after decryption.
 
     See Also
     --------
@@ -72,9 +72,18 @@ def decrypt_symmetric(ciphertext, key):
                 key = f.read().strip()
 
         if isinstance(key, str):
-            key = base64.b64decode(key)
+            try:
+                key = base64.b64decode(key)
+            except Exception:
+                raise ValueError("Decryption failed: Invalid key encoding")
 
-        ciphertext_decoded = base64.b64decode(ciphertext)
+        if isinstance(ciphertext, str):
+            try:
+                ciphertext_decoded = base64.b64decode(ciphertext)
+            except Exception:
+                raise ValueError(
+                    "Decryption failed: Invalid ciphertext encoding"
+                    )
 
         nonce = ciphertext_decoded[:8]
         ciphertext = ciphertext_decoded[8:]
@@ -82,7 +91,10 @@ def decrypt_symmetric(ciphertext, key):
         cipher = AES.new(key, AES.MODE_CTR, nonce=nonce)
         decrypted_bytes = cipher.decrypt(ciphertext)
 
-        return decrypted_bytes.decode('utf-8')
+        try:
+            return decrypted_bytes.decode('utf-8')
+        except UnicodeDecodeError:
+            raise ValueError("Decryption failed: Invalid UTF-8 data")
 
     except Exception as e:
         raise ValueError(f"Decryption failed: {str(e)}")
