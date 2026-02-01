@@ -79,13 +79,17 @@ def encrypt_symmetric(message, key):
             with open(key, 'r') as f:
                 key = f.read().strip()
         except OSError as e:
-            raise ValueError(f"Encryption failed: Could not read key file: {e}")
+            raise ValueError(
+                f"Encryption failed: Could not read key file: {e}"
+                )
 
     if isinstance(key, str):
         try:
             key = base64.b64decode(key)
         except Exception:
-            raise ValueError("Encryption failed: Invalid key encoding")
+            raise ValueError(
+                "Encryption failed: Invalid key encoding"
+                )
 
     if len(message) > 256:
         raise ValueError("Encryption failed: Message too long")

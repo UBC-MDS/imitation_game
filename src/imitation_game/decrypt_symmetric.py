@@ -72,7 +72,9 @@ def decrypt_symmetric(ciphertext, key):
                 with open(key, 'r') as f:
                     key = f.read().strip()
             except OSError as e:
-                raise ValueError(f"Decryption failed: Could not read key file: {e}")
+                raise ValueError(
+                    f"Decryption failed: Could not read key file: {e}"
+                    )
 
         if isinstance(key, str):
             try:
@@ -84,7 +86,9 @@ def decrypt_symmetric(ciphertext, key):
             try:
                 ciphertext_decoded = base64.b64decode(ciphertext)
             except Exception:
-                raise ValueError("Decryption failed: Invalid ciphertext encoding")
+                raise ValueError(
+                    "Decryption failed: Invalid ciphertext encoding"
+                    )
 
         nonce = ciphertext_decoded[:8]
         ciphertext = ciphertext_decoded[8:]
