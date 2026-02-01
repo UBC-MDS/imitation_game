@@ -16,7 +16,7 @@ name = "imitation_game"
 version = "1.1.1"
 
 description = """
-project enables two users to securely exchange text messages using encryption and
+Project enables two users to securely exchange text messages using encryption and
 decryption techniques. Messages are encrypted by the sender using a shared or public key
 and can only be decrypted by the intended recipient, ensuring confidentiality, data
 integrity, and protection against unauthorized access during communication.
