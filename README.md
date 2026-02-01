@@ -14,16 +14,16 @@
 Symmetric Encryption
 Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.
 
-- generate_symmetric_key: Creates a cryptographically secure random key.
-- encrypt_symmetric: Encrypts a plaintext message using a symmetric key.
-- decrypt_symmetric: Restores an encrypted message back to plaintext using the same key.
+- `generate_symmetric_key`: Creates a cryptographically secure random key.
+- `encrypt_symmetric`: Encrypts a plaintext message using a symmetric key.
+- `decrypt_symmetric`: Restores an encrypted message back to plaintext using the same key.
 
 Asymmetric Encryption (RSA)
 Secure communication between two parties without needing to share a secret key beforehand. Uses sender/receiver key combinations where the sender encrypts with the receiver's public key AND signs with their own private key. This provides both confidentiality (only receiver can decrypt) and authenticity (receiver can verify the sender's identity), similar to PGP encryption.
 
-- generate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).
-- encrypt_asymmetric: Encrypts a message using the receiver's public key and signs it with the sender's private key. Takes parameters: (message, receiver_public_key, sender_private_key).
-- decrypt_asymmetric: Decrypts a message using the receiver's private key and verifies the sender's signature using the sender's public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).
+- `generate_asymmetric_key`: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).
+- `encrypt_asymmetric`: Encrypts a message using the receiver's public key and signs it with the sender's private key. Takes parameters: (message, receiver_public_key, sender_private_key).
+- `decrypt_asymmetric`: Decrypts a message using the receiver's private key and verifies the sender's signature using the sender's public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).
 
 ## Comparison with the Python Ecosystem
 
@@ -232,7 +232,7 @@ For information about how to contribute to this package, please review our [Cont
 
 ## License
 
-This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE)
+This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE) alongside reasoning for this license [here](https://github.com/UBC-MDS/imitation_game/issues/80).
 
 ## Citation
 
