@@ -1,5 +1,6 @@
 """Tests for encrypt_symmetric function."""
 import pytest
+import os
 from imitation_game.encrypt_symmetric import encrypt_symmetric
 from imitation_game.generate_symmetric_key import generate_symmetric_key
 
@@ -16,6 +17,8 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 #   Encrypting the same message twice produces different ciphertexts
 # - test_encrypt_symmetric_empty_key_file:
 #   Encryption fails when the key file is empty
+# - test_encrypt_symmetric_unreadable_key_file:
+#   Encryption fails when the key file exists but is unreadable
 
 
 class TestEncryptSymmetric:
@@ -111,3 +114,21 @@ class TestEncryptSymmetric:
                            match="Encryption failed: "
                            "Incorrect AES key length"):
             encrypt_symmetric(message, str(empty_key_file))
+
+    def test_encrypt_symmetric_unreadable_key_file(self, tmp_path):
+        """Test encryption fails when the key file exists but is unreadable."""
+        # 1. Create a key file
+        key_file = tmp_path / "unreadable.key"
+        key_file.write_text("key")
+
+        # 2. Change permissions to make it unreadable (000)
+        os.chmod(key_file, 0)
+
+        try:
+            message = "Unreadable"
+            with pytest.raises(ValueError,
+                               match="Encryption failed: "
+                               "Could not read key file"):
+                encrypt_symmetric(message, str(key_file))
+        finally:
+            os.chmod(key_file, 0o666)
