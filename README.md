@@ -3,8 +3,10 @@
 [![CI](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/build.yml)
 [![CD](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/deploy.yml)
 [![Docs](https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml/badge.svg)](https://github.com/UBC-MDS/imitation_game/actions/workflows/docs.yml)
+[![codecov](https://codecov.io/gh/UBC-MDS/imitation_game/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/imitation_game)
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
-[![Package Version](https://img.shields.io/badge/version-0.2.2-blue)](https://test.pypi.org/project/imitation-game/)
+[![TestPyPI](https://img.shields.io/badge/TestPyPI-package-blue)](https://test.pypi.org/project/imitation-game/)
+[![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 
 
 `imitation-game` is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.
@@ -36,7 +38,7 @@ While the packages above are powerful, they often cater to either a single encry
 ## Installation
 
 ```bash
-pip install imitation-game
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ imitation-game
 ```
 
 **Dependencies:**
@@ -55,11 +57,11 @@ Note: All outputted keys will vary on uses of `generate_symmetric_key` and `gene
 >>> from imitation_game import generate_symmetric_key
 
 >>> # Generate a secure random key for symmetric encryption
->>> key = generate_symmetric_key()
+>>> key = generate_symmetric_key() # Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')
 >>> print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
 Generated key: Vy7K5usqcE...
 
-# Save the key to a file for later use
+# Save the key keys/my_encryption_key.txt for later use
 >>> key = generate_symmetric_key("keys/my_encryption_key.txt")
 ```
 
@@ -74,8 +76,10 @@ Generated key: Vy7K5usqcE...
 # Encrypts and decrypts message with key
 >>> message = "Secret message"
 >>> encrypted_data = encrypt_symmetric(message, key)
+>>> print(f"Encrypted: {encrypted_data[:20]}...")
+Encrypted: 6k8HkEQUosOXaOFGW1hq...
 >>> decrypted_message = decrypt_symmetric(encrypted_data, key)
->>> print(decrypted_message)  # "Secret message"
+>>> print(decrypted_message) 
 Secret message
 ```
 
@@ -85,7 +89,8 @@ Secret message
 >>> from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric
 
 # Generate key pairs for sender and receiver
-# NOTE: Printed output has been shortened for ease of this README, the function will print out the full keys.
+# NOTE: Printed output has been shortened for ease of this README.
+# The function will print out the full keys.
 >>> sender_private, sender_public = generate_asymmetric_key()
 PRIVATE KEY:
 
@@ -105,6 +110,8 @@ b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg......T8G\nowIDAQAB\n-----END PUBLIC KEY
 # Sender encrypts message with receiver's public key and signs with their private key
 >>> message = "Secret message"
 >>> encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
+>>> print(f"Encrypted data length: {len(encrypted_data)} bytes")
+Encrypted data length: 512 bytes
 
 # Receiver decrypts with their private key and verifies sender's signature
 >>> decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
@@ -129,7 +136,7 @@ This project uses conda for environment management, but dependencies are defined
    Alternatively, use the provided `environment.yml` file:
    ```bash
    conda env create -f environment.yml
-   conda activate imitation_game
+   conda activate imitation-game
    ```
 
 2. **Install the package in editable mode** with all development dependencies:
@@ -204,12 +211,19 @@ The deployment workflow (`.github/workflows/docs.yml`) handles:
 No manual intervention is required for documentation deployment once changes are merged to `main`.
 Documentation is deployed [here](https://ubc-mds.github.io/imitation_game/)
 
+#### PR deployment previews
+
+Pull requests get an automatic documentation preview so you can see how the docs will look before merging. The preview is built by `.github/workflows/docs.yml` and deployed to Netlify; a comment with the preview URL is posted on each PR.
+
+Every new PR will get a Netlify deploy preview and a comment with the preview link. 
+
 ### CI/CD Pipeline
 
 We use GitHub Actions for continuous integration and deployment:
 - **Tests**: Run automatically on every push and pull request via `build.yml`
 - **Deploy**: Automatically deploys to TestPyPI when changes are pushed to main via `deploy.yml`
 - **Docs**: Documentation is built and deployed to GitHub Pages on every push via `docs.yml`
+- **Docs preview**: Each pull request gets a documentation preview deployed to Netlify via `docs.yml` (requires Netlify secrets; see above)
 
 
 ## Contributing
@@ -219,6 +233,39 @@ For information about how to contribute to this package, please review our [Cont
 ## License
 
 This packages uses the MIT License, more information can be found [here](https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE)
+
+## Citation
+
+If you use this package in your research or project, please cite it as:
+
+```bibtex
+@software{imitation_game2026,
+  author = {Valson, Vinay and Joshi, Tirth and Kwong, Teem and Wen, Alexander},
+  title = {imitation-game: A Python Package for Secure Message Encryption},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/UBC-MDS/imitation_game}
+}
+```
+
+**APA Style:**
+Valson, V., Joshi, T., Kwong, T., & Wen, A. (2026). *imitation-game: A Python Package for Secure Message Encryption* [Computer software]. GitHub. https://github.com/UBC-MDS/imitation_game
+
+## References
+
+This package implements cryptographic operations based on established standards and best practices:
+
+### Cryptographic Standards
+- **AES (Advanced Encryption Standard)**: [FIPS PUB 197](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf) - Federal Information Processing Standards Publication for symmetric encryption
+- **RSA Cryptography**: [RFC 8017 - PKCS #1: RSA Cryptography Specifications Version 2.2](https://datatracker.ietf.org/doc/html/rfc8017) - Standard for asymmetric encryption
+- **SHA-256 Hashing**: [FIPS PUB 180-4](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf) - Secure Hash Standard used in digital signatures
+
+### Security Best Practices
+- **OWASP Cryptographic Storage Cheat Sheet**: [OWASP Guidelines](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html)
+- **NIST Cryptographic Standards and Guidelines**: [NIST Computer Security Resource Center](https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines)
+
+### Python Cryptography Libraries
+- **PyCryptodome Documentation**: [https://pycryptodome.readthedocs.io/](https://pycryptodome.readthedocs.io/) - The underlying cryptographic library used in this package
 
 ## Credits
 

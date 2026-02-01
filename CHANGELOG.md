@@ -7,10 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<!--versionlist-->
+
+## v1.1.1 (2026-01-31)
+
+### Bug Fixes
+
+- Correct broken project URLs and enhance installation docs
+  ([`eafd9c6`](https://github.com/UBC-MDS/imitation_game/commit/eafd9c60fb0b19dc601ae8536a27a63d8eba92ef))
+
+- Remove trailing dot from conftest.py link causing 404 error
+  ([`45cb1d9`](https://github.com/UBC-MDS/imitation_game/commit/45cb1d93fbd7cea748e86867e72bbc16dab6a3f8))
+
+### Documentation
+
+- Add expected output examples to usage demonstrations
+  ([`e6065eb`](https://github.com/UBC-MDS/imitation_game/commit/e6065ebee8535ce793b6b6c3bff39dbdf8fcea26))
+
+
+## v1.1.0 (2026-01-31)
+
+### Features
+
+- Add changelog configuration for semantic release in pyproject.toml
+  ([`4a201ef`](https://github.com/UBC-MDS/imitation_game/commit/4a201efcb966ae275f09605fa70199fbdd9f21e6))
+
+
 ### Added
 
 - Added badges for CICD, TestPyPi, and documentation
-
+- Cleaned up codebase to be compliant with flake8
 
 
 ## [0.0.3] - (2026-01-25)

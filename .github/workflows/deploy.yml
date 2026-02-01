@@ -1,7 +1,6 @@
 name: Deploy to TestPyPI
-# Update the package, and then deploy it to TestPyPI
-# Runs automatically after build.yml completes successfully on main branch
-# Can also be triggered manually via workflow_dispatch
+# Semantic-release: version from conventional commits, then publish to TestPyPI
+# Runs automatically after build workflow succeeds on main, or via workflow_dispatch
 on:
   workflow_dispatch:
   workflow_run:
@@ -11,77 +10,94 @@ on:
     branches:
       - main
 
-permissions: {} # no permissions to the token at global level
+permissions:
+  contents: read
 
 jobs:
-  build_package:
-    name: Build the package
+  release:
+    name: Semantic release (version, build, tag, GitHub release)
     runs-on: ubuntu-latest
-    # Only run if manually triggered OR if build workflow succeeded
     if: |
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    concurrency:
+      group: ${{ github.workflow }}-release-${{ github.ref_name }}
+      cancel-in-progress: false
     permissions:
-      contents: write # need write access to commit version changes
+      contents: write
+    outputs:
+      released: ${{ steps.release.outputs.released || 'false' }}
+      tag: ${{ steps.release.outputs.tag || '' }}
     steps:
-      - name: Check out the repo
+      - name: Checkout repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
-      - name: Setup Python
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
         with:
-          python-version: "3.12"
-      - name: Upgrade pip, install Hatch, and check Hatch version
-        run: |
-          pip install --upgrade pip
-          pip install --upgrade hatch
-          hatch --version # Verify that Hatch is installed
-      - name: Increment version in pyproject.toml # Automatically updates the version number in pyproject.toml. 
-        run: | # Major numbers will be updated manually during release
-          current_version=$(grep 'version = ' pyproject.toml | sed 's/version = "\([^"]*\)"/\1/')
-          new_version=$(echo $current_version | awk -F. '{$NF = $NF + 1; print}' OFS=.)
-          sed -i "s/version = \"$current_version\"/version = \"$new_version\"/" pyproject.toml
-      - name: Build artifacts
-        run: hatch build
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+          ref: ${{ github.ref_name }}
+      - name: Pin release branch to workflow SHA
+        run: git reset --hard ${{ github.sha }}
+      - name: Semantic version and release
+        id: release
+        uses: python-semantic-release/python-semantic-release@v10.5.3
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git_committer_name: "github-actions[bot]"
+          git_committer_email: "github-actions[bot]@users.noreply.github.com"
+      - name: Upload distribution artifacts
+        if: steps.release.outputs.released == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution-artifacts
           path: dist/
-          name: dist.zip
           if-no-files-found: error
           retention-days: 1
-      - name: Commit and push updated pyproject.toml
-        if: success()
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add pyproject.toml
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update pyproject.toml with new version"
-            git push
-          fi
+      - name: Upload to GitHub Release
+        if: steps.release.outputs.released == 'true'
+        uses: python-semantic-release/publish-action@v10.5.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.release.outputs.tag }}
 
   publish-to-testpypi:
-    name: Publish Python 🐍 distribution 📦 to TestPyPI
-    needs:
-      - build_package
+    name: Publish to TestPyPI
+    needs: release
+    if: needs.release.outputs.released == 'true'
     runs-on: ubuntu-latest
-
     environment:
       name: testpypi
       url: https://test.pypi.org/project/imitation_game
-
     permissions:
+      contents: read
       id-token: write
-
     steps:
-      - name: Download all the dists
+      - name: Download distribution artifacts
         uses: actions/download-artifact@v4
         with:
-          name: dist.zip
+          name: distribution-artifacts
           path: dist/
-      - name: Publish package distributions to TestPyPI
+      - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
           verbose: true
+
+  sync-development:
+    name: Sync development with main
+    needs: release
+    if: needs.release.outputs.released == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Merge main into development
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout development
+          git merge origin/main -m "chore: sync development with main after release [skip ci]"
+          git push origin development

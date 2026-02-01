@@ -13,7 +13,7 @@ requires = ["hatchling"]
 [project]
 name = "imitation_game"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.2.2"
+version = "1.1.1"
 
 description = """
 project enables two users to securely exchange text messages using encryption and
@@ -53,11 +53,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com//imitation-game"
-"Source Code" = "https://github.com//imitation-game"
-"Bug Tracker" = "https://github.com//imitation-game/issues"
-Documentation = "https://github.com//imitation-game/blob/main/README.md"
-Download = "https://pypi.org/project/imitation-game/#files"
+Homepage = "https://github.com/UBC-MDS/imitation_game"
+"Source Code" = "https://github.com/UBC-MDS/imitation_game"
+"Bug Tracker" = "https://github.com/UBC-MDS/imitation_game/issues"
+Documentation = "https://ubc-mds.github.io/imitation_game/"
+Download = "https://test.pypi.org/project/imitation-game/#files"
 
 [project.optional-dependencies]
 # The groups below should be in the [development-groups] table
@@ -66,6 +66,7 @@ Download = "https://pypi.org/project/imitation-game/#files"
 dev = [
     "hatch",
     "pre-commit",
+    "python-semantic-release",
 ]
 
 docs = [
@@ -132,6 +133,29 @@ installer = "uv"
 
 [tool.flake8]
 max-line-length = 100
+
+################################################################################
+# Semantic Release (version from conventional commits)
+################################################################################
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+build_command = "pip install hatch && hatch build"
+commit_parser = "conventional"
+commit_parser_options = { parse_squash_commits = true, ignore_merge_commits = true }
+commit_message = "chore(release): release v{version} [skip ci]"
+
+[tool.semantic_release.remote]
+type = "github"
+token = { env = "GH_TOKEN" }
+
+[tool.semantic_release.publish]
+upload_to_vcs_release = true
+
+[tool.semantic_release.changelog]
+# Where to insert new version blocks (must exist in CHANGELOG.md)
+insertion_flag = "<!--versionlist-->"
+# Changelog is updated (not overwritten); new versions inserted at flag
+mode = "update"
 
 ################################################################################
 # Hatch Environments
