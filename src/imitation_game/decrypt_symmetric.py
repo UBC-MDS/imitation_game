@@ -96,7 +96,10 @@ def decrypt_symmetric(ciphertext, key):
         cipher = AES.new(key, AES.MODE_CTR, nonce=nonce)
         decrypted_bytes = cipher.decrypt(ciphertext)
 
-        return decrypted_bytes.decode('utf-8')
+        try:
+            return decrypted_bytes.decode('utf-8')
+        except UnicodeDecodeError:
+            raise ValueError("Decryption failed: Invalid UTF-8 data")
 
     except Exception as e:
         raise ValueError(f"Decryption failed: {str(e)}")

@@ -56,7 +56,8 @@ class TestDecryptSymmetric:
 
         encrypted = encrypt_symmetric(message, key1)
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError,
+                           match="Decryption failed: Invalid UTF-8 data"):
             decrypt_symmetric(encrypted, key2)
 
     def test_decrypt_symmetric_invalid_data(self):
@@ -64,7 +65,9 @@ class TestDecryptSymmetric:
         key = generate_symmetric_key()
         invalid_encrypted = "invalid_encrypted_message"
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError,
+                           match="Decryption failed: "
+                           "Invalid ciphertext encoding"):
             decrypt_symmetric(invalid_encrypted, key)
 
     def test_decrypt_symmetric_invalid_key(self):
@@ -74,7 +77,8 @@ class TestDecryptSymmetric:
         encrypted = encrypt_symmetric(message, key)
         invalid_key = "invalid_key"
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError,
+                           match="Decryption failed: Invalid key encoding"):
             decrypt_symmetric(encrypted, invalid_key)
 
     def test_decrypt_symmetric_key_from_file(self, tmp_path):
