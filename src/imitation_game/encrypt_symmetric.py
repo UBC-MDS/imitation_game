@@ -86,6 +86,8 @@ def encrypt_symmetric(message, key):
                 raise ValueError(
                     "Encryption failed: Invalid key encoding"
                     )
+        else:
+            raise ValueError("Encryption failed: Key must be a string")
 
         if len(message) > 256:
             raise ValueError("Encryption failed: Message too long")

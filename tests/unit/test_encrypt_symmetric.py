@@ -1,4 +1,5 @@
 """Tests for encrypt_symmetric function."""
+from imitation_game.decrypt_symmetric import decrypt_symmetric
 import pytest
 from imitation_game.encrypt_symmetric import encrypt_symmetric
 from imitation_game.generate_symmetric_key import generate_symmetric_key
@@ -111,3 +112,12 @@ class TestEncryptSymmetric:
                            match="Encryption failed: "
                            "Incorrect AES key length"):
             encrypt_symmetric(message, str(empty_key_file))
+
+    def test_encrypt_symmetric_invalid_key_encoding(self):
+        """Test encryption fails when the key is not string."""
+        invalid_key = 123
+        message = "Test message"
+
+        with pytest.raises(ValueError,
+                           match="Encryption failed: Key must be a string"):
+            encrypt_symmetric(message, invalid_key)
