@@ -83,7 +83,7 @@ class TestDecryptAsymmetric:
         receiver_private, receiver_public = generate_asymmetric_key()
         invalid_encrypted = "invalid_encrypted_message"
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError, match="Invalid encrypted data format"):
             decrypt_asymmetric(invalid_encrypted, receiver_private, sender_public)
 
     def test_decrypt_asymmetric_invalid_receiver_key(self):
@@ -94,7 +94,7 @@ class TestDecryptAsymmetric:
         encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
         invalid_key = "invalid_key"
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError, match="Invalid receiver private key"):
             decrypt_asymmetric(encrypted, invalid_key, sender_public)
 
     def test_decrypt_asymmetric_invalid_sender_key(self):
@@ -105,7 +105,7 @@ class TestDecryptAsymmetric:
         encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
         invalid_key = "invalid_key"
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError, match="Invalid sender public key"):
             decrypt_asymmetric(encrypted, receiver_private, invalid_key)
 
     def test_tampered_message_detection(self):
@@ -117,7 +117,27 @@ class TestDecryptAsymmetric:
         encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
 
         # Tamper with the encrypted data by modifying a character
-        tampered_encrypted = encrypted[:-1] + ('A' if encrypted[-1] != 'A' else 'B')
+        last_char = 'A' if encrypted[-1] != 'A' else 'B'
+        tampered_encrypted = encrypted[:-1] + last_char
 
         with pytest.raises(ValueError):
             decrypt_asymmetric(tampered_encrypted, receiver_private, sender_public)
+
+    def test_decrypt_asymmetric_none_data(self):
+        """Test decryption with None as encrypted data."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+
+        with pytest.raises(ValueError, match="Invalid encrypted data format"):
+            # .encode() on None raises AttributeError, caught and wrapped
+            decrypt_asymmetric(None, receiver_private, sender_public)
+
+    def test_decrypt_asymmetric_none_key(self):
+        """Test decryption with None as receiver key."""
+        sender_private, sender_public = generate_asymmetric_key()
+        receiver_private, receiver_public = generate_asymmetric_key()
+        message = "Hello"
+        encrypted = encrypt_asymmetric(message, receiver_public, sender_private)
+
+        with pytest.raises(ValueError, match="Invalid receiver private key"):
+            decrypt_asymmetric(encrypted, None, sender_public)
