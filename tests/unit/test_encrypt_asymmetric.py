@@ -55,7 +55,7 @@ class TestEncryptAsymmetric:
         message = "Hello, World!"
         invalid_key = "invalid_key"
 
-        with pytest.raises(ValueError, match="Encryption failed"):
+        with pytest.raises(ValueError, match="Invalid receiver public key"):
             encrypt_asymmetric(message, invalid_key, sender_private)
 
     def test_encrypt_asymmetric_invalid_sender_key(self):
@@ -64,7 +64,7 @@ class TestEncryptAsymmetric:
         message = "Hello, World!"
         invalid_key = "invalid_key"
 
-        with pytest.raises(ValueError, match="Encryption failed"):
+        with pytest.raises(ValueError, match="Invalid sender private key"):
             encrypt_asymmetric(message, receiver_public, invalid_key)
 
     def test_encrypt_asymmetric_unicode_message(self):
