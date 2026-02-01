@@ -14,6 +14,8 @@ from imitation_game.generate_symmetric_key import generate_symmetric_key
 #   Encryption using a key stored in a file
 # - test_encrypt_symmetric_uniqueness:
 #   Encrypting the same message twice produces different ciphertexts
+# - test_encrypt_symmetric_empty_key_file:
+#   Encryption fails when the key file is empty
 
 
 class TestEncryptSymmetric:
@@ -44,7 +46,8 @@ class TestEncryptSymmetric:
         key = generate_symmetric_key()
         message = "A" * 300
 
-        with pytest.raises(ValueError, match="Encryption failed"):
+        with pytest.raises(ValueError,
+                           match="Encryption failed: Message too long"):
             encrypt_symmetric(message, key)
 
     def test_encrypt_symmetric_invalid_key(self):
@@ -52,7 +55,8 @@ class TestEncryptSymmetric:
         message = "Hello, World!"
         invalid_key = "invalid_key"
 
-        with pytest.raises(ValueError, match="Encryption failed"):
+        with pytest.raises(ValueError,
+                           match="Encryption failed: Invalid key encoding"):
             encrypt_symmetric(message, invalid_key)
 
     def test_encrypt_symmetric_unicode_message(self):
@@ -94,3 +98,16 @@ class TestEncryptSymmetric:
 
         assert encrypted_1 != encrypted_2, "Unique results expected"
         assert len(encrypted_1) == len(encrypted_2)
+
+    def test_encrypt_symmetric_empty_key_file(self, tmp_path):
+        """Test encryption fails when the key file is empty."""
+        # 1. Create a file that exists but has no content
+        empty_key_file = tmp_path / "empty.key"
+        empty_key_file.write_text("")
+
+        message = "Empty key"
+
+        with pytest.raises(ValueError,
+                           match="Encryption failed: "
+                           "Incorrect AES key length"):
+            encrypt_symmetric(message, str(empty_key_file))
