@@ -49,48 +49,67 @@ pip install imitation-game
 
 ### Symmetric Key Generation
 
-```python
-from imitation_game import generate_symmetric_key
+Note: All outputted keys will vary on uses of `generate_symmetric_key` and `generate_asymmetric_key`. 
 
-# Generate a secure random key for symmetric encryption
-key = generate_symmetric_key()
-print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
+```python
+>>> from imitation_game import generate_symmetric_key
+
+>>> # Generate a secure random key for symmetric encryption
+>>> key = generate_symmetric_key()
+>>> print(f"Generated key: {key[:10]}...")  # Shows first 10 characters
+Generated key: Vy7K5usqcE...
 
 # Save the key to a file for later use
-key = generate_symmetric_key("keys/my_encryption_key.txt")
+>>> key = generate_symmetric_key("keys/my_encryption_key.txt")
 ```
 
 ### Symmetric Encryption
 
 ```python
-from imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric
+>>> from imitation_game import generate_symmetric_key, encrypt_symmetric, decrypt_symmetric
 
 # Generate key 
-key = generate_symmetric_key()
+>>> key = generate_symmetric_key()
 
 # Encrypts and decrypts message with key
-message = "Secret message"
-encrypted_data = encrypt_symmetric(message, key)
-decrypted_message = decrypt_symmetric(encrypted_data, key)
-print(decrypted_message)  # "Secret message"
+>>> message = "Secret message"
+>>> encrypted_data = encrypt_symmetric(message, key)
+>>> decrypted_message = decrypt_symmetric(encrypted_data, key)
+>>> print(decrypted_message)  # "Secret message"
+Secret message
 ```
 
 ### Asymmetric Encryption (Sender/Receiver)
 
 ```python
-from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric
+>>> from imitation_game import generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric
 
 # Generate key pairs for sender and receiver
-sender_private, sender_public = generate_asymmetric_key()
-receiver_private, receiver_public = generate_asymmetric_key()
+# NOTE: Printed output has been shortened for ease of this README, the function will print out the full keys.
+>>> sender_private, sender_public = generate_asymmetric_key()
+PRIVATE KEY:
+
+b'-----BEGIN RSA PRIVATE KEY-----\nMIIEogIBAAK......V8WZ5NRcY=\n-----END RSA PRIVATE KEY-----'
+PUBLIC KEY:
+
+b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg......L4\n8wIDAQAB\n-----END PUBLIC KEY-----'
+
+>>> receiver_private, receiver_public = generate_asymmetric_key()
+PRIVATE KEY:
+
+b'-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAK......azpF3S3lzNWJ\n-----END RSA PRIVATE KEY-----'
+PUBLIC KEY:
+
+b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBg......T8G\nowIDAQAB\n-----END PUBLIC KEY-----'
 
 # Sender encrypts message with receiver's public key and signs with their private key
-message = "Secret message"
-encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
+>>> message = "Secret message"
+>>> encrypted_data = encrypt_asymmetric(message, receiver_public, sender_private)
 
 # Receiver decrypts with their private key and verifies sender's signature
-decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
-print(decrypted_message)  # "Secret message"
+>>> decrypted_message = decrypt_asymmetric(encrypted_data, receiver_private, sender_public)
+>>> print(decrypted_message)
+Secret message
 ```
 
 
