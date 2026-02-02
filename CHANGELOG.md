@@ -9,6 +9,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!--versionlist-->
 
+## v1.1.2 (2026-02-02)
+
+### Bug Fixes
+
+- Improve asymmetric error handling implementation
+  ([`ef15f79`](https://github.com/UBC-MDS/imitation_game/commit/ef15f79a5af75a97c6702931f074fc0daa483b51))
+
+### Chores
+
+- Fix flake8 linting errors in tests
+  ([`f6f5d1d`](https://github.com/UBC-MDS/imitation_game/commit/f6f5d1d8bcb8af4d7ee67f8a625d99b3d998527b))
+
+### Documentation
+
+- Add expected output to README use cases
+  ([`a61c34b`](https://github.com/UBC-MDS/imitation_game/commit/a61c34b047c58d35cabc4f2916c8a6b815f2f165))
+
+- Add flake8 and black to tools reflection
+  ([`29f58a4`](https://github.com/UBC-MDS/imitation_game/commit/29f58a4b997681aa990cb8e4870cb37eb6d73776))
+
+- Add infrastructure and practices sections to reflection
+  ([`86ec522`](https://github.com/UBC-MDS/imitation_game/commit/86ec522b0482b5b6dfe980179cd991f11687da95))
+
+- Add initial reflection page describing our tools
+  ([`221b31a`](https://github.com/UBC-MDS/imitation_game/commit/221b31ab22011a69e9fdd3ec9c4ed034c199b017))
+
+- Add reflection page to website navbar
+  ([`dde177b`](https://github.com/UBC-MDS/imitation_game/commit/dde177b47384af1b0c04ed0ac145d41cb7c4f3b7))
+
+- Add scalability and future improvements to reflection
+  ([`6720c96`](https://github.com/UBC-MDS/imitation_game/commit/6720c96a2a0b4d978c9479a5027c2d6b2cd19c00))
+
+### Testing
+
+- Add explicit edge case tests
+  ([`2030b4d`](https://github.com/UBC-MDS/imitation_game/commit/2030b4d158bf2a5b0986c94bbd109564f72a4e36))
+
+- Update unit tests for detailed assert messages
+  ([`a73f547`](https://github.com/UBC-MDS/imitation_game/commit/a73f547eede3fdd4c8646190e4076783b6becbfe))
+
+
 ## v1.1.1 (2026-01-31)
 
 ### Bug Fixes
