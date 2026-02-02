@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>generate_symmetric_key</title>
+<title>Tools, Infrastructure, and Practices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -108,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../reference/_styles-quartodoc.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -125,11 +90,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../reference/index.html" aria-current="page"> 
+    <a class="nav-link" href="../reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../docs/reflection.html"> 
+    <a class="nav-link active" href="../docs/reflection.html" aria-current="page"> 
 <span class="menu-text">Reflection</span></a>
   </li>  
 </ul>
@@ -138,231 +103,163 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/generate_symmetric_key.html">Key functions</a></li><li class="breadcrumb-item"><a href="../reference/generate_symmetric_key.html">generate_symmetric_key</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Function reference</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Key functions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/generate_symmetric_key.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">generate_symmetric_key</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/encrypt_symmetric.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">encrypt_symmetric</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/decrypt_symmetric.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">decrypt_symmetric</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/generate_asymmetric_key.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">generate_asymmetric_key</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/encrypt_asymmetric.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">encrypt_asymmetric</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../reference/decrypt_asymmetric.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">decrypt_asymmetric</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/generate_symmetric_key.html">Key functions</a></li><li class="breadcrumb-item"><a href="../reference/generate_symmetric_key.html">generate_symmetric_key</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tools, Infrastructure, and Practices</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="imitation_game.generate_symmetric_key" class="level1">
-<h1>generate_symmetric_key</h1>
-<p><code>generate_symmetric_key</code></p>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="#imitation_game.generate_symmetric_key.generate_symmetric_key">generate_symmetric_key</a></td>
-<td>Generate a cryptographically secure random key for symmetric encryption.</td>
-</tr>
-</tbody>
-</table>
-<section id="imitation_game.generate_symmetric_key.generate_symmetric_key" class="level3">
-<h3 class="anchored" data-anchor-id="imitation_game.generate_symmetric_key.generate_symmetric_key">generate_symmetric_key</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>generate_symmetric_key.generate_symmetric_key(filepath<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Generate a cryptographically secure random key for symmetric encryption.</p>
-<p>This function creates a URL-safe base64-encoded key that can be used with symmetric encryption algorithms. The key is generated using secure random number generation to ensure cryptographic strength.</p>
-<section id="parameters" class="level4 doc-section doc-section-parameters">
-<h4 class="doc-section doc-section-parameters anchored" data-anchor-id="parameters">Parameters</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 20%">
-<col style="width: 66%">
-<col style="width: 7%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filepath</td>
-<td>(str, optional(default=None))</td>
-<td>Filepath to save the generated key. If no filepath is specified, the key will not be saved to a file.</td>
-<td><code>None</code></td>
-</tr>
-</tbody>
-</table>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>This document reflects on the tools, infrastructure, and development practices adopted for the <code>imitation-game</code> project. Our goal was to create a robust, secure, and maintainable Python package for cryptographic operations, adhering to modern software engineering best practices.</p>
 </section>
-<section id="returns" class="level4 doc-section doc-section-returns">
-<h4 class="doc-section doc-section-returns anchored" data-anchor-id="returns">Returns</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 89%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>str</td>
-<td>A base64-encoded string representing the encryption key. This key should be kept secret and used for both encryption and decryption.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="raises" class="level4 doc-section doc-section-raises">
-<h4 class="doc-section doc-section-raises anchored" data-anchor-id="raises">Raises</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 8%">
-<col style="width: 13%">
-<col style="width: 77%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>ValueError</td>
-<td>If the provided filepath is invalid or contains illegal characters.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="notes" class="level4 doc-section doc-section-notes">
-<h4 class="doc-section doc-section-notes anchored" data-anchor-id="notes">Notes</h4>
-<p>The function generates a 256-bit (32-byte) key suitable for AES-256 encryption. The key is cryptographically secure and uses the Crypto.Random module which provides access to a cryptographically strong random number generator.</p>
-<p>If a filepath is provided, the function will create any necessary parent directories and save the key to the specified file.</p>
-<p><strong>Security Best Practices:</strong></p>
+<section id="tools-used" class="level2">
+<h2 class="anchored" data-anchor-id="tools-used">Tools Used</h2>
+<p>We utilized a suite of diverse tools to ensure code quality, reliability, and ease of distribution:</p>
+<section id="github-actions-cicd" class="level3">
+<h3 class="anchored" data-anchor-id="github-actions-cicd">1. <strong>GitHub Actions (CI/CD)</strong></h3>
 <ul>
-<li><strong>Never commit keys to version control</strong> (add key files to .gitignore)</li>
-<li><strong>Store keys securely</strong> using environment variables or secure key management systems</li>
-<li><strong>Restrict file permissions</strong> when saving keys to disk (chmod 600 on Unix systems)</li>
-<li><strong>Use the same key</strong> for both encryption and decryption operations</li>
-<li><strong>Keep keys confidential</strong> - anyone with the key can decrypt your messages</li>
+<li><strong>Role:</strong> Automates our testing, linting, documentation building, and publishing workflows.</li>
+<li><strong>Benefit:</strong> Ensures that every pull request is verified before merging, preventing regressions and maintaining high code standards.</li>
 </ul>
 </section>
-<section id="see-also" class="level4 doc-section doc-section-see-also">
-<h4 class="doc-section doc-section-see-also anchored" data-anchor-id="see-also">See Also</h4>
-<p>encrypt_symmetric : Encrypt messages using the generated key decrypt_symmetric : Decrypt messages using the generated key</p>
+<section id="flake8-black" class="level3">
+<h3 class="anchored" data-anchor-id="flake8-black">2. <strong>Flake8 &amp; Black</strong></h3>
+<ul>
+<li><strong>Role:</strong> Linting and code formatting.</li>
+<li><strong>Benefit:</strong> Enforces a consistent coding style (PEP 8) across the entire codebase. Flake8 catches potential bugs and style deviations, while Black ensures uniform formatting, eliminating meaningless diffs during code review.</li>
+</ul>
 </section>
-<section id="examples" class="level4 doc-section doc-section-examples">
-<h4 class="doc-section doc-section-examples anchored" data-anchor-id="examples">Examples</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key <span class="op">=</span> generate_symmetric_key()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(key, <span class="bu">str</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">len</span>(key) <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Generate multiple keys - each should be unique</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key1 <span class="op">=</span> generate_symmetric_key()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key2 <span class="op">=</span> generate_symmetric_key()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key1 <span class="op">!=</span> key2</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Practical usage: Generate and store a key</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encryption_key <span class="op">=</span> generate_symmetric_key()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Store this key securely - it will be needed for both encryption and decryption</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Generated key: </span><span class="sc">{</span>encryption_key[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Generated key: aB3dEf7gH9...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Save key to file (remember to add to .gitignore!)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key <span class="op">=</span> generate_symmetric_key(<span class="st">"path/to/key.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Recommended: Use environment variables instead of files</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> os</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key <span class="op">=</span> generate_symmetric_key()</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> os.environ[<span class="st">'ENCRYPTION_KEY'</span>] <span class="op">=</span> key</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="pytest-codecov" class="level3">
+<h3 class="anchored" data-anchor-id="pytest-codecov">3. <strong>Pytest &amp; Codecov</strong></h3>
+<ul>
+<li><strong>Role:</strong> Unit and integration testing framework combined with coverage reporting.</li>
+<li><strong>Benefit:</strong> Provides confidence in our cryptographic implementations. Codecov integration gives us visibility into untested code paths, driving our coverage metrics.</li>
+</ul>
+</section>
+<section id="poetry-hatch-pyproject.toml" class="level3">
+<h3 class="anchored" data-anchor-id="poetry-hatch-pyproject.toml">4. <strong>Poetry / Hatch / Pyproject.toml</strong></h3>
+<ul>
+<li><strong>Role:</strong> Dependency management and packaging.</li>
+<li><strong>Benefit:</strong> Standardizes our build system. We use <code>pyproject.toml</code> as the single source of truth for project metadata and dependencies.</li>
+</ul>
+</section>
+<section id="quartodoc-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="quartodoc-quarto">5. <strong>Quartodoc &amp; Quarto</strong></h3>
+<ul>
+<li><strong>Role:</strong> Auto-generating API documentation and rendering the documentation website.</li>
+<li><strong>Benefit:</strong> Keeps our documentation in sync with our code docstrings automatically, reducing manual maintenance effort.</li>
+</ul>
+</section>
+<section id="semantic-release" class="level3">
+<h3 class="anchored" data-anchor-id="semantic-release">6. <strong>Semantic Release</strong></h3>
+<ul>
+<li><strong>Role:</strong> Automated versioning and changelog generation.</li>
+<li><strong>Benefit:</strong> Eliminates manual version management. Commits following Conventional Commits specification trigger automatic version bumps (patch/minor/major) and release notes.</li>
+</ul>
+</section>
+</section>
+<section id="infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="infrastructure">Infrastructure</h2>
+<p>Our infrastructure supports continuous integration, deployment, and documentation hosting:</p>
+<section id="github-pages" class="level3">
+<h3 class="anchored" data-anchor-id="github-pages">1. <strong>GitHub Pages</strong></h3>
+<ul>
+<li><strong>Role:</strong> Hosts our project documentation.</li>
+<li><strong>Benefit:</strong> Provides a publicly accessible, always-up-to-date reference for users. It is automatically redeployed whenever changes land on the <code>main</code> branch.</li>
+</ul>
+</section>
+<section id="testpypi" class="level3">
+<h3 class="anchored" data-anchor-id="testpypi">2. <strong>TestPyPI</strong></h3>
+<ul>
+<li><strong>Role:</strong> Staging environment for package distribution.</li>
+<li><strong>Benefit:</strong> Allows us to test the publishing process and user installation experience without polluting the main PyPI index.</li>
+</ul>
+</section>
+<section id="netlify" class="level3">
+<h3 class="anchored" data-anchor-id="netlify">3. <strong>Netlify</strong></h3>
+<ul>
+<li><strong>Role:</strong> Pull Request documentation previews.</li>
+<li><strong>Benefit:</strong> Lets reviewers see exactly how documentation changes will render before they are merged, catching formatting errors early.</li>
+</ul>
+</section>
+</section>
+<section id="development-practices" class="level2">
+<h2 class="anchored" data-anchor-id="development-practices">Development Practices</h2>
+<p>We adopted several key practices to facilitate collaboration:</p>
+<section id="feature-branch-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="feature-branch-workflow">1. <strong>Feature Branch Workflow</strong></h3>
+<ul>
+<li>We strictly follow a <code>development</code> -&gt; <code>main</code> workflow.</li>
+<li>All new features and fixes are developed on dedicated branches (e.g., <code>feat/...</code>, <code>fix/...</code>) branched from <code>development</code>.</li>
+<li>Feature branches serve as a sandbox for work-in-progress code, isolating changes until they are stable.</li>
+</ul>
+</section>
+<section id="pull-request-reviews" class="level3">
+<h3 class="anchored" data-anchor-id="pull-request-reviews">2. <strong>Pull Request Reviews</strong></h3>
+<ul>
+<li>No code is merged directly. All changes must go through a Pull Request (PR) review process.</li>
+<li>Team members review each other’s code for logic, style, and security implications, ensuring grouped ownership of the codebase.</li>
+</ul>
+</section>
+<section id="conventional-commits" class="level3">
+<h3 class="anchored" data-anchor-id="conventional-commits">3. <strong>Conventional Commits</strong></h3>
+<ul>
+<li>We adhere to the Conventional Commits specification (e.g., <code>feat:</code>, <code>fix:</code>, <code>docs:</code>).</li>
+<li>This discipline drives our Semantic Release tool, allowing it to accurately determine strict version numbers and generate meaningful changelogs.</li>
+</ul>
+</section>
+</section>
+<section id="scalability-and-future-improvements" class="level2">
+<h2 class="anchored" data-anchor-id="scalability-and-future-improvements">Scalability and Future Improvements</h2>
+<p>If the project were to scale significantly (more users, more contributors, broader scope), we would consider the following changes:</p>
+<section id="staging-environment" class="level3">
+<h3 class="anchored" data-anchor-id="staging-environment">1. <strong>Staging Environment</strong></h3>
+<ul>
+<li>Although TestPyPI serves as a staging ground for packaging, we would introduce a dedicated <strong>beta</strong> or <strong>staging</strong> channel for the application itself if it had a front-end or service component. This ensures that major releases are battle-tested before general availability.</li>
+</ul>
+</section>
+<section id="stricter-linting-and-typing" class="level3">
+<h3 class="anchored" data-anchor-id="stricter-linting-and-typing">2. <strong>Stricter Linting and Typing</strong></h3>
+<ul>
+<li>We would adopt strictly enforced type checking (e.g., <code>mypy --strict</code>) and more rigorous linting rules (e.g., <code>ruff</code>). As the codebase grows, dynamic typing becomes a liability; explicit types act as documentation and prevent entire classes of bugs.</li>
+</ul>
+</section>
+<section id="expanded-integration-tests" class="level3">
+<h3 class="anchored" data-anchor-id="expanded-integration-tests">3. <strong>Expanded Integration Tests</strong></h3>
+<ul>
+<li>While our unit tests are comprehensive, scaling up would require robust end-to-end integration tests that simulate realistic user workflows (e.g., encrypting large files, handling network transmission simulations). This ensures that individual components work harmoniously in diverse scenarios.</li>
+</ul>
+</section>
+<section id="automated-security-scanning" class="level3">
+<h3 class="anchored" data-anchor-id="automated-security-scanning">4. <strong>Automated Security Scanning</strong></h3>
+<ul>
+<li>Given the nature of this package (cryptography), we would integrate automated security scanners (SAST) like <strong>Bandit</strong> or <strong>CodeQL</strong> into our CI pipeline to detect vulnerabilities early in the development cycle.</li>
+</ul>
 
 
-</section>
-</section>
 </section>
 </section>
 

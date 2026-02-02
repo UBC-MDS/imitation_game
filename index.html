@@ -128,6 +128,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./reference/index.html"> 
 <span class="menu-text">Reference</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./docs/reflection.html"> 
+<span class="menu-text">Reflection</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -152,15 +156,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>imitation-game</code> is a Python utility package for secure message processing. It provides a high-level interface for both Symmetric (shared secret) and Asymmetric (Public/Private key) encryption.</p>
 <p>Symmetric Encryption Fast and efficient encryption using a single shared key. Best for internal data storage or pre-shared secrets.</p>
 <ul>
-<li>generate_symmetric_key: Creates a cryptographically secure random key.</li>
-<li>encrypt_symmetric: Encrypts a plaintext message using a symmetric key.</li>
-<li>decrypt_symmetric: Restores an encrypted message back to plaintext using the same key.</li>
+<li><code>generate_symmetric_key</code>: Creates a cryptographically secure random key.</li>
+<li><code>encrypt_symmetric</code>: Encrypts a plaintext message using a symmetric key.</li>
+<li><code>decrypt_symmetric</code>: Restores an encrypted message back to plaintext using the same key.</li>
 </ul>
 <p>Asymmetric Encryption (RSA) Secure communication between two parties without needing to share a secret key beforehand. Uses sender/receiver key combinations where the sender encrypts with the receiver’s public key AND signs with their own private key. This provides both confidentiality (only receiver can decrypt) and authenticity (receiver can verify the sender’s identity), similar to PGP encryption.</p>
 <ul>
-<li>generate_asymmetric_key: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).</li>
-<li>encrypt_asymmetric: Encrypts a message using the receiver’s public key and signs it with the sender’s private key. Takes parameters: (message, receiver_public_key, sender_private_key).</li>
-<li>decrypt_asymmetric: Decrypts a message using the receiver’s private key and verifies the sender’s signature using the sender’s public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).</li>
+<li><code>generate_asymmetric_key</code>: Generates a pair of RSA keys: a Public Key (for encryption/verification) and a Private Key (for decryption/signing).</li>
+<li><code>encrypt_asymmetric</code>: Encrypts a message using the receiver’s public key and signs it with the sender’s private key. Takes parameters: (message, receiver_public_key, sender_private_key).</li>
+<li><code>decrypt_asymmetric</code>: Decrypts a message using the receiver’s private key and verifies the sender’s signature using the sender’s public key. Takes parameters: (encrypted_data, receiver_private_key, sender_public_key).</li>
 </ul>
 <section id="comparison-with-the-python-ecosystem" class="level2">
 <h2 class="anchored" data-anchor-id="comparison-with-the-python-ecosystem">Comparison with the Python Ecosystem</h2>
@@ -182,56 +186,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="usage-examples">Usage Examples</h2>
 <section id="symmetric-key-generation" class="level3">
 <h3 class="anchored" data-anchor-id="symmetric-key-generation">Symmetric Key Generation</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imitation_game <span class="im">import</span> generate_symmetric_key</span>
+<p>Note: All outputted keys will vary on uses of <code>generate_symmetric_key</code> and <code>generate_asymmetric_key</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> imitation_game <span class="im">import</span> generate_symmetric_key</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a secure random key for symmetric encryption</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> generate_symmetric_key()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Generated key: </span><span class="sc">{</span>key[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">..."</span>)  <span class="co"># Shows first 10 characters</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Generated key: b'\x8f\x9a...</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="co"># Generate a secure random key for symmetric encryption</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key <span class="op">=</span> generate_symmetric_key() <span class="co"># Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Generated key: </span><span class="sc">{</span>key[:<span class="dv">10</span>]<span class="sc">}</span><span class="ss">..."</span>)  <span class="co"># Shows first 10 characters</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>Generated key: Vy7K5usqcE...</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the key to a file for later use</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> generate_symmetric_key(<span class="st">"keys/my_encryption_key.txt"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Key saved to keys/my_encryption_key.txt</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns: 32-byte key (e.g., b'\x8f\x9a\x1b...')</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the key keys/my_encryption_key.txt for later use</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key <span class="op">=</span> generate_symmetric_key(<span class="st">"keys/my_encryption_key.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="symmetric-encryption" class="level3">
 <h3 class="anchored" data-anchor-id="symmetric-encryption">Symmetric Encryption</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imitation_game <span class="im">import</span> generate_symmetric_key, encrypt_symmetric, decrypt_symmetric</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> imitation_game <span class="im">import</span> generate_symmetric_key, encrypt_symmetric, decrypt_symmetric</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate key </span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> generate_symmetric_key()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> key <span class="op">=</span> generate_symmetric_key()</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Encrypts and decrypts message with key</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">"Secret message"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>encrypted_data <span class="op">=</span> encrypt_symmetric(message, key)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Encrypted: </span><span class="sc">{</span>encrypted_data[:<span class="dv">20</span>]<span class="sc">}</span><span class="ss">..."</span>)  </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Encrypted: b'\x9f\x2a\x8b...' (binary ciphertext)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>decrypted_message <span class="op">=</span> decrypt_symmetric(encrypted_data, key)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Secret message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> message <span class="op">=</span> <span class="st">"Secret message"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encrypted_data <span class="op">=</span> encrypt_symmetric(message, key)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Encrypted: </span><span class="sc">{</span>encrypted_data[:<span class="dv">20</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Encrypted: <span class="dv">6</span><span class="er">k8HkEQUosOXaOFGW1hq</span>...</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> decrypted_message <span class="op">=</span> decrypt_symmetric(encrypted_data, key)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(decrypted_message) </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>Secret message</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="asymmetric-encryption-senderreceiver" class="level3">
 <h3 class="anchored" data-anchor-id="asymmetric-encryption-senderreceiver">Asymmetric Encryption (Sender/Receiver)</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imitation_game <span class="im">import</span> generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> imitation_game <span class="im">import</span> generate_asymmetric_key, encrypt_asymmetric, decrypt_asymmetric</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate key pairs for sender and receiver</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sender_private, sender_public <span class="op">=</span> generate_asymmetric_key()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>receiver_private, receiver_public <span class="op">=</span> generate_asymmetric_key()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Keys generated successfully"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Keys generated successfully</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Each key pair contains RSA public and private keys</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sender encrypts message with receiver's public key and signs with their private key</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">"Secret message"</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>encrypted_data <span class="op">=</span> encrypt_asymmetric(message, receiver_public, sender_private)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Encrypted data length: </span><span class="sc">{</span><span class="bu">len</span>(encrypted_data)<span class="sc">}</span><span class="ss"> bytes"</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Encrypted data length: 512 bytes (includes encrypted message + signature)</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Receiver decrypts with their private key and verifies sender's signature</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>decrypted_message <span class="op">=</span> decrypt_asymmetric(encrypted_data, receiver_private, sender_public)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(decrypted_message)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: Secret message</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: Printed output has been shortened for ease of this README.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The function will print out the full keys.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> sender_private, sender_public <span class="op">=</span> generate_asymmetric_key()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>PRIVATE KEY:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">b'-----BEGIN RSA PRIVATE KEY-----</span><span class="ch">\n</span><span class="st">MIIEogIBAAK......V8WZ5NRcY=</span><span class="ch">\n</span><span class="st">-----END RSA PRIVATE KEY-----'</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>PUBLIC KEY:</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">b'-----BEGIN PUBLIC KEY-----</span><span class="ch">\n</span><span class="st">MIIBIjANBg......L4</span><span class="ch">\n</span><span class="st">8wIDAQAB</span><span class="ch">\n</span><span class="st">-----END PUBLIC KEY-----'</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> receiver_private, receiver_public <span class="op">=</span> generate_asymmetric_key()</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>PRIVATE KEY:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">b'-----BEGIN RSA PRIVATE KEY-----</span><span class="ch">\n</span><span class="st">MIIEowIBAAK......azpF3S3lzNWJ</span><span class="ch">\n</span><span class="st">-----END RSA PRIVATE KEY-----'</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>PUBLIC KEY:</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">b'-----BEGIN PUBLIC KEY-----</span><span class="ch">\n</span><span class="st">MIIBIjANBg......T8G</span><span class="ch">\n</span><span class="st">owIDAQAB</span><span class="ch">\n</span><span class="st">-----END PUBLIC KEY-----'</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Sender encrypts message with receiver's public key and signs with their private key</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> message <span class="op">=</span> <span class="st">"Secret message"</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> encrypted_data <span class="op">=</span> encrypt_asymmetric(message, receiver_public, sender_private)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(<span class="ss">f"Encrypted data length: </span><span class="sc">{</span><span class="bu">len</span>(encrypted_data)<span class="sc">}</span><span class="ss"> bytes"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>Encrypted data length: <span class="dv">512</span> <span class="bu">bytes</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Receiver decrypts with their private key and verifies sender's signature</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> decrypted_message <span class="op">=</span> decrypt_asymmetric(encrypted_data, receiver_private, sender_public)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(decrypted_message)</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>Secret message</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="development" class="level2">
@@ -317,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
-<p>This packages uses the MIT License, more information can be found <a href="https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE">here</a></p>
+<p>This packages uses the MIT License, more information can be found <a href="https://github.com/UBC-MDS/imitation_game/blob/main/LICENSE">here</a> alongside reasoning for this license <a href="https://github.com/UBC-MDS/imitation_game/issues/80">here</a>.</p>
 </section>
 <section id="citation" class="level2">
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
