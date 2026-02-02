@@ -42,7 +42,8 @@ class TestAsymmetricIntegration:
         encrypted = encrypt_symmetric(message, key1)
 
         # wrong keys
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError,
+                           match="Decryption failed: Invalid UTF-8 data"):
             decrypt_symmetric(encrypted, key2)
 
         # wrong nouce
@@ -51,11 +52,13 @@ class TestAsymmetricIntegration:
         decoded[0] = (decoded[0] + 1) % 256
         tampered_encrypted = base64.b64encode(bytes(decoded)).decode('utf-8')
 
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError,
+                           match="Decryption failed: Invalid UTF-8 data"):
             decrypt_symmetric(tampered_encrypted, key1)
 
         # invalid key
-        with pytest.raises(ValueError, match="Decryption failed"):
+        with pytest.raises(ValueError,
+                           match="Decryption failed: Invalid key encoding"):
             decrypt_symmetric(encrypted, "Invalid key")
 
     def test_key_file_persistence_integration(self, tmp_path):

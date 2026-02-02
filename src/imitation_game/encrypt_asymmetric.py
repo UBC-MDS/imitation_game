@@ -51,8 +51,8 @@ def encrypt_asymmetric(
     ...     sender_private,
     ... )
     """
+    # Load receiver public key
     try:
-        # Load receiver public key
         if isinstance(receiver_public_key, str) and os.path.isfile(
             receiver_public_key
         ):
@@ -60,8 +60,11 @@ def encrypt_asymmetric(
                 receiver_key = RSA.import_key(f.read())
         else:
             receiver_key = RSA.import_key(receiver_public_key)
+    except (ValueError, IndexError, TypeError) as e:
+        raise ValueError(f"Invalid receiver public key: {str(e)}")
 
-        # Load sender private key
+    # Load sender private key
+    try:
         if isinstance(sender_private_key, str) and os.path.isfile(
             sender_private_key
         ):
@@ -69,7 +72,10 @@ def encrypt_asymmetric(
                 sender_key = RSA.import_key(f.read())
         else:
             sender_key = RSA.import_key(sender_private_key)
+    except (ValueError, IndexError, TypeError) as e:
+        raise ValueError(f"Invalid sender private key: {str(e)}")
 
+    try:
         # Encrypt with receiver's public key
         cipher = PKCS1_OAEP.new(receiver_key)
         encrypted_bytes = cipher.encrypt(message.encode('utf-8'))
@@ -86,5 +92,7 @@ def encrypt_asymmetric(
 
         payload = json.dumps(result).encode('utf-8')
         return base64.b64encode(payload).decode('utf-8')
+    except ValueError as e:
+        raise ValueError(f"Encryption failed (possibly message too long): {str(e)}")
     except Exception as e:
         raise ValueError(f"Encryption failed: {str(e)}")

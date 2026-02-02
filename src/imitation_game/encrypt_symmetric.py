@@ -74,19 +74,26 @@ def encrypt_symmetric(message, key):
     >>> encrypted
     '0rH1lkuVpskHbqMkgAOx0+pd'
     """
-    if isinstance(key, str) and os.path.isfile(key):
-        with open(key, 'r') as f:
-            key = f.read().strip()
+    try:
+        if isinstance(key, str) and os.path.isfile(key):
+            with open(key, 'r') as f:
+                key = f.read().strip()
 
-    if isinstance(key, str):
-        try:
-            key = base64.b64decode(key)
-        except Exception:
-            raise ValueError("Encryption failed: Invalid key encoding")
+        if isinstance(key, str):
+            try:
+                key = base64.b64decode(key)
+            except Exception:
+                raise ValueError(
+                    "Encryption failed: Invalid key encoding"
+                    )
+        else:
+            raise ValueError("Encryption failed: Key must be a string")
 
-    if len(message) > 256:
-        raise ValueError("Encryption failed: Message too long")
+        if len(message) > 256:
+            raise ValueError("Encryption failed: Message too long")
 
-    cipher = AES.new(key, AES.MODE_CTR)
-    ciphertext = cipher.encrypt(message.encode())
-    return base64.b64encode(cipher.nonce + ciphertext).decode('utf-8')
+        cipher = AES.new(key, AES.MODE_CTR)
+        ciphertext = cipher.encrypt(message.encode())
+        return base64.b64encode(cipher.nonce + ciphertext).decode('utf-8')
+    except Exception as e:
+        raise ValueError(f"Encryption failed: {str(e)}")
