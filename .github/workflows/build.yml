@@ -18,10 +18,10 @@ jobs:
         python-version: ["3.10", "3.13"]
 
     steps:
-    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.5.2
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v4.5.2
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v5.1.0
+      uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v5.1.0
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install hatch
@@ -32,7 +32,7 @@ jobs:
       run: hatch run +py=${{ matrix.python-version }} test:run
     # Upload coverage to Codecov for badge generation
     - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v7
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
     - name: Install flake8
